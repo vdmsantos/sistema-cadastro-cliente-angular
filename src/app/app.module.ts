@@ -18,6 +18,7 @@ import { ListComponent } from './components/list/list.component';
 // OTHERS
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { ListSorterComponent } from './components/list-sorter/list-sorter.component';
 
 @NgModule({
     declarations: [
@@ -27,7 +28,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
         ListarClientesComponent,
         PageHeaderComponent,
         InputComponent,
-        ListComponent
+        ListComponent,
+        ListSorterComponent
     ],
     imports: [
         NgxMaskDirective,
