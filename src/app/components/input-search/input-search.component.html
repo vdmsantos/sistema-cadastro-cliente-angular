@@ -1,0 +1,36 @@
+<!-- Pesquisar gestante por nome -->
+<div class="flex flex-wrap lg:flex-nowrap flex-col-reverse lg:flex-row w-full gap-2 ml-auto items-centerd">
+    <div class="flex gap-2 items-center">
+        <p class="whitespace-nowrap">Pesquisar por</p>
+        <select [(ngModel)]="searchBy" class="custom-select">
+            <option value="nome">Nome</option>
+            <option value="cpf">CPF</option>
+        </select>
+        <!-- Começa com ou contém -->
+        <div class="flex items-center gap-1">
+            <select [(ngModel)]="startByOrContain" (change)="emitEvent()" class="custom-select">
+                <option [value]="StartByOrContainEnum.startBy">Inicia por</option>
+                <option [value]="StartByOrContainEnum.contain">Contém</option>
+            </select>
+        </div>
+    </div>
+    <div class="flex w-full relative">
+        <!-- Input de pesquisa -->
+        <input [(ngModel)]="searchQuery" (keyup.enter)="emitEvent()"
+            [placeholder]="searchBy === 'nome' ? 'Maria de Nazaré' : '000.000.000-00'"
+            [mask]="searchBy === 'nome' ? '' : '000.000.000-00'"
+            class="custom-input-med w-full rounded-r-none border-r-0">
+        <!-- Botão pesquisar -->
+        <button (click)="emitEvent()"
+            pTooltip="Pesquisar"
+            class="px-2 rounded-md rounded-l-none border border-l-0 transition-all hover:bg-sky-300 border-sky-300 bg-sky-400">
+            <i [class]="PrimeIcons.SEARCH" ngClass="text-white flex"></i>
+        </button>
+        <!-- Botão atualizar -->
+        <button (click)="emitEvent({page:undefined, searchQuery:undefined, searchBy:undefined,startByOrContain:undefined})"
+            pTooltip="Atualizar" tooltipPosition="left"
+            class="group ml-1 px-2 rounded-md border border-l-0 transition-all hover:bg-sky-300 border-sky-300 bg-sky-400">
+            <i [class]="PrimeIcons.REFRESH" ngClass="text-white origin-[50%_57%] flex"></i>
+        </button>
+    </div>
+</div>
