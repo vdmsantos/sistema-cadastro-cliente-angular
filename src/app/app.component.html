@@ -1,8 +1,8 @@
-<main class="relative h-screen flex p-2 gap-4">
+<main class="relative h-[100dvh] flex p-2 gap-4">
     <div class="sticky top-2 xl:top-4 hidden md:block">
         <app-sidebar />
     </div>
-    <div class="w-[calc(100%-230px)] 2xl:w-[calc(100%-280px)]">
+    <div class="w-[calc(100%-230px)] 2xl:w-[calc(100%-280px)] overflow-hidden">
         <router-outlet></router-outlet>
     </div>
 </main>
