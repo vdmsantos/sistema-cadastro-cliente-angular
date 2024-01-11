@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ClienteService } from '../../services/cliente.service';
+import { ClienteFormService } from '../../services/cliente-form.service';
 
 @Component({
     selector: 'app-input',
@@ -9,7 +9,7 @@ import { ClienteService } from '../../services/cliente.service';
 })
 export class InputComponent {
     constructor(
-        private clienteService: ClienteService,
+        private clienteService: ClienteFormService,
     ) { }
 
     @Input({ required: true }) input_formGroup!: FormGroup

@@ -4,7 +4,7 @@ import { take, tap } from 'rxjs';
 import { APP_ROUTE_PATHS } from '../../app-routing.module';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ClienteEntity } from '../../entities/cliente.entity';
-import { ClienteService } from '../../services/cliente.service';
+import { ClienteFormService } from '../../services/cliente-form.service';
 
 @Component({
     selector: 'app-list',
@@ -16,7 +16,7 @@ export class ListComponent implements OnChanges, OnInit {
         private dialog: MatDialog,
         private messageService: MessageService,
         private confirmationService: ConfirmationService,
-        private clienteService: ClienteService,
+        private clienteService: ClienteFormService,
     ) { }
     /**
      * 	Itens a serem exibidos. Não pode ter itens nested.

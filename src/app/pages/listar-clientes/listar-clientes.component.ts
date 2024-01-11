@@ -514,6 +514,9 @@ export class ListarClientesComponent {
         }),
     ]
 
+
+    clientesVazio = [] as ClienteEntity[]
+
     list_items = this.clientes.map(item => {
         return {
             ...item,
