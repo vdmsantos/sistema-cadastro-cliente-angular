@@ -1,0 +1,79 @@
+<section class="flex flex-col h-[calc(100dvh-16px)] gap-2">
+    <app-page-header
+        _pageTitle="Cadastrar novo cliente">
+    </app-page-header>
+    <div class="flex flex-col p-4 px-6 gap-8 bg-white shadow-md rounded-lg w-full h-full">
+        <div class="flex flex-col gap-8 w-full max-w-[500px]">
+            <!-- Dados cliente -->
+            <div class="flex flex-col gap-2">
+                <p class="text-lg font-semibold">1. Dados pessoais</p>
+                <div class="w-full">
+                    <app-input
+                        [input_formControl]="getClienteFormControl('nome')"
+                        [input_formGroup]="clienteFormGroup"
+                        input_label="Nome*">
+                    </app-input>
+                </div>
+                <div class="flex gap-2 w-full">
+                    <div class="w-full">
+                        <app-input
+                            [input_formControl]="getClienteFormControl('cpf')"
+                            [input_formGroup]="clienteFormGroup"
+                            input_label="CPF*">
+                        </app-input>
+                    </div>
+                    <div class="w-full">
+                        <app-input
+                            [input_formControl]="getClienteFormControl('telefone')"
+                            [input_formGroup]="clienteFormGroup"
+                            input_label="Telefone*">
+                        </app-input>
+                    </div>
+                </div>
+            </div>
+            <!-- Divisor -->
+            <!-- <div class="w-full h-[1px] self-center bg-black/10"></div> -->
+            <!-- <div class="w-[1px] h-[180px] self-center bg-black/10"></div> -->
+            <!-- Endereco cliente -->
+            <div class="flex flex-col gap-2">
+                <p class="text-lg font-semibold">2. Endereço</p>
+                <div class="grid grid-cols-2  gap-2">
+                    <app-input
+                        [input_formControl]="getClienteEnderecoFormControl('cep')"
+                        [input_formGroup]="clienteFormGroup"
+                        input_label="CEP*">
+                    </app-input>
+                    <app-input
+                        [input_formControl]="getClienteEnderecoFormControl('estado')"
+                        [input_formGroup]="clienteFormGroup"
+                        input_label="Estado*">
+                    </app-input>
+                    <app-input
+                        [input_formControl]="getClienteEnderecoFormControl('cidade')"
+                        [input_formGroup]="clienteFormGroup"
+                        input_label="Cidade*">
+                    </app-input>
+                    <app-input
+                        [input_formControl]="getClienteEnderecoFormControl('bairro')"
+                        [input_formGroup]="clienteFormGroup"
+                        input_label="Bairro*">
+                    </app-input>
+                    <app-input
+                        [input_formControl]="getClienteEnderecoFormControl('rua')"
+                        [input_formGroup]="clienteFormGroup"
+                        input_label="Rua*">
+                    </app-input>
+                    <app-input
+                        [input_formControl]="getClienteEnderecoFormControl('numero')"
+                        [input_formGroup]="clienteFormGroup"
+                        input_label="Número">
+                    </app-input>
+                </div>
+            </div>
+        </div>
+        <!-- Botao salvar -->
+        <div class="mt-auto">
+            <button (click)="submitForm()" class="custom-btn">Salvar cliente</button>
+        </div>
+    </div>
+</section>
