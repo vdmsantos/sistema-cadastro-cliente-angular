@@ -23,7 +23,7 @@ export class ListComponent implements OnChanges, OnInit {
      *
      *  Ex: [{nome:'Rodrigo', rua:'Abacate'}]
      */
-    @Input({ required: true }) list_items!: any[]
+    @Input({ required: true }) list_items!: ClienteEntity[] | any[]
     /**
      * 	Lista com o label do header e a coluna respectiva a ser exibida.
      *
@@ -33,11 +33,9 @@ export class ListComponent implements OnChanges, OnInit {
     @Input() list_hasActionButtons: boolean = true
     listHeaderItems!: string[]
     dialogRef!: MatDialogRef<any>;
-    itemSelecionado!: any
     objectKeysInOrder = this.list_tableFields?.map(data => data.column)
     headerItems = this.list_tableFields?.map(data => data.label)
     PrimeIcons = PrimeIcons
-    APP_ROUTE_PATHS = APP_ROUTE_PATHS
 
     ngOnInit(): void {
         this.listHeaderItems = this.list_tableFields?.map(data => data.label)
