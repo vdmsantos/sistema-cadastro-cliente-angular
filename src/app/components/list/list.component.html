@@ -1,0 +1,52 @@
+<p-confirmPopup></p-confirmPopup>
+
+<div>
+    <table class="border-separate border-spacing-0">
+        <!-- Header -->
+        <thead class="sticky top-0">
+            <tr>
+                <th *ngIf="list_hasActionButtons" class="border border-r-0 rounded-l-md border-gray-300 bg-sky-100 min-w-[110px]"></th>
+                <th *ngFor="let item of listHeaderItems" class="group border-y last:rounded-r-md last:border-r border-gray-300 bg-sky-100">
+                    <div readonly
+                        class="min-w-[180px] py-4 resize-x overflow-x-auto bg-transparent font-semibold ">
+                        <p [title]="item" class=" px-4 line-clamp-1 border-r group-first:border-l group-last:border-r-0 border-gray-300">{{item}}</p>
+                    </div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of list_items; let i = index">
+                <!-- Botões -->
+                <td *ngIf="list_hasActionButtons" class=" py-1 pl-3 border border-r-0 rounded-md rounded-r-none  border-gray-300">
+                    <div class="flex gap-1">
+                        <!-- Botão excluir -->
+                        <button
+                            pTooltip="Excluir"
+                            tooltipPosition="top"
+                            (click)="confirmarExclusao($event,item)"
+                            type="button" class=" rounded-md w-fit h-fit flex transition-all p-1 px-2 bg-red-100 hover:bg-red-200">
+                            <i [class]="PrimeIcons.TRASH" ngClass="flex text-sm"></i>
+                        </button>
+                        <!-- Botão editar -->
+                        <button
+                            pTooltip="Editar"
+                            tooltipPosition="top"
+                            (click)="abrirGerarPDFDialog(list_items[i])"
+                            type="button" class=" rounded-md w-fit h-fit flex transition-all p-1 px-2 bg-indigo-100 hover:bg-indigo-200">
+                            <i [class]="PrimeIcons.PENCIL" ngClass="flex text-sm"></i>
+                        </button>
+                    </div>
+                </td>
+                <!-- Item da lista -->
+                <td *ngFor="let itemKey of objectKeysInOrder" class=" py-1 border-y last:border-r last:rounded-r-md border-gray-300">
+                    <li
+                        [style]="verificarTextoNenhum(item[itemKey])"
+                        class="[display:-webkit-box;] line-clamp-1"
+                        [title]="item[itemKey]">
+                        {{ item[itemKey] ? item[itemKey] : 'nenhum' }}
+                    </li>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
