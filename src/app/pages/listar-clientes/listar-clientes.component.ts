@@ -1,7 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Signal } from '@angular/core';
 import { ClienteEntity } from '../../entities/cliente.entity';
 import { Endereco } from '../../types/endereco.interface';
 import { HelperService } from '../../services/helper.service';
+import { ClienteService } from '../../services/cliente.service';
+import { OrderByColumnEnum } from '../../types/paginationTypes/order-by-column.enum';
+import { OrderEnum } from '../../types/paginationTypes/order.enum';
+import { PaginationOptionsType } from '../../types/paginationTypes/pagination-options.type';
 
 @Component({
     selector: 'app-listar-clientes',
@@ -10,8 +14,10 @@ import { HelperService } from '../../services/helper.service';
 })
 export class ListarClientesComponent {
     constructor(
-        private helperService: HelperService
+        private clienteService: ClienteService
     ) { }
+
+    clientesListSignal = this.clienteService.getClientesListSignal
 
     list_tableFields: {
         label: string;
@@ -63,461 +69,33 @@ export class ListarClientesComponent {
             },
         ]
 
-    clientes = [
-        new ClienteEntity({
-            atualizado_em: new Date().toISOString(),
-            cpf: '99999999999',
-            criado_em: new Date().toISOString(),
-            endereco: {
-                bairro: 'asd',
-                cep: 'asdasd',
-                cidade: 'aa',
-                estado: 'weee',
-                numero: '22',
-                rua: 'tal'
-            } as Endereco,
-            id: this.helperService.newUUID(),
-            nome: 'Joaquim Maio',
-            telefone: '47992831801'
-        }),
-        new ClienteEntity({
-            atualizado_em: new Date().toISOString(),
-            cpf: '99999999999',
-            criado_em: new Date().toISOString(),
-            endereco: {
-                bairro: 'asd',
-                cep: 'asdasd',
-                cidade: 'aa',
-                estado: 'weee',
-                numero: '22',
-                rua: 'tal'
-            } as Endereco,
-            id: this.helperService.newUUID(),
-            nome: 'Joaquim',
-            telefone: '47992831801'
-        }),
-        new ClienteEntity({
-            atualizado_em: new Date().toISOString(),
-            cpf: '99999999999',
-            criado_em: new Date().toISOString(),
-            endereco: {
-                bairro: 'asd',
-                cep: 'asdasd',
-                cidade: 'aa',
-                estado: 'weee',
-                numero: '22',
-                rua: 'tal'
-            } as Endereco,
-            id: this.helperService.newUUID(),
-            nome: 'Joaquim',
-            telefone: '47992831801'
-        }),
-        new ClienteEntity({
-            atualizado_em: new Date().toISOString(),
-            cpf: '99999999999',
-            criado_em: new Date().toISOString(),
-            endereco: {
-                bairro: 'asd',
-                cep: 'asdasd',
-                cidade: 'aa',
-                estado: 'weee',
-                numero: '22',
-                rua: 'tal'
-            } as Endereco,
-            id: this.helperService.newUUID(),
-            nome: 'Joaquim',
-            telefone: '47992831801'
-        }),
-        new ClienteEntity({
-            atualizado_em: new Date().toISOString(),
-            cpf: '99999999999',
-            criado_em: new Date().toISOString(),
-            endereco: {
-                bairro: 'asd',
-                cep: 'asdasd',
-                cidade: 'aa',
-                estado: 'weee',
-                numero: '22',
-                rua: 'tal'
-            } as Endereco,
-            id: this.helperService.newUUID(),
-            nome: 'Joaquim',
-            telefone: '47992831801'
-        }),
-        new ClienteEntity({
-            atualizado_em: new Date().toISOString(),
-            cpf: '99999999999',
-            criado_em: new Date().toISOString(),
-            endereco: {
-                bairro: 'asd',
-                cep: 'asdasd',
-                cidade: 'aa',
-                estado: 'weee',
-                numero: '22',
-                rua: 'tal'
-            } as Endereco,
-            id: this.helperService.newUUID(),
-            nome: 'Joaquim',
-            telefone: '47992831801'
-        }),
-        new ClienteEntity({
-            atualizado_em: new Date().toISOString(),
-            cpf: '99999999999',
-            criado_em: new Date().toISOString(),
-            endereco: {
-                bairro: 'asd',
-                cep: 'asdasd',
-                cidade: 'aa',
-                estado: 'weee',
-                numero: '22',
-                rua: 'tal'
-            } as Endereco,
-            id: this.helperService.newUUID(),
-            nome: 'Joaquim',
-            telefone: '47992831801'
-        }),
-        new ClienteEntity({
-            atualizado_em: new Date().toISOString(),
-            cpf: '99999999999',
-            criado_em: new Date().toISOString(),
-            endereco: {
-                bairro: 'asd',
-                cep: 'asdasd',
-                cidade: 'aa',
-                estado: 'weee',
-                numero: '22',
-                rua: 'tal'
-            } as Endereco,
-            id: this.helperService.newUUID(),
-            nome: 'Joaquim',
-            telefone: '47992831801'
-        }),
-        new ClienteEntity({
-            atualizado_em: new Date().toISOString(),
-            cpf: '99999999999',
-            criado_em: new Date().toISOString(),
-            endereco: {
-                bairro: 'asd',
-                cep: 'asdasd',
-                cidade: 'aa',
-                estado: 'weee',
-                numero: '22',
-                rua: 'tal'
-            } as Endereco,
-            id: this.helperService.newUUID(),
-            nome: 'Joaquim',
-            telefone: '47992831801'
-        }),
-        new ClienteEntity({
-            atualizado_em: new Date().toISOString(),
-            cpf: '99999999999',
-            criado_em: new Date().toISOString(),
-            endereco: {
-                bairro: 'asd',
-                cep: 'asdasd',
-                cidade: 'aa',
-                estado: 'weee',
-                numero: '22',
-                rua: 'tal'
-            } as Endereco,
-            id: this.helperService.newUUID(),
-            nome: 'Joaquim',
-            telefone: '47992831801'
-        }),
-        new ClienteEntity({
-            atualizado_em: new Date().toISOString(),
-            cpf: '99999999999',
-            criado_em: new Date().toISOString(),
-            endereco: {
-                bairro: 'asd',
-                cep: 'asdasd',
-                cidade: 'aa',
-                estado: 'weee',
-                numero: '22',
-                rua: 'tal'
-            } as Endereco,
-            id: this.helperService.newUUID(),
-            nome: 'Joaquim',
-            telefone: '47992831801'
-        }),
-        new ClienteEntity({
-            atualizado_em: new Date().toISOString(),
-            cpf: '99999999999',
-            criado_em: new Date().toISOString(),
-            endereco: {
-                bairro: 'asd',
-                cep: 'asdasd',
-                cidade: 'aa',
-                estado: 'weee',
-                numero: '22',
-                rua: 'tal'
-            } as Endereco,
-            id: this.helperService.newUUID(),
-            nome: 'Joaquim',
-            telefone: '47992831801'
-        }),
-        new ClienteEntity({
-            atualizado_em: new Date().toISOString(),
-            cpf: '99999999999',
-            criado_em: new Date().toISOString(),
-            endereco: {
-                bairro: 'asd',
-                cep: 'asdasd',
-                cidade: 'aa',
-                estado: 'weee',
-                numero: '22',
-                rua: 'tal'
-            } as Endereco,
-            id: this.helperService.newUUID(),
-            nome: 'Joaquim',
-            telefone: '47992831801'
-        }),
-        new ClienteEntity({
-            atualizado_em: new Date().toISOString(),
-            cpf: '99999999999',
-            criado_em: new Date().toISOString(),
-            endereco: {
-                bairro: 'asd',
-                cep: 'asdasd',
-                cidade: 'aa',
-                estado: 'weee',
-                numero: '22',
-                rua: 'tal'
-            } as Endereco,
-            id: this.helperService.newUUID(),
-            nome: 'Joaquim',
-            telefone: '47992831801'
-        }),
-        new ClienteEntity({
-            atualizado_em: new Date().toISOString(),
-            cpf: '99999999999',
-            criado_em: new Date().toISOString(),
-            endereco: {
-                bairro: 'asd',
-                cep: 'asdasd',
-                cidade: 'aa',
-                estado: 'weee',
-                numero: '22',
-                rua: 'tal'
-            } as Endereco,
-            id: this.helperService.newUUID(),
-            nome: 'Joaquim',
-            telefone: '47992831801'
-        }),
-        new ClienteEntity({
-            atualizado_em: new Date().toISOString(),
-            cpf: '99999999999',
-            criado_em: new Date().toISOString(),
-            endereco: {
-                bairro: 'asd',
-                cep: 'asdasd',
-                cidade: 'aa',
-                estado: 'weee',
-                numero: '22',
-                rua: 'tal'
-            } as Endereco,
-            id: this.helperService.newUUID(),
-            nome: 'Joaquim',
-            telefone: '47992831801'
-        }),
-        new ClienteEntity({
-            atualizado_em: new Date().toISOString(),
-            cpf: '99999999999',
-            criado_em: new Date().toISOString(),
-            endereco: {
-                bairro: 'asd',
-                cep: 'asdasd',
-                cidade: 'aa',
-                estado: 'weee',
-                numero: '22',
-                rua: 'tal'
-            } as Endereco,
-            id: this.helperService.newUUID(),
-            nome: 'Joaquim',
-            telefone: '47992831801'
-        }),
-        new ClienteEntity({
-            atualizado_em: new Date().toISOString(),
-            cpf: '99999999999',
-            criado_em: new Date().toISOString(),
-            endereco: {
-                bairro: 'asd',
-                cep: 'asdasd',
-                cidade: 'aa',
-                estado: 'weee',
-                numero: '22',
-                rua: 'tal'
-            } as Endereco,
-            id: this.helperService.newUUID(),
-            nome: 'Joaquim',
-            telefone: '47992831801'
-        }),
-        new ClienteEntity({
-            atualizado_em: new Date().toISOString(),
-            cpf: '99999999999',
-            criado_em: new Date().toISOString(),
-            endereco: {
-                bairro: 'asd',
-                cep: 'asdasd',
-                cidade: 'aa',
-                estado: 'weee',
-                numero: '22',
-                rua: 'tal'
-            } as Endereco,
-            id: this.helperService.newUUID(),
-            nome: 'Joaquim',
-            telefone: '47992831801'
-        }),
-        new ClienteEntity({
-            atualizado_em: new Date().toISOString(),
-            cpf: '99999999999',
-            criado_em: new Date().toISOString(),
-            endereco: {
-                bairro: 'asd',
-                cep: 'asdasd',
-                cidade: 'aa',
-                estado: 'weee',
-                numero: '22',
-                rua: 'tal'
-            } as Endereco,
-            id: this.helperService.newUUID(),
-            nome: 'Joaquim',
-            telefone: '47992831801'
-        }),
-        new ClienteEntity({
-            atualizado_em: new Date().toISOString(),
-            cpf: '99999999999',
-            criado_em: new Date().toISOString(),
-            endereco: {
-                bairro: 'asd',
-                cep: 'asdasd',
-                cidade: 'aa',
-                estado: 'weee',
-                numero: '22',
-                rua: 'tal'
-            } as Endereco,
-            id: this.helperService.newUUID(),
-            nome: 'Joaquim',
-            telefone: '47992831801'
-        }),
-        new ClienteEntity({
-            atualizado_em: new Date().toISOString(),
-            cpf: '99999999999',
-            criado_em: new Date().toISOString(),
-            endereco: {
-                bairro: 'asd',
-                cep: 'asdasd',
-                cidade: 'aa',
-                estado: 'weee',
-                numero: '22',
-                rua: 'tal'
-            } as Endereco,
-            id: this.helperService.newUUID(),
-            nome: 'Joaquim',
-            telefone: '47992831801'
-        }),
-        new ClienteEntity({
-            atualizado_em: new Date().toISOString(),
-            cpf: '99999999999',
-            criado_em: new Date().toISOString(),
-            endereco: {
-                bairro: 'asd',
-                cep: 'asdasd',
-                cidade: 'aa',
-                estado: 'weee',
-                numero: '22',
-                rua: 'tal'
-            } as Endereco,
-            id: this.helperService.newUUID(),
-            nome: 'Joaquim',
-            telefone: '47992831801'
-        }),
-        new ClienteEntity({
-            atualizado_em: new Date().toISOString(),
-            cpf: '99999999999',
-            criado_em: new Date().toISOString(),
-            endereco: {
-                bairro: 'asd',
-                cep: 'asdasd',
-                cidade: 'aa',
-                estado: 'weee',
-                numero: '22',
-                rua: 'tal'
-            } as Endereco,
-            id: this.helperService.newUUID(),
-            nome: 'Joaquim',
-            telefone: '47992831801'
-        }),
-        new ClienteEntity({
-            atualizado_em: new Date().toISOString(),
-            cpf: '99999999999',
-            criado_em: new Date().toISOString(),
-            endereco: {
-                bairro: 'asd',
-                cep: 'asdasd',
-                cidade: 'aa',
-                estado: 'weee',
-                numero: '22',
-                rua: 'tal'
-            } as Endereco,
-            id: this.helperService.newUUID(),
-            nome: 'Joaquim',
-            telefone: '47992831801'
-        }),
-        new ClienteEntity({
-            atualizado_em: new Date().toISOString(),
-            cpf: '99999999999',
-            criado_em: new Date().toISOString(),
-            endereco: {
-                bairro: 'asd',
-                cep: 'asdasd',
-                cidade: 'aa',
-                estado: 'weee',
-                numero: '22',
-                rua: 'tal'
-            } as Endereco,
-            id: this.helperService.newUUID(),
-            nome: 'Joaquim',
-            telefone: '47992831801'
-        }),
-        new ClienteEntity({
-            atualizado_em: new Date().toISOString(),
-            cpf: '99999999999',
-            criado_em: new Date().toISOString(),
-            endereco: {
-                bairro: 'asd',
-                cep: 'asdasd',
-                cidade: 'aa',
-                estado: 'weee',
-                numero: '22',
-                rua: 'tal'
-            } as Endereco,
-            id: this.helperService.newUUID(),
-            nome: 'Joaquim',
-            telefone: '47992831801'
-        }),
-        new ClienteEntity({
-            atualizado_em: new Date().toISOString(),
-            cpf: '99999999999',
-            criado_em: new Date().toISOString(),
-            endereco: {
-                bairro: 'asd',
-                cep: 'asdasd',
-                cidade: 'aa',
-                estado: 'weee',
-                numero: '22',
-                rua: 'tal'
-            } as Endereco,
-            id: this.helperService.newUUID(),
-            nome: 'Joaquim',
-            telefone: '47992831801'
-        }),
-    ]
+    fetchClientesList(
+        { page, limit, order, orderByColumn, searchQuery, searchBy }: PaginationOptionsType
+    ) {
+        console.log('order, orderByColumn', order, orderByColumn)
+        return this.clienteService.fetchClientesList({
+            orderByColumn: orderByColumn,
+            order: order
+        })
+    }
 
+    getListItems(clientes: ClienteEntity[]) {
+        return clientes.map(item => {
+            return {
+                ...item,
+                atualizado_em: new Date(item.atualizado_em).toLocaleString(),
+                criado_em: new Date(item.criado_em).toLocaleString(),
+                rua: item.endereco.rua,
+                bairro: item.endereco.bairro,
+                cep: item.endereco.cep,
+                cidade: item.endereco.cidade,
+                estado: item.endereco.estado,
+                numero: item.endereco.numero,
+            }
+        })
+    }
 
-    clientesVazio = [] as ClienteEntity[]
-
-    list_items = this.clientes.map(item => {
+    list_items = this.clienteService.fetchClientesList().map(item => {
         return {
             ...item,
             atualizado_em: new Date(item.atualizado_em).toLocaleString(),

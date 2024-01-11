@@ -3,10 +3,20 @@
         _pageTitle="Listar clientes">
     </app-page-header>
     <div class="flex flex-col p-4 px-6 gap-8 max-h-[calc(100%-72px)] bg-white shadow-md rounded-lg w-full h-full">
+        <!-- <div class="flex gap-1 w-fit">
+            <button class="custom-btn text-sm whitespace-nowrap">Popular com 200 cadastros</button>
+            <button class="custom-btn text-sm whitespace-nowrap">Limpar lista</button>
+        </div> -->
+        <!-- Ordenador -->
+        <app-list-sorter
+            (sorter_OnSort)="fetchClientesList({
+				orderByColumn: $event.orderByColumn,
+				order: $event.order
+		    })"></app-list-sorter>
         <!-- Dados/corpo da lista -->
         <div class="relative w-full gap-2 overflow-y-scroll">
             <app-list
-                [list_items]="list_items"
+                [list_items]="getListItems(clientesListSignal())"
                 [list_tableFields]="list_tableFields">
             </app-list>
         </div>
