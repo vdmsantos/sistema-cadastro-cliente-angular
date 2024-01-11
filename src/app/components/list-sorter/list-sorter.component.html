@@ -1,0 +1,30 @@
+<div class="flex gap-4">
+    <!-- Ordenar por -->
+    <div class="flex items-center gap-1">
+        <p class="whitespace-nowrap">Ordenar por</p>
+        <select [(ngModel)]="orderByColumn" (change)="emitirEvento()"
+            class="custom-select">
+            <option [value]="OrderByColumnEnum.nome">Nome</option>
+            <option [value]="OrderByColumnEnum.cpf">CPF</option>
+            <option [value]="OrderByColumnEnum.criado_em">Criado em</option>
+            <option [value]="OrderByColumnEnum.atualizado_em">Atualizado em</option>
+        </select>
+    </div>
+    <!-- Ordem crescente ou decrescente -->
+    <div class="flex gap-1 items-center">
+        <button type="button" (click)="order = OrderEnum.ASC;emitirEvento()"
+            class=" rounded-md border bg-white"
+            [ngClass]="order === OrderEnum.ASC ? 'border-sky-400 text-sky-400' : ' border-gray-400'"
+            pTooltip="Ordem crescente"
+            tooltipPosition="top">
+            <i [class]="PrimeIcons.SORT_ALPHA_DOWN" ngClass="p-2"></i>
+        </button>
+        <button type="button" (click)="order = OrderEnum.DESC;emitirEvento()"
+            class="rounded-md border  bg-white"
+            [ngClass]="order === OrderEnum.DESC ? 'border-sky-400 text-sky-400' : 'border-gray-400'"
+            pTooltip="Ordem decrescente"
+            tooltipPosition="top">
+            <i [class]="PrimeIcons.SORT_ALPHA_UP" ngClass="p-2 "></i>
+        </button>
+    </div>
+</div>
