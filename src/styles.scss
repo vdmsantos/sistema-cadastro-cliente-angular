@@ -1,1 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "primeicons/primeicons.css";
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.min.css";
+
+@layer base {
+
+    .custom-btn {
+        @apply w-full bg-sky-500 border-sky-500 hover:bg-sky-600 hover:border-sky-600 transition-all [transition-duration:100ms] rounded-md text-white text-lg px-4 py-2 border;
+    }
+
+    .custom-select {
+        @apply px-1 lg:px-3 font-normal py-1 rounded-md border border-sky-300;
+    }
+
+    .custom-input-med {
+        @apply px-3 font-normal py-1 rounded-md border border-sky-300;
+    }
+
+    .custom-input-small {
+        @apply px-2 font-normal py-0 rounded-md border border-sky-300;
+    }
+
+	.custom-disabled-input {
+		@apply pointer-events-none bg-black/5 border-black/10;
+	}
+
+	.custom-disabled-btn {
+		@apply pointer-events-none opacity-30;
+	}
+
+}
+
+body {
+    font-size: clamp(14px,1vw,14px);
+}
+
+.p-tooltip {
+	font-size: small;
+}
