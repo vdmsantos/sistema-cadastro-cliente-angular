@@ -70,12 +70,16 @@ export class ListarClientesComponent {
         ]
 
     fetchClientesList(
-        { page, limit, order, orderByColumn, searchQuery, searchBy }: PaginationOptionsType
+        { page, limit, order, orderByColumn, searchQuery, searchBy, startByOrContain }: PaginationOptionsType
     ) {
-        console.log('order, orderByColumn', order, orderByColumn)
         return this.clienteService.fetchClientesList({
+            page: page,
+            limit: limit,
             orderByColumn: orderByColumn,
-            order: order
+            order: order,
+            searchQuery: searchQuery,
+            searchBy: searchBy,
+            startByOrContain: startByOrContain,
         })
     }
 

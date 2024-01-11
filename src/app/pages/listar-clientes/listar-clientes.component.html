@@ -2,17 +2,27 @@
     <app-page-header
         _pageTitle="Listar clientes">
     </app-page-header>
-    <div class="flex flex-col p-4 px-6 gap-8 max-h-[calc(100%-72px)] bg-white shadow-md rounded-lg w-full h-full">
+    <div class="flex flex-col p-4 px-6 gap-8d max-h-[calc(100%-72px)] bg-white shadow-md rounded-lg w-full h-full">
         <!-- <div class="flex gap-1 w-fit">
             <button class="custom-btn text-sm whitespace-nowrap">Popular com 200 cadastros</button>
             <button class="custom-btn text-sm whitespace-nowrap">Limpar lista</button>
         </div> -->
-        <!-- Ordenador -->
-        <app-list-sorter
-            (sorter_OnSort)="fetchClientesList({
+        <div class="flex flex-initial w-full p-4 gap-8 mb-2 border font-semibold rounded-md border-gray-300 bg-sky-100">
+            <!-- Ordenador -->
+            <app-list-sorter
+                (sorter_OnSort)="fetchClientesList({
 				orderByColumn: $event.orderByColumn,
 				order: $event.order
 		    })"></app-list-sorter>
+            <div class="my-auto ml-auto w-full">
+                <app-input-search (onSubmit)="fetchClientesList({
+                    page: $event.page,
+                    searchQuery: $event.searchQuery,
+                    searchBy: $event.searchBy,
+                    startByOrContain:$event.startByOrContain
+                })"></app-input-search>
+            </div>
+        </div>
         <!-- Dados/corpo da lista -->
         <div class="relative w-full gap-2 overflow-y-scroll">
             <app-list

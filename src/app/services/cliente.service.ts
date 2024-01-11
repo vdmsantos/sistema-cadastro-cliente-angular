@@ -6,6 +6,8 @@ import { PaginationOptionsType } from '../types/paginationTypes/pagination-optio
 import { LimitEnum } from '../types/paginationTypes/limit.enum';
 import { OrderEnum } from '../types/paginationTypes/order.enum';
 import { OrderByColumnEnum } from '../types/paginationTypes/order-by-column.enum';
+import { StartByOrContainEnum } from '../types/paginationTypes/start-by-or-contain.enum';
+import { SearchByEnum } from '../types/paginationTypes/search-by.enum';
 
 @Injectable({
     providedIn: 'root'
@@ -469,9 +471,10 @@ export class ClienteService {
         page: 1,
         limit: LimitEnum._50,
         order: OrderEnum.ASC,
-        searchBy: 'nome',
+        searchBy: SearchByEnum.nome,
         searchQuery: '',
         orderByColumn: OrderByColumnEnum.atualizado_em,
+        startByOrContain: StartByOrContainEnum.contain
     })
 
     public getLastPaginationOptionsUsedSig = computed(this.lastPaginationOptionsUsedSig)
@@ -480,14 +483,15 @@ export class ClienteService {
 
     public getClientesListSignal = computed(this.clientesListSignal)
 
-    public fetchClientesList({ limit, order, orderByColumn, searchQuery, searchBy, page }: PaginationOptionsType = {} as PaginationOptionsType) {
+    public fetchClientesList({ limit, order, orderByColumn, searchQuery, searchBy, page, startByOrContain }: PaginationOptionsType = {} as PaginationOptionsType) {
         this.lastPaginationOptionsUsedSig.set({
             page: page || this.lastPaginationOptionsUsedSig().page,
             limit: limit || this.lastPaginationOptionsUsedSig().limit,
             order: order || this.lastPaginationOptionsUsedSig().order,
             searchBy: searchBy ? searchBy : this.lastPaginationOptionsUsedSig().searchBy,
             searchQuery: searchQuery !== undefined && searchQuery !== null ? searchQuery : this.lastPaginationOptionsUsedSig().searchQuery,
-            orderByColumn: orderByColumn || this.lastPaginationOptionsUsedSig().orderByColumn
+            orderByColumn: orderByColumn || this.lastPaginationOptionsUsedSig().orderByColumn,
+            startByOrContain: startByOrContain || this.lastPaginationOptionsUsedSig().startByOrContain,
         })
         page = this.lastPaginationOptionsUsedSig().page!
         limit = this.lastPaginationOptionsUsedSig().limit!
@@ -495,8 +499,9 @@ export class ClienteService {
         searchBy = this.lastPaginationOptionsUsedSig().searchBy!
         searchQuery = this.lastPaginationOptionsUsedSig().searchQuery!
         orderByColumn = this.lastPaginationOptionsUsedSig().orderByColumn!
+        startByOrContain = this.lastPaginationOptionsUsedSig().startByOrContain!
         // Filter by searchQuery and searchBy.
-        let clientes = this.filterBySearch(this.clientes, searchBy, searchQuery)
+        let clientes = this.filterBySearch(this.clientes, searchBy, searchQuery, startByOrContain)
         // Slice by limit and page.
         clientes = this.getSlice(clientes, limit, page)
         // Order by column and direction
@@ -506,8 +511,10 @@ export class ClienteService {
         return clientes
     }
 
-    private filterBySearch(clienteList: ClienteEntity[], searchBy: "nome" | "cpf", searchQuery: string) {
-        return clienteList.filter(cliente => cliente[searchBy].toLowerCase().includes(searchQuery.toLowerCase()))
+    private filterBySearch(clienteList: ClienteEntity[], searchBy: "nome" | "cpf", searchQuery: string, startByOrContain: StartByOrContainEnum) {
+        if (startByOrContain === StartByOrContainEnum.contain)
+            return clienteList.filter(cliente => cliente[searchBy].toLowerCase().includes(searchQuery.toLowerCase()))
+        else return clienteList.filter(cliente => cliente[searchBy].toLowerCase().startsWith(searchQuery.toLowerCase()))
     }
 
     private getSlice(clienteList: ClienteEntity[], limit: number, page: number) {
