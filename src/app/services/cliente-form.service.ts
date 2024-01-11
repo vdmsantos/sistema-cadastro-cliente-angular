@@ -43,7 +43,7 @@ class EnderecoFormType {
 @Injectable({
     providedIn: 'root'
 })
-export class ClienteService {
+export class ClienteFormService {
     constructor(
         private readonly formBuilder: FormBuilder,
         private readonly helperService: HelperService,
