@@ -9,6 +9,11 @@ import { OrderByColumnEnum } from '../types/paginationTypes/order-by-column.enum
 import { StartByOrContainEnum } from '../types/paginationTypes/start-by-or-contain.enum';
 import { SearchByEnum } from '../types/paginationTypes/search-by.enum';
 
+enum SuccessOrFailure {
+    success = 'success',
+    failure = 'failure'
+}
+
 @Injectable({
     providedIn: 'root'
 })
@@ -469,7 +474,7 @@ export class ClienteService {
 
     private lastPaginationOptionsUsedSig = signal<PaginationOptionsType>({
         page: 1,
-        limit: LimitEnum._50,
+        limit: LimitEnum._10,
         order: OrderEnum.ASC,
         searchBy: SearchByEnum.nome,
         searchQuery: '',
@@ -477,11 +482,51 @@ export class ClienteService {
         startByOrContain: StartByOrContainEnum.contain
     })
 
+
     public getLastPaginationOptionsUsedSig = computed(this.lastPaginationOptionsUsedSig)
+
+    private paginationMetaSignal = signal(this.updatePaginationMeta())
+
+    private updatePaginationMeta() {
+        const newPaginationMeta = {
+            itemCount: this.clientes.length > this.lastPaginationOptionsUsedSig().limit! ? this.lastPaginationOptionsUsedSig().limit! : this.clientes.length,
+            totalItems: this.clientes.length!,
+            currentPage: this.lastPaginationOptionsUsedSig().page!,
+            itemsPerPage: this.lastPaginationOptionsUsedSig().limit!,
+            totalPages: Math.ceil(this.clientes.length / this.lastPaginationOptionsUsedSig().limit!),
+        }
+        this.paginationMetaSignal?.set(newPaginationMeta)
+        return newPaginationMeta
+    }
+
+    public getPaginationMetaSignal = computed(this.paginationMetaSignal)
 
     private clientesListSignal = signal(this.fetchClientesList())
 
     public getClientesListSignal = computed(this.clientesListSignal)
+
+    public deleteById(clienteId: string) {
+        this.clientesListSignal.update(clienteList => {
+            return clienteList.filter(cliente => cliente.id !== clienteId)
+        })
+    }
+
+    public createOrUpdate(clienteEntity: ClienteEntity) {
+        // console.log('before adding', this.clientesListSignal())
+        const clienteFound = this.clientesListSignal().find(cliente => cliente.id === clienteEntity.id)
+        console.log('clienteFound', clienteFound)
+        if (!clienteFound) {
+            this.clientesListSignal.update(clienteList => { return [...clienteList, clienteEntity] })
+            // console.log('after create', this.clientesListSignal())
+            return
+        }
+        const clienteIndex = this.clientesListSignal().indexOf(clienteFound)
+        this.clientesListSignal.update(clienteList => {
+            clienteList[clienteIndex] = clienteEntity
+            return clienteList
+        })
+        // console.log('after update', this.clientesListSignal())
+    }
 
     public fetchClientesList({ limit, order, orderByColumn, searchQuery, searchBy, page, startByOrContain }: PaginationOptionsType = {} as PaginationOptionsType) {
         this.lastPaginationOptionsUsedSig.set({
@@ -508,6 +553,8 @@ export class ClienteService {
         clientes = this.orderByColumn(clientes, orderByColumn, order)
         // Updating clientesListSignal.
         this.clientesListSignal?.set(clientes)
+        // Update paginationMetaSignal.
+        this.updatePaginationMeta()
         return clientes
     }
 
