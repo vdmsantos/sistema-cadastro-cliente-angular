@@ -10,25 +10,14 @@ import { MessageService } from 'primeng/api';
 export class FormCustomerComponent {
 
     constructor(
-        public clienteService: ClienteFormService,
-        private messageService: MessageService,
+        private clienteFormService: ClienteFormService,
     ) { }
 
-    clienteFormGroup = this.clienteService.getClienteFormGroup()
-    getClienteFormControl = this.clienteService.getClienteFormControl.bind(this.clienteService);
-    getClienteEnderecoFormControl = this.clienteService.getClienteEnderecoFormControl.bind(this.clienteService);
+    clienteFormGroup = this.clienteFormService.getClienteFormGroup()
+    getClienteFormControl = this.clienteFormService.getClienteFormControl.bind(this.clienteFormService);
+    getClienteEnderecoFormControl = this.clienteFormService.getClienteEnderecoFormControl.bind(this.clienteFormService);
 
     submitForm() {
-        const submitResponse = this.clienteService.submit()
-        if (this.clienteService.getClienteFormGroup().invalid) {
-            this.showToastMessage('error', 'Verifique os campos antes de salvar.')
-        } else this.showToastMessage('success', 'Cliente salvo com sucesso.')
-    }
-
-    showToastMessage(severity: 'success' | 'error', message: string) {
-        this.messageService.add({
-            severity: severity,
-            summary: message,
-        });
+        this.clienteFormService.submit()
     }
 }
