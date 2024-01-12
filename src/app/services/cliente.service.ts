@@ -505,7 +505,7 @@ export class ClienteService {
 
     public clearClienteList() {
         this.localStorageService.clearClienteList()
-        this.fetchClientesList()
+        this.fetchClientesList({ page: 1 })
         this.showToastMessage('success', 'Lista esvaziada com sucesso.')
     }
 
