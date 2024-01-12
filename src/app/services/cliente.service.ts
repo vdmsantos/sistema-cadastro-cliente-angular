@@ -8,6 +8,7 @@ import { OrderEnum } from '../types/paginationTypes/order.enum';
 import { OrderByColumnEnum } from '../types/paginationTypes/order-by-column.enum';
 import { StartByOrContainEnum } from '../types/paginationTypes/start-by-or-contain.enum';
 import { SearchByEnum } from '../types/paginationTypes/search-by.enum';
+import { PaginationService } from './pagination.service';
 
 enum SuccessOrFailure {
     success = 'success',
@@ -19,7 +20,8 @@ enum SuccessOrFailure {
 })
 export class ClienteService {
     constructor(
-        private helperService: HelperService
+        private helperService: HelperService,
+        private paginationService: PaginationService,
     ) { }
     private clientes = [
         new ClienteEntity({
@@ -472,34 +474,6 @@ export class ClienteService {
         }),
     ]
 
-    private lastPaginationOptionsUsedSig = signal<PaginationOptionsType>({
-        page: 1,
-        limit: LimitEnum._10,
-        order: OrderEnum.ASC,
-        searchBy: SearchByEnum.nome,
-        searchQuery: '',
-        orderByColumn: OrderByColumnEnum.atualizado_em,
-        startByOrContain: StartByOrContainEnum.contain
-    })
-
-
-    public getLastPaginationOptionsUsedSig = computed(this.lastPaginationOptionsUsedSig)
-
-    private paginationMetaSignal = signal(this.updatePaginationMeta())
-
-    private updatePaginationMeta() {
-        const newPaginationMeta = {
-            itemCount: this.clientes.length > this.lastPaginationOptionsUsedSig().limit! ? this.lastPaginationOptionsUsedSig().limit! : this.clientes.length,
-            totalItems: this.clientes.length!,
-            currentPage: this.lastPaginationOptionsUsedSig().page!,
-            itemsPerPage: this.lastPaginationOptionsUsedSig().limit!,
-            totalPages: Math.ceil(this.clientes.length / this.lastPaginationOptionsUsedSig().limit!),
-        }
-        this.paginationMetaSignal?.set(newPaginationMeta)
-        return newPaginationMeta
-    }
-
-    public getPaginationMetaSignal = computed(this.paginationMetaSignal)
 
     private clientesListSignal = signal(this.fetchClientesList())
 
@@ -529,70 +503,11 @@ export class ClienteService {
     }
 
     public fetchClientesList({ limit, order, orderByColumn, searchQuery, searchBy, page, startByOrContain }: PaginationOptionsType = {} as PaginationOptionsType) {
-        this.lastPaginationOptionsUsedSig.set({
-            page: page || this.lastPaginationOptionsUsedSig().page,
-            limit: limit || this.lastPaginationOptionsUsedSig().limit,
-            order: order || this.lastPaginationOptionsUsedSig().order,
-            searchBy: searchBy ? searchBy : this.lastPaginationOptionsUsedSig().searchBy,
-            searchQuery: searchQuery !== undefined && searchQuery !== null ? searchQuery : this.lastPaginationOptionsUsedSig().searchQuery,
-            orderByColumn: orderByColumn || this.lastPaginationOptionsUsedSig().orderByColumn,
-            startByOrContain: startByOrContain || this.lastPaginationOptionsUsedSig().startByOrContain,
-        })
-        page = this.lastPaginationOptionsUsedSig().page!
-        limit = this.lastPaginationOptionsUsedSig().limit!
-        order = this.lastPaginationOptionsUsedSig().order!
-        searchBy = this.lastPaginationOptionsUsedSig().searchBy!
-        searchQuery = this.lastPaginationOptionsUsedSig().searchQuery!
-        orderByColumn = this.lastPaginationOptionsUsedSig().orderByColumn!
-        startByOrContain = this.lastPaginationOptionsUsedSig().startByOrContain!
-        // Filter by searchQuery and searchBy.
-        let clientes = this.filterBySearch(this.clientes, searchBy, searchQuery, startByOrContain)
-        // Slice by limit and page.
-        clientes = this.getSlice(clientes, limit, page)
-        // Order by column and direction
-        clientes = this.orderByColumn(clientes, orderByColumn, order)
+        this.paginationService.setLastPaginationOptionsUsedSig({ limit, order, orderByColumn, searchQuery, searchBy, page, startByOrContain })
+        // Call pagination method on ClienteList.
+        let clientes = this.paginationService.paginateClienteList(this.clientes)
         // Updating clientesListSignal.
         this.clientesListSignal?.set(clientes)
-        // Update paginationMetaSignal.
-        this.updatePaginationMeta()
         return clientes
     }
-
-    private filterBySearch(clienteList: ClienteEntity[], searchBy: "nome" | "cpf", searchQuery: string, startByOrContain: StartByOrContainEnum) {
-        if (startByOrContain === StartByOrContainEnum.contain)
-            return clienteList.filter(cliente => cliente[searchBy].toLowerCase().includes(searchQuery.toLowerCase()))
-        else return clienteList.filter(cliente => cliente[searchBy].toLowerCase().startsWith(searchQuery.toLowerCase()))
-    }
-
-    private getSlice(clienteList: ClienteEntity[], limit: number, page: number) {
-        const startIndex = (limit * page) - limit
-        const endIndex = startIndex + limit
-        return clienteList.slice(startIndex, endIndex)
-    }
-
-    private orderByColumn(clienteList: ClienteEntity[], orderByColumn: OrderByColumnEnum, orderDirection: OrderEnum) {
-        let sortedArray = clienteList
-        if (orderByColumn === OrderByColumnEnum.atualizado_em || orderByColumn === OrderByColumnEnum.criado_em) {
-            sortedArray = this.sortByCriadoEmOrAtualizadoEm(clienteList, orderByColumn)
-        } else sortedArray = this.sortByNameOrCpf(clienteList, orderByColumn)
-        if (orderDirection === OrderEnum.ASC) sortedArray = sortedArray.reverse()
-        return sortedArray
-    }
-
-    private sortByCriadoEmOrAtualizadoEm(clienteList: ClienteEntity[], orderByColumn: OrderByColumnEnum,) {
-        return clienteList.sort((a, b) => {
-            return (new Date(a[orderByColumn]).getTime() - new Date(b[orderByColumn]).getTime())
-        })
-    }
-
-    private sortByNameOrCpf(clienteList: ClienteEntity[], orderByColumn: OrderByColumnEnum,) {
-        return clienteList.sort((a, b) => {
-            if (a[orderByColumn].toLowerCase() < b[orderByColumn].toLowerCase()) return -1;
-            if (a[orderByColumn].toLowerCase() > b[orderByColumn].toLowerCase()) return 1;
-            return 0;
-        })
-    }
-
-
-
 }

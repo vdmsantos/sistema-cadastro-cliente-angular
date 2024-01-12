@@ -3,6 +3,7 @@ import { ClienteService } from '../../services/cliente.service';
 import { PrimeIcons } from 'primeng/api';
 import { OrderEnum } from '../../types/paginationTypes/order.enum';
 import { OrderByColumnEnum } from '../../types/paginationTypes/order-by-column.enum';
+import { PaginationService } from '../../services/pagination.service';
 
 interface EmittedEventType {
     orderByColumn: OrderByColumnEnum,
@@ -21,12 +22,13 @@ export class ListSorterComponent {
     OrderByColumnEnum = OrderByColumnEnum
 
     constructor(
-        private clienteService: ClienteService
+        private clienteService: ClienteService,
+        private paginationService: PaginationService,
     ) { }
 
     @Output() sorter_OnSort: EventEmitter<EmittedEventType> = new EventEmitter();
-    orderByColumn = this.clienteService.getLastPaginationOptionsUsedSig().orderByColumn!
-    order = this.clienteService.getLastPaginationOptionsUsedSig().order!
+    orderByColumn = this.paginationService.getLastPaginationOptionsUsedSig().orderByColumn!
+    order = this.paginationService.getLastPaginationOptionsUsedSig().order!
 
     emitirEvento() {
         this.sorter_OnSort.emit({

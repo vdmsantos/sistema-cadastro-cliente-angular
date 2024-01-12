@@ -5,6 +5,8 @@ import { APP_ROUTE_PATHS } from '../../app-routing.module';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ClienteEntity } from '../../entities/cliente.entity';
 import { ClienteFormService } from '../../services/cliente-form.service';
+import { DialogDeleteComponent } from '../dialog-delete/dialog-delete.component';
+import { DialogEditComponent } from '../dialog-edit/dialog-edit.component';
 
 @Component({
     selector: 'app-list',
@@ -14,9 +16,6 @@ import { ClienteFormService } from '../../services/cliente-form.service';
 export class ListComponent implements OnChanges, OnInit {
     constructor(
         private dialog: MatDialog,
-        private messageService: MessageService,
-        private confirmationService: ConfirmationService,
-        private clienteService: ClienteFormService,
     ) { }
     /**
      * 	Itens a serem exibidos. Não pode ter itens nested.
@@ -24,6 +23,7 @@ export class ListComponent implements OnChanges, OnInit {
      *  Ex: [{nome:'Rodrigo', rua:'Abacate'}]
      */
     @Input({ required: true }) list_items!: ClienteEntity[] | any[]
+    listItemsToDisplay: ClienteEntity[] | any[] = []
     /**
      * 	Lista com o label do header e a coluna respectiva a ser exibida.
      *
@@ -31,21 +31,46 @@ export class ListComponent implements OnChanges, OnInit {
      */
     @Input({ required: true }) list_tableFields!: { label: string, column: string; }[]
     @Input() list_hasActionButtons: boolean = true
-    listHeaderItems!: string[]
-    dialogRef!: MatDialogRef<any>;
-    objectKeysInOrder = this.list_tableFields?.map(data => data.column)
     headerItems = this.list_tableFields?.map(data => data.label)
+    objectKeysInOrder = this.list_tableFields?.map(data => data.column)
+    dialogRef!: MatDialogRef<DialogDeleteComponent | DialogEditComponent>;
     PrimeIcons = PrimeIcons
+    PAGE_TEXT = {
+        CLIENTE_EMPTY_LIST: 'Nenhum cliente encontrado.',
+        EDIT_BUTTON_TOOLTIP: 'Editar',
+        DELETE_BUTTON_TOOLTIP: 'Excluir',
+    }
 
     ngOnInit(): void {
-        this.listHeaderItems = this.list_tableFields?.map(data => data.label)
+        this.setObjectKeysInOrder()
+        this.setHeaderItems()
+        this.setItemsToDisplay()
     }
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes['list_tableFields']) {
-            this.objectKeysInOrder = this.list_tableFields?.map(data => data.column)
-            this.headerItems = this.list_tableFields?.map(data => data.label)
+            this.setObjectKeysInOrder()
+            this.setHeaderItems()
         }
+        if (changes['list_items']) {
+            this.setItemsToDisplay()
+        }
+    }
+
+    setObjectKeysInOrder() {
+        this.objectKeysInOrder = this.list_tableFields?.map(data => data.column)
+    }
+
+    setHeaderItems() {
+        this.headerItems = this.list_tableFields?.map(data => data.label)
+    }
+
+    setItemsToDisplay() {
+        this.listItemsToDisplay = this.list_items.map((item: ClienteEntity) => {
+            item.criado_em = new Date(item.criado_em).toLocaleString()
+            item.atualizado_em = new Date(item.atualizado_em).toLocaleString()
+            return item as any
+        })
     }
 
     verificarTextoNenhum(texto: string) {
@@ -53,49 +78,26 @@ export class ListComponent implements OnChanges, OnInit {
         else return ''
     }
 
-    abrirGerarPDFDialog(clienteEntity: ClienteEntity) {
-        // this.dialogRef = this.dialog.open(GerarPdfComponent, {
-        // 	height: 'auto',
-        // 	width: 'fit', panelClass: 'rounded-[0.75rem]',
-        // 	disableClose: false,
-        // 	data: {
-        // 		fecharGerarPDFDialog: this.dialogRef?.close,
-        // 		clienteEntity
-        // 	}
-        // });
-    }
-
-    confirmarExclusao(event: Event, clienteEntity: ClienteEntity) {
-        this.confirmationService.confirm({
-            target: event.target!,
-            message: `Excluir ${clienteEntity.nome.split(' ')[0]}?`,
-            icon: 'pi pi-exclamation-triangle',
-            acceptButtonStyleClass: 'px-4',
-            acceptLabel: 'Sim',
-            rejectLabel: 'Não',
-            rejectButtonStyleClass: 'px-4',
-            accept: () => {
-                this.excluirGestante(clienteEntity.id)
-            },
-            reject: () => { }
+    openEditDialog(clienteEntity: ClienteEntity) {
+        this.dialogRef = this.dialog.open(DialogEditComponent, {
+            height: 'auto',
+            width: 'fit', panelClass: 'rounded-[0.75rem]',
+            disableClose: false,
+            data: {
+                fecharGerarPDFDialog: this.dialogRef?.close,
+                clienteEntity
+            }
         });
     }
 
-    excluirGestante(clienteId: string) {
-        // this.clienteService.excluir(gestanteId)
-        // 	.pipe(
-        // 		take(1),
-        // 		tap(res => {
-        // 			if (res.status === 'success') this.showToastMessage('success', 'Beneficiária excluída com sucesso.')
-        // 			else this.showToastMessage('error', 'Houve um erro ao excluir a beneficiária.')
-        // 		})
-        // 	).subscribe()
-    }
-
-    showToastMessage(severity: 'success' | 'error', message: string) {
-        this.messageService.add({
-            severity: severity,
-            summary: message,
+    openDeleteDialog(clienteEntity: ClienteEntity) {
+        this.dialogRef = this.dialog.open(DialogDeleteComponent, {
+            height: 'auto',
+            width: 'fit', panelClass: 'rounded-[0.75rem]',
+            disableClose: false,
+            data: {
+                clienteEntity
+            }
         });
     }
 

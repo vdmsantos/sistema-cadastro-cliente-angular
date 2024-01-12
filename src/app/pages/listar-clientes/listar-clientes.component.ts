@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ClienteEntity } from '../../entities/cliente.entity';
 import { ClienteService } from '../../services/cliente.service';
 import { PaginationOptionsType } from '../../types/paginationTypes/pagination-options.type';
+import { PaginationService } from '../../services/pagination.service';
 
 @Component({
     selector: 'app-listar-clientes',
@@ -10,12 +11,13 @@ import { PaginationOptionsType } from '../../types/paginationTypes/pagination-op
 })
 export class ListarClientesComponent {
     constructor(
-        private clienteService: ClienteService
+        private clienteService: ClienteService,
+        private paginationService: PaginationService,
     ) { }
 
     clientesListSignal = this.clienteService.getClientesListSignal
-    paginationMetaSignal = this.clienteService.getPaginationMetaSignal
-    lastPaginationOptionsUsedSig = this.clienteService.getLastPaginationOptionsUsedSig
+    paginationMetaSignal = this.paginationService.getPaginationMetaSignal
+    lastPaginationOptionsUsedSig = this.paginationService.getLastPaginationOptionsUsedSig
 
     list_tableFields: { label: string, column: string }[] = [
         {
