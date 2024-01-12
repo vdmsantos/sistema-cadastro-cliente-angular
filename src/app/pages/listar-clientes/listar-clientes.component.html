@@ -11,17 +11,19 @@
             <!-- Ordenador -->
             <app-list-sorter
                 (sorter_OnSort)="fetchClientesList({
-				orderByColumn: $event.orderByColumn,
-				order: $event.order
-		    })"></app-list-sorter>
-            <div class="my-auto ml-auto w-full">
-                <app-input-search (onSubmit)="fetchClientesList({
+                    orderByColumn: $event.orderByColumn,
+                    order: $event.order
+		        })">
+            </app-list-sorter>
+            <!-- Input pesquisar -->
+            <app-input-search
+                (onSubmit)="fetchClientesList({
                     page: $event.page,
                     searchQuery: $event.searchQuery,
                     searchBy: $event.searchBy,
                     startByOrContain:$event.startByOrContain
-                })"></app-input-search>
-            </div>
+                })">
+            </app-input-search>
         </div>
         <!-- Dados/corpo da lista -->
         <div class="relative w-full gap-2 overflow-y-scroll">
@@ -30,5 +32,14 @@
                 [list_tableFields]="list_tableFields">
             </app-list>
         </div>
+        <!-- Paginador -->
+        <app-list-paginator
+            [paginationMeta]="paginationMetaSignal()"
+            [limit]="lastPaginationOptionsUsedSig().limit!"
+            (atualizarConsulta)="fetchClientesList({
+                page:$event.paginaAtual,
+                limit:$event.limit
+            })">
+        </app-list-paginator>
     </div>
 </section>
