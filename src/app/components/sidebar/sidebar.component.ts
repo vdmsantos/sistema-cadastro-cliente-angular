@@ -12,16 +12,6 @@ export class SidebarComponent {
 
     menu_items = [
         {
-            title: 'Consulta',
-            url: 'SEPARADOR',
-            icon: 'SEPARADOR',
-        },
-        {
-            title: 'Listar clientes',
-            url: '/' + APP_ROUTE_PATHS.LISTAR_CLIENTES,
-            icon: PrimeIcons.ALIGN_JUSTIFY,
-        },
-        {
             title: 'Cadastro',
             url: 'SEPARADOR',
             icon: 'SEPARADOR',
@@ -30,6 +20,16 @@ export class SidebarComponent {
             title: 'Cadastrar cliente',
             url: '/' + APP_ROUTE_PATHS.CADASTRAR_CLIENTE,
             icon: PrimeIcons.PLUS,
+        },
+        {
+            title: 'Consulta',
+            url: 'SEPARADOR',
+            icon: 'SEPARADOR',
+        },
+        {
+            title: 'Listar clientes',
+            url: '/' + APP_ROUTE_PATHS.LISTAR_CLIENTES,
+            icon: PrimeIcons.ALIGN_JUSTIFY,
         },
     ]
 }
