@@ -1,0 +1,52 @@
+<!-- Paginador -->
+<div class="flex w-[calc(100%-18px)] justify-center p-4 border rounded-md border-gray-300 bg-sky-50">
+    <!-- Total de resultados encontrados -->
+    <div class="flex gap-1 justify-self-start items-center mr-auto">
+        <span>Total: </span>
+        <span class="font-semibold text-sky-400">
+            {{ totalResults }}
+        </span>
+        <span>registros.</span>
+    </div>
+
+    <!-- Botoes de navegacao -->
+    <div class="flex gap-2">
+        <!-- Primeira pagina -->
+        <button *ngIf="currentPage !== 1 && totalPages"
+            (click)="sendEventToParent({ page: 1 })"
+            class="w-[33px] h-[33px] rounded-md border border-sky-200/60 hover:bg-sky-100 transition-all">1°</button>
+        <!-- Voltar pagina -->
+        <button *ngIf="currentPage !== 1 && totalPages"
+            (click)="sendEventToParent({ page: currentPage - 1 })"
+            class="w-[33px] h-[33px] rounded-md border border-sky-200/60 hover:bg-sky-100 transition-all items-center justify-center flex">
+            <i [class]="PrimeIcons.ANGLE_LEFT" ngClass="text-lg"></i>
+        </button>
+        <!-- atual -->
+        <button class="w-fit min-w-[33px] h-[33px] px-2 font-semibold leading-none rounded-md border border-sky-300 bg-sky-100/60">
+            <span *ngIf="!loading">{{currentPage}}</span>
+            <i *ngIf="loading" [class]="PrimeIcons.SPINNER" ngClass="animate-spin origin-[50%_47%] text-sm"></i>
+        </button>
+        <!-- avançar -->
+        <button (click)="sendEventToParent({ page: currentPage + 1 })"
+            *ngIf="currentPage !== totalPages && totalPages"
+            class="w-[33px] h-[33px] rounded-md border border-sky-200/60 hover:bg-sky-100 transition-all items-center justify-center flex">
+            <i [class]="PrimeIcons.ANGLE_RIGHT" ngClass="text-lg"></i>
+        </button>
+        <!-- ultima pagina -->
+        <button (click)="sendEventToParent({ page: totalPages })"
+            *ngIf="currentPage !== totalPages && totalPages"
+            class="w-fit px-2 h-[33px] rounded-md border border-sky-200/60 hover:bg-sky-100 transition-all">...{{totalPages}}°</button>
+    </div>
+
+    <!-- Selecionar qtd de resultados por página -->
+    <div class="flex gap-1 items-center ml-auto">
+        <p>Resultados por página</p>
+        <select [(ngModel)]="limit" (change)="sendEventToParent({ page: currentPage })"
+            class=" px-2 py-1 rounded-md border border-sky-400">
+            <option [value]="10">10</option>
+            <option [value]="30">30</option>
+            <option [value]="50">50</option>
+            <option [value]="100">100</option>
+        </select>
+    </div>
+</div>
