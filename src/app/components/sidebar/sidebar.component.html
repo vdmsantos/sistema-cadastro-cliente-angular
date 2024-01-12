@@ -1,26 +1,28 @@
-<section class="flex flex-col gap-4 p-4 rounded-md min-h-[calc(100%-0px)] min-w-[240px] max-w-[240px] shadow-md bg-white">
+<section class="group flex flex-col gap-4 p-2 rounded-md min-h-[calc(100%-0px)] min-w-[100px] max-w-[100px] hover:min-w-[200px] hover:max-w-[200px] transition-all [transition-duration:200ms] shadow-md bg-white">
     <!-- Logo -->
-    <div>
+    <div class="flex w-full justify-center">
         <img src="https://www.alura.com.br/artigos/assets/novidades-angular-17/imagem1.gif"
+            width="84"
+            height="84"
             class="object-contain pointer-events-none drop-shadow-xl rounded-lg">
     </div>
     <!-- Separador -->
     <span class="flex w-full h-[1px] bg-black/5"></span>
     <!-- Bem vindo(a)! -->
-    <div class="flex items-center justify-between relative dmy-2">
-        <p class="text-lg font-semibold">Bem vindo(a) admin!</p>
+    <div class="flex items-center justify-center">
+        <p class="text-base font-semibold">Olá!</p>
     </div>
     <!-- Menus de navegação -->
     <div class="flex flex-col gap-1">
         <div *ngFor="let item of menu_items">
             <!-- Menu item -->
-            <a class="flex items-center gap-2 px-3 py-2 hover:bg-sky-100 rounded-md transition-all"
+            <a class="flex justify-center group-hover:justify-start items-center gap-2 px-3 py-2 hover:bg-sky-100 rounded-md transition-all"
                 *ngIf="item.url !== 'SEPARADOR'"
                 [href]="item.url"
                 [routerLink]="item.url"
                 routerLinkActive="bg-sky-300 hover:bg-sky-300 font-semibold text-black/80">
                 <i [class]="item.icon"></i>
-                <p>{{ item.title }}</p>
+                <p class="group-hover:max-w-[200px] w-fit overflow-hidden transition-all max-w-[0px] whitespace-nowrap">{{ item.title }}</p>
             </a>
             <!-- Separador -->
             <span *ngIf="item.url === 'SEPARADOR'" class="flex items-center w-full h-[1px] my-4 bg-black/10">
