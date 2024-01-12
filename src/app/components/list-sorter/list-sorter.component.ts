@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ClienteService } from '../../services/cliente.service';
 import { PrimeIcons } from 'primeng/api';
 import { OrderEnum } from '../../types/paginationTypes/order.enum';
 import { OrderByColumnEnum } from '../../types/paginationTypes/order-by-column.enum';
@@ -22,7 +21,6 @@ export class ListSorterComponent {
     OrderByColumnEnum = OrderByColumnEnum
 
     constructor(
-        private clienteService: ClienteService,
         private paginationService: PaginationService,
     ) { }
 

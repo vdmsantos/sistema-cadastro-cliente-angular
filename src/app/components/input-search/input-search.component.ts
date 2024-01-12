@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { ClienteService } from '../../services/cliente.service';
 import { PrimeIcons } from 'primeng/api';
 import { StartByOrContainEnum } from '../../types/paginationTypes/start-by-or-contain.enum';
 import { SearchByEnum } from '../../types/paginationTypes/search-by.enum';
@@ -22,7 +21,6 @@ export class InputSearchComponent {
     StartByOrContainEnum = StartByOrContainEnum
 
     constructor(
-        private clienteService: ClienteService,
         private paginationService: PaginationService,
     ) { }
     @Output() onSubmit: EventEmitter<EmitEventParam> = new EventEmitter();
