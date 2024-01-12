@@ -7,6 +7,9 @@
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.min.css";
 
+// Precisei importar isso pro dialog ficar ajustado corretamente no centro da tela.
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 @layer base {
 
     .custom-btn {
