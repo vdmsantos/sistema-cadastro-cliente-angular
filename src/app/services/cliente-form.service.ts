@@ -4,6 +4,7 @@ import { HelperService } from './helper.service';
 import { ClienteEntity } from '../entities/cliente.entity';
 import { Endereco } from '../types/endereco.interface';
 import { ClienteService } from './cliente.service';
+import { MessageService } from 'primeng/api';
 
 const EnderecoFormFields = {
     bairro: 'bairro',
@@ -50,6 +51,7 @@ export class ClienteFormService {
     constructor(
         private readonly clienteService: ClienteService,
         private readonly helperService: HelperService,
+        private readonly messageService: MessageService,
     ) { }
 
     CURRENT_UTC_DATE_ISO_STRING = new Date().toISOString()
@@ -107,13 +109,19 @@ export class ClienteFormService {
 
     public submit() {
         this.isSubmitedSignal.set(true)
+
+        if (this.getClienteFormGroup().invalid) {
+            this.showToastMessage('error', 'Verifique os campos antes de salvar.')
+            return
+        }
+
         console.log('criado_em', this.getClienteFormControl('criado_em').value)
         const clienteFromForm = new ClienteEntity({
             id: this.getClienteFormControl('id').value,
             nome: this.getClienteFormControl('nome').value,
             cpf: this.getClienteFormControl('cpf').value,
             criado_em: this.getClienteFormControl('criado_em').value,
-            atualizado_em: this.getClienteFormControl('atualizado_em').value,
+            atualizado_em: new Date().toISOString(),
             telefone: this.getClienteFormControl('telefone').value,
             endereco: {
                 bairro: this.getClienteEnderecoFormControl('bairro').value,
@@ -125,5 +133,14 @@ export class ClienteFormService {
             },
         })
         this.clienteService.createOrUpdate(clienteFromForm)
+        this.isSubmitedSignal.set(false)
+        this.setClienteForm()
+    }
+
+    private showToastMessage(severity: 'success' | 'error', message: string) {
+        this.messageService.add({
+            severity: severity,
+            summary: message,
+        });
     }
 }
