@@ -1,9 +1,14 @@
-<p-toast position="bottom-left"></p-toast>
-<main class="relative h-[100dvh] flex p-2 gap-4">
-    <div class="sticky top-2 xl:top-4 hidden md:block">
-        <app-sidebar />
+<p-toast position="bottom-left" [breakpoints]="{'920px': {width: '90%', right: '1', left: '1'}}"></p-toast>
+<main class="relative h-[100dvh] flex flex-col gap-4">
+    <div class="flex p-1 md:p-2 gap-4 pb-16 md:pb-0">
+        <div class="sticky top-2 xl:top-4 hidden md:block">
+            <app-sidebar />
+        </div>
+        <div class="w-full overflow-hidden">
+            <router-outlet></router-outlet>
+        </div>
     </div>
-    <div class="w-[calc(100%-230px)] 2xl:w-[calc(100%-280px)] overflow-hidden">
-        <router-outlet></router-outlet>
+    <div class="fixed bottom-0 block md:hidden">
+        <app-sidebar-mobile></app-sidebar-mobile>
     </div>
 </main>

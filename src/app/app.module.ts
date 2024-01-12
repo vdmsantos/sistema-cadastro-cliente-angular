@@ -25,6 +25,7 @@ import { ListPaginatorComponent } from './components/list-paginator/list-paginat
 import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.component';
 import { DialogEditComponent } from './components/dialog-edit/dialog-edit.component';
 import { FormCustomerComponent } from './components/form-customer/form-customer.component';
+import { SidebarMobileComponent } from './components/sidebar-mobile/sidebar-mobile.component';
 
 @NgModule({
     declarations: [
@@ -40,7 +41,8 @@ import { FormCustomerComponent } from './components/form-customer/form-customer.
         ListPaginatorComponent,
         DialogDeleteComponent,
         DialogEditComponent,
-        FormCustomerComponent
+        FormCustomerComponent,
+        SidebarMobileComponent
     ],
     imports: [
         NgxMaskDirective,
