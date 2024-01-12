@@ -15,10 +15,16 @@ import { ListarClientesComponent } from './pages/listar-clientes/listar-clientes
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 import { InputComponent } from './components/input/input.component';
 import { ListComponent } from './components/list/list.component';
+import { ToastModule } from 'primeng/toast';
 // OTHERS
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ListSorterComponent } from './components/list-sorter/list-sorter.component';
+import { InputSearchComponent } from './components/input-search/input-search.component';
+import { ListPaginatorComponent } from './components/list-paginator/list-paginator.component';
+import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.component';
+import { DialogEditComponent } from './components/dialog-edit/dialog-edit.component';
+import { FormCustomerComponent } from './components/form-customer/form-customer.component';
 
 @NgModule({
     declarations: [
@@ -29,7 +35,12 @@ import { ListSorterComponent } from './components/list-sorter/list-sorter.compon
         PageHeaderComponent,
         InputComponent,
         ListComponent,
-        ListSorterComponent
+        ListSorterComponent,
+        InputSearchComponent,
+        ListPaginatorComponent,
+        DialogDeleteComponent,
+        DialogEditComponent,
+        FormCustomerComponent
     ],
     imports: [
         NgxMaskDirective,
@@ -42,6 +53,7 @@ import { ListSorterComponent } from './components/list-sorter/list-sorter.compon
         ReactiveFormsModule,
         MatDialogModule,
         ConfirmPopupModule,
+        ToastModule,
     ],
     providers: [
         provideNgxMask(),
