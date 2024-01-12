@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { PaginationMeta } from '../../types/paginationTypes/pagination-options.type';
 import { PrimeIcons } from 'primeng/api';
+import { LimitEnum } from '../../types/paginationTypes/limit.enum';
 
 @Component({
     selector: 'app-list-paginator',
@@ -18,6 +19,7 @@ export class ListPaginatorComponent implements AfterViewInit, OnChanges {
     totalResults!: number
     loading = false
     PrimeIcons = PrimeIcons
+    LimitEnum = LimitEnum
 
     ngAfterViewInit(): void {
         this.updatePaginationMeta()
@@ -38,7 +40,7 @@ export class ListPaginatorComponent implements AfterViewInit, OnChanges {
         this.loading = true
         this.atualizarConsulta.emit({
             limit: this.limit,
-            paginaAtual: page
+            currentPage: page
         });
     }
 }

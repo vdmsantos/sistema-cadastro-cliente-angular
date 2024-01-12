@@ -1,5 +1,5 @@
 <!-- Paginador -->
-<div class="flex w-[calc(100%-18px)] justify-center p-4 border rounded-md border-gray-300 bg-sky-50">
+<div class="flex w-full justify-center p-4 border rounded-md border-gray-300 bg-sky-50">
     <!-- Total de resultados encontrados -->
     <div class="flex gap-1 justify-self-start items-center mr-auto">
         <span>Total: </span>
@@ -43,10 +43,10 @@
         <p>Resultados por página</p>
         <select [(ngModel)]="limit" (change)="sendEventToParent({ page: currentPage })"
             class=" px-2 py-1 rounded-md border border-sky-400">
-            <option [value]="10">10</option>
-            <option [value]="30">30</option>
-            <option [value]="50">50</option>
-            <option [value]="100">100</option>
+            <option [value]="LimitEnum._10">10</option>
+            <option [value]="LimitEnum._30">30</option>
+            <option [value]="LimitEnum._50">50</option>
+            <option [value]="LimitEnum._100">100</option>
         </select>
     </div>
 </div>
