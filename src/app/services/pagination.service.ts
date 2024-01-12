@@ -46,24 +46,26 @@ export class PaginationService {
             this.getLastPaginationOptionsUsedSig().searchQuery!,
             this.getLastPaginationOptionsUsedSig().startByOrContain!
         )
-        // Slice by limit and page.
-        clientes = this.getSlice(
-            clientes,
-            this.getLastPaginationOptionsUsedSig().limit!,
-            this.getLastPaginationOptionsUsedSig().page!
-        )
         // Order by column and direction
         clientes = this.orderByColumn(
             clientes,
             this.getLastPaginationOptionsUsedSig().orderByColumn!,
             this.getLastPaginationOptionsUsedSig().order!
         )
+        // Slice by limit and page.
+        clientes = this.getSlice(
+            clientes,
+            this.getLastPaginationOptionsUsedSig().limit! as number,
+            this.getLastPaginationOptionsUsedSig().page!
+        )
         // Update paginationMetaSignal.
-        this.updatePaginationMeta()
+        this.updatePaginationMeta(clientesList)
         return clientes
     }
 
     private paginationMetaSignal = signal(this.updatePaginationMeta())
+
+    public getPaginationMetaSignal = computed(this.paginationMetaSignal)
 
     private updatePaginationMeta(clientesList?: ClienteEntity[]) {
         const clientesListLenght = clientesList ? clientesList.length : 0
@@ -75,10 +77,11 @@ export class PaginationService {
             totalPages: Math.ceil(clientesListLenght / this.lastPaginationOptionsUsedSig().limit!),
         }
         this.paginationMetaSignal?.set(newPaginationMeta)
+        // console.log('this.getLastPaginationOptionsUsedSig()', this.getLastPaginationOptionsUsedSig())
+        // console.log('newPaginationMeta', newPaginationMeta)
         return newPaginationMeta
     }
 
-    public getPaginationMetaSignal = computed(this.paginationMetaSignal)
     private filterBySearch(clienteList: ClienteEntity[], searchBy: SearchByEnum, searchQuery: string, startByOrContain: StartByOrContainEnum) {
         if (startByOrContain === StartByOrContainEnum.contain)
             return clienteList.filter(cliente => cliente[searchBy].toLowerCase().includes(searchQuery.toLowerCase()))
@@ -86,8 +89,12 @@ export class PaginationService {
     }
 
     private getSlice(clienteList: ClienteEntity[], limit: number, page: number) {
-        const startIndex = (limit * page) - limit
-        const endIndex = startIndex + limit
+        // I'm having to parse it to string and then to number because sometimes 'limit' comes as string.
+        // This is literally a TypeScript bug related to Enums.
+        const limitNumber = parseInt(limit.toString())
+        const pageNumber = parseInt(page.toString())
+        const startIndex = (limitNumber * pageNumber) - limitNumber
+        const endIndex = startIndex + limitNumber
         return clienteList.slice(startIndex, endIndex)
     }
 
@@ -108,8 +115,8 @@ export class PaginationService {
 
     private sortByNameOrCpf(clienteList: ClienteEntity[], orderByColumn: OrderByColumnEnum,) {
         return clienteList.sort((a, b) => {
-            if (a[orderByColumn].toLowerCase() < b[orderByColumn].toLowerCase()) return -1;
-            if (a[orderByColumn].toLowerCase() > b[orderByColumn].toLowerCase()) return 1;
+            if (a[orderByColumn].toLowerCase() > b[orderByColumn].toLowerCase()) return -1;
+            if (a[orderByColumn].toLowerCase() < b[orderByColumn].toLowerCase()) return 1;
             return 0;
         })
     }
