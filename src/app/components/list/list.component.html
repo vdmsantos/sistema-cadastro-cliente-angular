@@ -1,12 +1,11 @@
 <p-confirmPopup></p-confirmPopup>
-
 <div>
     <table class="border-separate border-spacing-0 w-full">
         <!-- Header -->
         <thead class="sticky top-0">
             <tr>
                 <th *ngIf="list_hasActionButtons" class="border border-r-0 rounded-l-md border-gray-300 bg-sky-100 min-w-[110px]"></th>
-                <th *ngFor="let item of listHeaderItems" class="group border-y last:rounded-r-md last:border-r border-gray-300 bg-sky-100">
+                <th *ngFor="let item of headerItems" class="group border-y last:rounded-r-md last:border-r border-gray-300 bg-sky-100">
                     <div readonly
                         class="w-[180px] min-w-[100px] py-4 resize-x overflow-x-auto bg-transparent font-semibold ">
                         <p [title]="item" class=" px-4 line-clamp-1 border-r group-first:border-l group-last:border-r-0 border-gray-300">{{item}}</p>
@@ -16,27 +15,27 @@
         </thead>
         <tbody *ngIf="!list_items || list_items.length === 0">
             <tr class="">
-                <td colspan="400" class="py-2 px-4 text-lg border border-gray-300 rounded-lg">Nenhum cliente encontrado.</td>
+                <td colspan="400" class="py-2 px-4 text-lg border border-gray-300 rounded-lg">{{PAGE_TEXT.CLIENTE_EMPTY_LIST}}</td>
             </tr>
         </tbody>
         <tbody *ngIf="list_items && list_items.length > 0">
-            <tr *ngFor="let item of list_items; let i = index">
+            <tr *ngFor="let item of listItemsToDisplay; let i = index">
                 <!-- Botões -->
-                <td *ngIf="list_hasActionButtons" class=" py-1 pl-3 border border-r-0 rounded-md rounded-r-none  border-gray-300">
+                <td *ngIf="list_hasActionButtons" class="[display:-webkit-box;] py-1 pl-3 border border-r-0 rounded-md rounded-r-none  border-gray-300">
                     <div class="flex gap-1">
                         <!-- Botão excluir -->
                         <button
-                            pTooltip="Excluir"
+                            [pTooltip]="PAGE_TEXT.DELETE_BUTTON_TOOLTIP"
                             tooltipPosition="top"
-                            (click)="confirmarExclusao($event,item)"
-                            type="button" class=" rounded-md w-fit h-fit flex transition-all p-1 px-2 bg-red-100 hover:bg-red-200">
+                            (click)="openDeleteDialog(list_items[i])"
+                            type="button" class="rounded-md w-fit h-fit flex transition-all p-1 px-2 bg-red-100 hover:bg-red-200">
                             <i [class]="PrimeIcons.TRASH" ngClass="flex text-sm"></i>
                         </button>
                         <!-- Botão editar -->
                         <button
-                            pTooltip="Editar"
+                            [pTooltip]="PAGE_TEXT.EDIT_BUTTON_TOOLTIP"
                             tooltipPosition="top"
-                            (click)="abrirGerarPDFDialog(list_items[i])"
+                            (click)="openEditDialog(list_items[i])"
                             type="button" class=" rounded-md w-fit h-fit flex transition-all p-1 px-2 bg-indigo-100 hover:bg-indigo-200">
                             <i [class]="PrimeIcons.PENCIL" ngClass="flex text-sm"></i>
                         </button>

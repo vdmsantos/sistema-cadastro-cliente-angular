@@ -1,10 +1,7 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { MessageService, ConfirmationService, PrimeIcons } from 'primeng/api';
-import { take, tap } from 'rxjs';
-import { APP_ROUTE_PATHS } from '../../app-routing.module';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { PrimeIcons } from 'primeng/api';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ClienteEntity } from '../../entities/cliente.entity';
-import { ClienteFormService } from '../../services/cliente-form.service';
 import { DialogDeleteComponent } from '../dialog-delete/dialog-delete.component';
 import { DialogEditComponent } from '../dialog-edit/dialog-edit.component';
 
@@ -66,7 +63,9 @@ export class ListComponent implements OnChanges, OnInit {
     }
 
     setItemsToDisplay() {
-        this.listItemsToDisplay = this.list_items.map((item: ClienteEntity) => {
+        this.listItemsToDisplay = JSON.parse(JSON.stringify(this.list_items))
+
+        this.listItemsToDisplay.map((item: ClienteEntity) => {
             item.criado_em = new Date(item.criado_em).toLocaleString()
             item.atualizado_em = new Date(item.atualizado_em).toLocaleString()
             return item as any
