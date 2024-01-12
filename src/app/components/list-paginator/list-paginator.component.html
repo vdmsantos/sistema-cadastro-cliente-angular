@@ -1,16 +1,16 @@
 <!-- Paginador -->
-<div class="flex w-full justify-center p-4 border rounded-md border-gray-300 bg-sky-50">
+<div class="flex w-full justify-center md:p-4 border rounded-md border-gray-300 bg-sky-50">
     <!-- Total de resultados encontrados -->
-    <div class="flex gap-1 justify-self-start items-center mr-auto">
+    <div class="flex flex-col md:flex-row gap-1 justify-self-start justify-center items-center mr-auto">
         <span>Total: </span>
         <span class="font-semibold text-sky-400">
             {{ totalResults }}
         </span>
-        <span>registros.</span>
+        <span class="hidden md:flex">registros.</span>
     </div>
 
     <!-- Botoes de navegacao -->
-    <div class="flex gap-2">
+    <div class="flex justify-center items-center gap-2">
         <!-- Primeira pagina -->
         <button *ngIf="currentPage !== 1 && totalPages"
             (click)="sendEventToParent({ page: 1 })"
@@ -39,8 +39,9 @@
     </div>
 
     <!-- Selecionar qtd de resultados por página -->
-    <div class="flex gap-1 items-center ml-auto">
-        <p>Resultados por página</p>
+    <div class="flex flex-col text-center md:flex-row gap-1 justify-center items-center ml-auto">
+        <p class="hidden md:flex">Resultados por página</p>
+        <p class="md:hidden">Res. por página</p>
         <select [(ngModel)]="limit" (change)="sendEventToParent({ page: currentPage })"
             class=" px-2 py-1 rounded-md border border-sky-400">
             <option [value]="LimitEnum._10">10</option>

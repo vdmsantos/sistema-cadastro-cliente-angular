@@ -1,7 +1,7 @@
-<div class="flex gap-4">
+<div class="flex flex-col md:flex-row gap-2 md:gap-4">
     <!-- Ordenar por -->
     <div class="flex items-center gap-1">
-        <p class="whitespace-nowrap">Ordenar por</p>
+        <p class="whitespace-nowrap mr-1">Ordenar por</p>
         <select [(ngModel)]="orderByColumn" (change)="emitirEvento()"
             class="custom-select">
             <option [value]="OrderByColumnEnum.nome">Nome</option>
@@ -12,6 +12,7 @@
     </div>
     <!-- Ordem crescente ou decrescente -->
     <div class="flex gap-1 items-center">
+        <p class="md:hidden whitespace-nowrap mr-1">Ordem</p>
         <button type="button" (click)="order = OrderEnum.ASC;emitirEvento()"
             class=" rounded-md border bg-white"
             [ngClass]="order === OrderEnum.ASC ? 'border-sky-400 text-sky-400' : ' border-gray-400'"

@@ -80,7 +80,9 @@ export class ListComponent implements OnChanges, OnInit {
     openEditDialog(clienteEntity: ClienteEntity) {
         this.dialogRef = this.dialog.open(DialogEditComponent, {
             height: 'auto',
-            width: 'fit', panelClass: 'rounded-[0.75rem]',
+            width: 'fit',
+            maxWidth: `100vw`,
+            panelClass: 'rounded-[0.75rem]',
             disableClose: false,
             data: {
                 fecharGerarPDFDialog: this.dialogRef?.close,
