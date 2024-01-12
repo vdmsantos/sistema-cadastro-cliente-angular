@@ -1,6 +1,9 @@
 import { Injectable, computed, signal } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HelperService } from './helper.service';
+import { ClienteEntity } from '../entities/cliente.entity';
+import { Endereco } from '../types/endereco.interface';
+import { ClienteService } from './cliente.service';
 
 const EnderecoFormFields = {
     bairro: 'bairro',
@@ -45,7 +48,7 @@ class EnderecoFormType {
 })
 export class ClienteFormService {
     constructor(
-        private readonly formBuilder: FormBuilder,
+        private readonly clienteService: ClienteService,
         private readonly helperService: HelperService,
     ) { }
 
@@ -57,26 +60,26 @@ export class ClienteFormService {
 
     public getIsSubmitedSignal = computed(this.isSubmitedSignal)
 
-    private createNewClienteForm() {
+    private createNewClienteForm(clienteEntity?: ClienteEntity) {
         return new FormGroup<ClienteFormType>({
-            id: new FormControl(this.helperService.newUUID(), { nonNullable: true, validators: [Validators.required] }),
-            criado_em: new FormControl(this.CURRENT_UTC_DATE_ISO_STRING, { nonNullable: true, validators: [Validators.required] }),
-            atualizado_em: new FormControl(this.CURRENT_UTC_DATE_ISO_STRING, { nonNullable: true, validators: [Validators.required] }),
-            cpf: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
-            nome: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
-            telefone: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
-            endereco: this.createNewEnderecoForm()
+            id: new FormControl(clienteEntity?.id || this.helperService.newUUID(), { nonNullable: true, validators: [Validators.required] }),
+            criado_em: new FormControl(clienteEntity?.criado_em || this.CURRENT_UTC_DATE_ISO_STRING, { nonNullable: true, validators: [Validators.required] }),
+            atualizado_em: new FormControl(clienteEntity?.atualizado_em || this.CURRENT_UTC_DATE_ISO_STRING, { nonNullable: true, validators: [Validators.required] }),
+            cpf: new FormControl(clienteEntity?.cpf || '', { nonNullable: true, validators: [Validators.required] }),
+            nome: new FormControl(clienteEntity?.nome || '', { nonNullable: true, validators: [Validators.required] }),
+            telefone: new FormControl(clienteEntity?.telefone || '', { nonNullable: true, validators: [Validators.required] }),
+            endereco: this.createNewEnderecoForm(clienteEntity?.endereco)
         })
     }
 
-    private createNewEnderecoForm() {
+    private createNewEnderecoForm(endereco?: Endereco) {
         return new FormGroup<EnderecoFormType>({
-            bairro: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
-            cep: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
-            cidade: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
-            estado: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
-            numero: new FormControl('', { nonNullable: true, validators: [] }),
-            rua: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
+            bairro: new FormControl(endereco?.bairro || '', { nonNullable: true, validators: [Validators.required] }),
+            cep: new FormControl(endereco?.cep || '', { nonNullable: true, validators: [Validators.required] }),
+            cidade: new FormControl(endereco?.cidade || '', { nonNullable: true, validators: [Validators.required] }),
+            estado: new FormControl(endereco?.estado || '', { nonNullable: true, validators: [Validators.required] }),
+            numero: new FormControl(endereco?.numero || '', { nonNullable: true, validators: [] }),
+            rua: new FormControl(endereco?.rua || '', { nonNullable: true, validators: [Validators.required] }),
         })
     }
 
@@ -94,11 +97,33 @@ export class ClienteFormService {
     }
 
     public checkIfFormControlHasError(formControl: FormControl) {
+        // console.log(formControl?.invalid && this.getIsSubmitedSignal())
         return formControl?.invalid && this.getIsSubmitedSignal()
+    }
+
+    public setClienteForm(clienteEntity?: ClienteEntity) {
+        this.clienteForm = this.createNewClienteForm(clienteEntity)
     }
 
     public submit() {
         this.isSubmitedSignal.set(true)
-        console.log('clienteForm', this.clienteForm)
+        console.log('criado_em', this.getClienteFormControl('criado_em').value)
+        const clienteFromForm = new ClienteEntity({
+            id: this.getClienteFormControl('id').value,
+            nome: this.getClienteFormControl('nome').value,
+            cpf: this.getClienteFormControl('cpf').value,
+            criado_em: this.getClienteFormControl('criado_em').value,
+            atualizado_em: this.getClienteFormControl('atualizado_em').value,
+            telefone: this.getClienteFormControl('telefone').value,
+            endereco: {
+                bairro: this.getClienteEnderecoFormControl('bairro').value,
+                cep: this.getClienteEnderecoFormControl('cep').value,
+                cidade: this.getClienteEnderecoFormControl('cidade').value,
+                estado: this.getClienteEnderecoFormControl('estado').value,
+                numero: this.getClienteEnderecoFormControl('numero').value,
+                rua: this.getClienteEnderecoFormControl('rua').value,
+            },
+        })
+        this.clienteService.createOrUpdate(clienteFromForm)
     }
 }
