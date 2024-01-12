@@ -5,6 +5,7 @@ import { PaginationOptionsType } from '../../types/paginationTypes/pagination-op
 import { PaginationService } from '../../services/pagination.service';
 import { HelperService } from '../../services/helper.service';
 import { PrimeIcons } from 'primeng/api';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
     selector: 'app-listar-clientes',
@@ -16,6 +17,7 @@ export class ListarClientesComponent implements OnInit {
         private clienteService: ClienteService,
         private paginationService: PaginationService,
         private helperService: HelperService,
+        private dialog: MatDialog
     ) { }
 
     ngOnInit(): void {
@@ -132,5 +134,11 @@ export class ListarClientesComponent implements OnInit {
 
     clearClienteList() {
         this.clienteService.clearClienteList()
+    }
+
+    openSearchConfigDialog(template: any) {
+        this.dialog.open(template, {
+            maxWidth: `100vw`,
+        })
     }
 }

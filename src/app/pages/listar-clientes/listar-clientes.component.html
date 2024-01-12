@@ -1,19 +1,15 @@
-<section class="flex flex-col h-[calc(100dvh-24px)] gap-2">
+<section class="flex flex-col h-full md:h-[calc(100dvh-24px)] gap-2">
     <app-page-header
         _pageTitle="Listar clientes">
     </app-page-header>
-    <div class="flex flex-col p-4 px-6 max-h-[calc(100%-72px)] bg-white shadow-md rounded-lg w-full h-full">
-        <div class="flex gap-1 w-fit">
-            <button (click)="add10Clientes()" class="custom-btn items-center flex gap-2 text-sm whitespace-nowrap">
-                <i [class]="PrimeIcons.PLUS_CIRCLE"></i>
-                <span>Adicionar 10 clientes</span>
-            </button>
-            <button (click)="clearClienteList()" class="custom-btn items-center flex gap-2 text-sm whitespace-nowrap">
-                <i [class]="PrimeIcons.TRASH"></i>
-                <span>Limpar lista</span>
-            </button>
-        </div>
-        <div class="flex flex-initial w-full p-4 my-2 gap-8 border font-semibold rounded-md border-gray-300 bg-sky-100">
+    <div class="flex flex-col p-2 md:p-4 md:px-6 max-h-[calc(100%-72px)] bg-white shadow-md rounded-lg w-full h-full">
+        <!-- Button Configurações de pesquisa -->
+        <button (click)="openSearchConfigDialog(searchConfigDialog)" class="md:hidden z-50 fixed bottom-16 right-2 custom-btn !w-fit !px-3 self-end !py-2 my-1 text-base ">
+            <i [class]="PrimeIcons.COG"></i>
+            <!-- <span>Configurações de pesquisa</span> -->
+        </button>
+        <!-- Configurações de pesquisa -->
+        <div class="hidden md:flex flex-col md:flex-row flex-initial w-full p-4 my-2 gap-4 md:gap-8 border font-semibold rounded-md border-gray-300 bg-sky-100">
             <!-- Ordenador -->
             <app-list-sorter
                 (sorter_OnSort)="fetchClientesList({
@@ -31,6 +27,41 @@
                 })">
             </app-input-search>
         </div>
+        <!-- Dialog Configurações de pesquisa -->
+        <ng-template #searchConfigDialog>
+            <div class="flex flex-col w-full p-4 py-6 md:py-4 gap-6 md:gap-4 border font-semibold rounded-md border-gray-300">
+                <div class="flex items-center">
+                    <p class="text-lg font-semibold">Opções de pesquisa</p>
+                    <button mat-dialog-close class="flex justify-center items-center ml-auto p-2 hover:bg-black/5 rounded-full transition-all">
+                        <i [class]="PrimeIcons.TIMES" class="flex"></i>
+                    </button>
+                </div>
+                <!-- Divisor -->
+                <div class="md:hidden w-full h-[1px] bg-black/10"></div>
+                <!-- Input pesquisar -->
+                <app-input-search
+                    (onSubmit)="fetchClientesList({
+                        page: $event.page,
+                        searchQuery: $event.searchQuery,
+                        searchBy: $event.searchBy,
+                        startByOrContain:$event.startByOrContain
+                    })">
+                </app-input-search>
+                <!-- Divisor -->
+                <div class="md:hidden w-full h-[1px] bg-black/10"></div>
+                <!-- Ordenador -->
+                <app-list-sorter
+                    (sorter_OnSort)="fetchClientesList({
+                        orderByColumn: $event.orderByColumn,
+                        order: $event.order
+                    })">
+                </app-list-sorter>
+                <!-- Divisor -->
+                <div class="md:hidden w-full h-[1px] bg-black/10"></div>
+                <!-- Button confirmar -->
+                <button mat-dialog-close class="custom-btn !py-2 !text-base">Confirmar</button>
+            </div>
+        </ng-template>
         <!-- Dados/corpo da lista -->
         <div class="relative w-full gap-2 overflow-y-scroll">
             <app-list
@@ -47,5 +78,16 @@
                 limit:$event.limit
             })">
         </app-list-paginator>
+        <!-- Buttons Add +10 & Clear List -->
+        <div class="flex gap-1 mt-4 w-fit">
+            <button (click)="add10Clientes()" class="custom-btn items-center flex gap-2 text-sm whitespace-nowrap">
+                <i [class]="PrimeIcons.PLUS_CIRCLE"></i>
+                <span>Add 10 clientes</span>
+            </button>
+            <button (click)="clearClienteList()" class="custom-btn items-center flex gap-2 text-sm whitespace-nowrap">
+                <i [class]="PrimeIcons.TRASH"></i>
+                <span>Limpar lista</span>
+            </button>
+        </div>
     </div>
 </section>
