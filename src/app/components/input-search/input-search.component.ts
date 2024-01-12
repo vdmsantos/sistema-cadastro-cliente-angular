@@ -24,6 +24,9 @@ export class InputSearchComponent {
         private clienteService: ClienteService
     ) { }
     @Output() onSubmit: EventEmitter<EmitEventParam> = new EventEmitter();
+    searchQuery = this.clienteService.getLastPaginationOptionsUsedSig().searchQuery
+    searchBy = this.clienteService.getLastPaginationOptionsUsedSig().searchBy
+    startByOrContain = this.clienteService.getLastPaginationOptionsUsedSig().startByOrContain
 
     emitEvent(params = {
         page: 1,
@@ -34,9 +37,4 @@ export class InputSearchComponent {
     ) {
         this.onSubmit.emit(params)
     }
-
-    searchQuery = this.clienteService.getLastPaginationOptionsUsedSig().searchQuery
-    searchBy = this.clienteService.getLastPaginationOptionsUsedSig().searchBy
-    startByOrContain = this.clienteService.getLastPaginationOptionsUsedSig().startByOrContain
-
 }
