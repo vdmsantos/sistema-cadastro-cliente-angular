@@ -22,6 +22,7 @@ export class DialogDeleteComponent {
 
     deleteClienteById() {
         this.clienteService.deleteById(this.id)
+        this.clienteService.fetchClientesList()
         this.showToastMessage('success', `Cliente ${this.firstName} excluído com sucesso.`)
         // .pipe(
         // 	take(1),
