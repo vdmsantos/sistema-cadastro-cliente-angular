@@ -7,6 +7,8 @@ import { TooltipModule } from 'primeng/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastModule } from 'primeng/toast';
 // COMPONENTS
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -15,7 +17,6 @@ import { ListarClientesComponent } from './pages/listar-clientes/listar-clientes
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 import { InputComponent } from './components/input/input.component';
 import { ListComponent } from './components/list/list.component';
-import { ToastModule } from 'primeng/toast';
 // OTHERS
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -62,6 +63,7 @@ import { DialogMobileListOptionsComponent } from './components/dialog-mobile-lis
         MatDialogModule,
         ConfirmPopupModule,
         ToastModule,
+        HttpClientModule
     ],
     providers: [
         provideNgxMask(),
