@@ -60,8 +60,9 @@ _Features:_ </br>
 _Ações e features:_ </br>
 
 -   Salvar novo cliente no localhost </br>
--   Formulário reativo </br>
 -   Validação de inputs </br>
+-   Consulta e preenchimento de endereço por CEP </br>
+-   Formulário reativo </br>
 
 #### Listar clientes
 
@@ -115,6 +116,7 @@ app
 ├── pipes                           -> Pipes de transformação de valores no template HTML.
 │
 ├── services
+│	├─ cep.service.ts               -> Service responsável por se comunicar com API de CEP do BrasilApi.
 │	├─ cliente-form.service.ts      -> Service que contém o formulários de cliente, usando Reactive Forms.
 │	├─ helper.service.ts            -> Service com métodos auxiliares.
 │	├─ cliente.service.ts           -> Service com a lógica de consultar, criar, excluir e editar um Cliente.
