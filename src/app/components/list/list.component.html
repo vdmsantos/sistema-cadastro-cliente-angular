@@ -15,7 +15,7 @@
         </thead>
         <tbody *ngIf="!list_items || list_items.length === 0">
             <tr class="">
-                <td colspan="400" class="py-2 px-4 text-lg border border-gray-300 rounded-lg">{{PAGE_TEXT.CLIENTE_EMPTY_LIST}}</td>
+                <td colspan="400" class="py-4 px-4 text-base md:text-lg border border-gray-300 rounded-lg">{{PAGE_TEXT.CLIENTE_EMPTY_LIST}}</td>
             </tr>
         </tbody>
         <tbody *ngIf="list_items && list_items.length > 0">
@@ -42,10 +42,10 @@
                     </div>
                 </td>
                 <!-- Item da lista -->
-                <td *ngFor="let itemKey of objectKeysInOrder" class=" py-1 border-y last:border-r last:rounded-r-md border-gray-300">
+                <td *ngFor="let itemKey of objectKeysInOrder" class="py-1 border-y last:border-r last:rounded-r-md border-gray-300">
                     <li
                         [style]="verificarTextoNenhum(item[itemKey])"
-                        class="[display:-webkit-box;] line-clamp-1"
+                        class="[display:-webkit-box;] line-clamp-1 text-center"
                         [title]="item[itemKey]">
                         {{ item[itemKey] ? item[itemKey] : 'nenhum' }}
                     </li>
