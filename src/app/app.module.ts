@@ -28,6 +28,7 @@ import { FormCustomerComponent } from './components/form-customer/form-customer.
 import { SidebarMobileComponent } from './components/sidebar-mobile/sidebar-mobile.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { ToLocaleStringPipe } from './pipes/to-locale-string.pipe';
+import { DialogMobileListOptionsComponent } from './components/dialog-mobile-list-options/dialog-mobile-list-options.component';
 
 @NgModule({
     declarations: [
@@ -46,7 +47,8 @@ import { ToLocaleStringPipe } from './pipes/to-locale-string.pipe';
         FormCustomerComponent,
         SidebarMobileComponent,
         InicioComponent,
-        ToLocaleStringPipe
+        ToLocaleStringPipe,
+        DialogMobileListOptionsComponent
     ],
     imports: [
         NgxMaskDirective,
