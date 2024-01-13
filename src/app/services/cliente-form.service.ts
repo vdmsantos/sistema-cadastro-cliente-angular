@@ -95,7 +95,7 @@ export class ClienteFormService {
 
     public getClienteEnderecoFormControl(field: keyof typeof EnderecoFormFields) {
         const enderecoFormGroup = this.clienteForm?.get(ClienteFormFields.endereco)
-        return enderecoFormGroup?.get(field) as FormControl<typeof field>
+        return enderecoFormGroup?.get(field) as FormControl<string>
     }
 
     public checkIfFormControlHasError(formControl: FormControl) {
@@ -105,6 +105,15 @@ export class ClienteFormService {
 
     public setClienteForm(clienteEntity?: ClienteEntity) {
         this.clienteForm = this.createNewClienteForm(clienteEntity)
+    }
+
+    public setClienteEndereco(endereco: Endereco) {
+        this.getClienteEnderecoFormControl('bairro').setValue(endereco.bairro)
+        this.getClienteEnderecoFormControl('cep').setValue(endereco.cep)
+        this.getClienteEnderecoFormControl('cidade').setValue(endereco.cidade)
+        this.getClienteEnderecoFormControl('estado').setValue(endereco.estado)
+        this.getClienteEnderecoFormControl('numero').setValue(endereco.numero)
+        this.getClienteEnderecoFormControl('rua').setValue(endereco.rua)
     }
 
     public submit() {
