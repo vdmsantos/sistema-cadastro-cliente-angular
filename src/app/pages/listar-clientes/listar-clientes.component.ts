@@ -112,7 +112,7 @@ export class ListarClientesComponent implements OnInit {
         const getNewCliente = () => new ClienteEntity({
             atualizado_em: new Date().toISOString(),
             criado_em: new Date().toISOString(),
-            cpf: 'asd',
+            cpf: '99999999999',
             id: this.helperService.newUUID(),
             nome: this.helperService.getRandomName(),
             telefone: '123456789',
