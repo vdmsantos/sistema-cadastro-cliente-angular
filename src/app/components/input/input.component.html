@@ -10,6 +10,7 @@
         [decimalMarker]="input_decimalMarker"
         [leadZero]="input_leadZero"
         [prefix]="input_prefix"
+        (keyup.enter)="emitEvent($event)"
         oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
         [ngClass]="{'!border-red-500 placeholder:text-[crimson]':inputHasError(),
 		'custom-disabled-input' : input_isDisabled}"
