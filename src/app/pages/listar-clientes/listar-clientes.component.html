@@ -4,7 +4,7 @@
     </app-page-header>
     <div class="flex flex-col p-2 md:p-4 md:px-6 max-h-[calc(100%-72px)] bg-white shadow-md rounded-lg w-full h-full">
         <!-- Button Configurações de pesquisa -->
-        <button (click)="openSearchConfigDialog(searchConfigDialog)" class="md:hidden z-50 fixed bottom-16 right-2 custom-btn !w-fit !px-4 !py-[10px] self-end my-1">
+        <button (click)="openSearchConfigDialog()" class="md:hidden z-50 fixed bottom-16 right-2 custom-btn !w-fit !px-4 !py-[10px] self-end my-1">
             <i [class]="PrimeIcons.COG" ngClass="text-2xl"></i>
             <!-- <span>Configurações de pesquisa</span> -->
         </button>
@@ -56,39 +56,3 @@
         </div>
     </div>
 </section>
-
-<!-- Dialog Configurações de pesquisa -->
-<ng-template #searchConfigDialog>
-    <div class="flex flex-col w-full p-4 py-6 md:py-4 gap-6 md:gap-4 border font-semibold rounded-md border-gray-300">
-        <div class="flex items-center">
-            <p class="text-lg font-semibold">Opções de pesquisa</p>
-            <button mat-dialog-close class="flex justify-center items-center ml-auto p-2 hover:bg-black/5 rounded-full transition-all">
-                <i [class]="PrimeIcons.TIMES" class="flex"></i>
-            </button>
-        </div>
-        <!-- Divisor -->
-        <div class="md:hidden w-full h-[1px] bg-black/10"></div>
-        <!-- Input pesquisar -->
-        <app-input-search
-            (onSubmit)="fetchClientesList({
-                        page: $event.page,
-                        searchQuery: $event.searchQuery,
-                        searchBy: $event.searchBy,
-                        startByOrContain:$event.startByOrContain
-                    })">
-        </app-input-search>
-        <!-- Divisor -->
-        <div class="md:hidden w-full h-[1px] bg-black/10"></div>
-        <!-- Ordenador -->
-        <app-list-sorter
-            (sorter_OnSort)="fetchClientesList({
-                        orderByColumn: $event.orderByColumn,
-                        order: $event.order
-                    })">
-        </app-list-sorter>
-        <!-- Divisor -->
-        <div class="md:hidden w-full h-[1px] bg-black/10"></div>
-        <!-- Button confirmar -->
-        <button mat-dialog-close class="custom-btn !py-2 !text-base">Confirmar</button>
-    </div>
-</ng-template>

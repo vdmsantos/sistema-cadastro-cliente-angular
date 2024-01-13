@@ -6,6 +6,7 @@ import { PaginationService } from '../../services/pagination.service';
 import { HelperService } from '../../services/helper.service';
 import { PrimeIcons } from 'primeng/api';
 import { MatDialog } from '@angular/material/dialog';
+import { DialogMobileListOptionsComponent } from '../../components/dialog-mobile-list-options/dialog-mobile-list-options.component';
 
 @Component({
     selector: 'app-listar-clientes',
@@ -136,8 +137,8 @@ export class ListarClientesComponent implements OnInit {
         this.clienteService.clearClienteList()
     }
 
-    openSearchConfigDialog(template: any) {
-        this.dialog.open(template, {
+    openSearchConfigDialog() {
+        this.dialog.open(DialogMobileListOptionsComponent, {
             maxWidth: `100vw`,
         })
     }
