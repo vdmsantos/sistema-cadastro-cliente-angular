@@ -1,0 +1,34 @@
+<!-- Dialog Configurações de pesquisa -->
+<div class="flex flex-col w-full p-4 py-6 md:py-4 gap-6 md:gap-4 border font-semibold rounded-md border-gray-300">
+    <div class="flex items-center gap-2">
+        <i [class]="PrimeIcons.COG" ngClass="text-lg font-normal"></i>
+        <p class="text-lg font-normal">Opções de pesquisa</p>
+        <button mat-dialog-close class="flex justify-center items-center ml-auto p-2 hover:bg-black/5 rounded-full transition-all">
+            <i [class]="PrimeIcons.TIMES" class="flex"></i>
+        </button>
+    </div>
+    <!-- Divisor -->
+    <div class="md:hidden w-full h-[1px] bg-black/10"></div>
+    <!-- Input pesquisar -->
+    <app-input-search
+        (onSubmit)="fetchClientesList({
+            page: $event.page,
+            searchQuery: $event.searchQuery,
+            searchBy: $event.searchBy,
+            startByOrContain:$event.startByOrContain
+        })">
+    </app-input-search>
+    <!-- Divisor -->
+    <div class="md:hidden w-full h-[1px] bg-black/10"></div>
+    <!-- Ordenador -->
+    <app-list-sorter
+        (sorter_OnSort)="fetchClientesList({
+            orderByColumn: $event.orderByColumn,
+            order: $event.order
+        })">
+    </app-list-sorter>
+    <!-- Divisor -->
+    <div class="md:hidden w-full h-[1px] bg-black/10"></div>
+    <!-- Button confirmar -->
+    <button mat-dialog-close class="custom-btn !py-2 !text-base">Confirmar</button>
+</div>
