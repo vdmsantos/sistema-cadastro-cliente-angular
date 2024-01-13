@@ -16,7 +16,9 @@
     </div>
     <div class="flex w-full relative">
         <!-- Input de pesquisa -->
-        <input [(ngModel)]="searchQuery" (keyup.enter)="emitEvent()"
+        <input [(ngModel)]="searchQuery"
+            (keyup.enter)="emitEvent()"
+            (input)="emitEvent()"
             [placeholder]="searchBy === 'nome' ? 'Maria de Nazaré' : '000.000.000-00'"
             [mask]="searchBy === 'nome' ? '' : '000.000.000-00'"
             class="custom-input-med w-full rounded-r-none border-r-0">
