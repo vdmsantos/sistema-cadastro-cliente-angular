@@ -14,7 +14,7 @@ Este projeto foi feito por **Luiz Carlos Comparin**.
 
 Esta é uma aplicação front-end de teste para a vaga de desenvolvedor Angular Júnior/Pleno. </br>
 Esta aplicação usa o localhost do navegador para armazenar dados. </br>
-Este app está hospedado usando Firebase. [Clique aqui para acessar.](https://tailwindcss.com/docs/installation)
+Este app está hospedado usando Firebase. [Clique aqui para acessar.](https://sistemacadastroangular.web.app/inicio)
 
 ### Principais tecnologias
 
@@ -38,7 +38,7 @@ Execute o script `ng serve` para inicar a aplicação na porta `http://localhost
 
 ## Buildar a aplicação
 
-Execute o script `ng build` para buildar o projeto. A build será gerada no diretório `build/`.
+Execute o script `ng build` para buildar o projeto. A build será gerada no diretório `dist/`.
 
 ### Localhost
 
@@ -47,6 +47,13 @@ A aplicação armazena dados usando o localhost do navegador. A chave dos dados 
 ## Estrutura do projeto
 
 ### Telas:
+
+#### Inicio
+
+_Features:_ </br>
+
+-   Navegar para outras rotas </br>
+-   Cards de últimos clientes adicionados </br>
 
 #### Cadastrar cliente
 
