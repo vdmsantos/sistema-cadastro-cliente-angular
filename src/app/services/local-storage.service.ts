@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ClienteEntity } from '../entities/cliente.entity';
 
 export const LOCAL_STORAGE_KEYS = {
-    CLIENTES: 'clientes'
+    CLIENTES: 'clientes_list_localhost'
 }
 
 @Injectable({
