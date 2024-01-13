@@ -12,6 +12,10 @@
 
 @layer base {
 
+    body {
+        @apply text-[12px] md:text-[14px];
+    }
+
     .custom-btn {
         @apply w-full bg-sky-500 border-sky-500 hover:bg-sky-600 hover:border-sky-600 transition-all [transition-duration:100ms] rounded-md text-white text-lg px-4 py-2 border;
     }
@@ -35,11 +39,6 @@
 	.custom-disabled-btn {
 		@apply pointer-events-none opacity-30;
 	}
-
-}
-
-body {
-    font-size: clamp(13px,1vw,14px);
 }
 
 .p-tooltip {
