@@ -29,7 +29,7 @@
         <!-- Cards ultimos clientes criados -->
         <div class="flex flex-col gap-2 my-8">
             <p class="text-lg font-semibold">Últimos clientes adicionados</p>
-            <div class="flex gap-2 md:gap-4 pb-4 md:pb-0 overflow-x-auto">
+            <div class="flex gap-2 md:gap-4 pb-4 overflow-x-auto">
                 <button *ngFor="let cliente of last5ClientesAddedSignal()"
                     (click)="openEditDialog(cliente)"
                     class="group flex flex-col p-4 gap-2 min-w-[180px] bg-white rounded-lg border shadow-md hover:shadow-lg transition-all">
@@ -38,10 +38,7 @@
                         <i [class]="PrimeIcons.PENCIL" ngClass="text-lg hidden group-hover:flex"></i>
                         <p class="line-clamp-1" [title]="cliente.nome">{{cliente.nome}}</p>
                     </div>
-                    <!-- <p class="font-semiboldd">{{cliente.cpf}}</p>
-                    <p class="font-semiboldd">{{cliente.telefone}}</p> -->
                     <p class="font-semiboldd text-xs">{{cliente.criado_em | toLocaleString}}</p>
-                    <!-- <span class="flex px-3 bg-sky-300 w-fit rounded-full font-semibold">Navegar</span> -->
                 </button>
             </div>
         </div>
