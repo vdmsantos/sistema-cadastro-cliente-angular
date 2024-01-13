@@ -4,7 +4,7 @@
         <!-- Header -->
         <thead class="sticky top-0">
             <tr>
-                <th *ngIf="list_hasActionButtons" class="border border-r-0 rounded-l-md border-gray-300 bg-sky-100 min-w-[110px]"></th>
+                <th *ngIf="list_hasActionButtons" class="border border-r-0 rounded-l-md border-gray-300 bg-sky-100 min-w-[110px]">Ações</th>
                 <th *ngFor="let item of headerItems" class="group border-y last:rounded-r-md last:border-r border-gray-300 bg-sky-100">
                     <div readonly
                         class="w-[140px] md:w-[180px] min-w-[100px] py-4 resize-x overflow-x-auto bg-transparent font-semibold ">
@@ -14,7 +14,7 @@
             </tr>
         </thead>
         <tbody *ngIf="!list_items || list_items.length === 0">
-            <tr class="">
+            <tr>
                 <td colspan="400" class="py-4 px-4 text-base md:text-lg border border-gray-300 rounded-lg">{{PAGE_TEXT.CLIENTE_EMPTY_LIST}}</td>
             </tr>
         </tbody>
@@ -47,7 +47,10 @@
                         [style]="verificarTextoNenhum(item[itemKey])"
                         class="[display:-webkit-box;] line-clamp-1 text-center"
                         [title]="item[itemKey]">
-                        {{ item[itemKey] ? item[itemKey] : 'nenhum' }}
+                        <span *ngIf="itemKey === 'cpf'">{{ item[itemKey] ? (item[itemKey] | mask:'000.000.000-00') : 'nenhum' }}</span>
+                        <span *ngIf="itemKey === 'telefone'">{{ item[itemKey] ? (item[itemKey] | mask: '(00) 0*') : 'nenhum' }}</span>
+                        <span *ngIf="itemKey === 'cep'">{{ item[itemKey] ? (item[itemKey] | mask: '00000-000') : 'nenhum' }}</span>
+                        <span *ngIf="itemKey !== 'telefone' && itemKey !== 'cpf' && itemKey !== 'cep'">{{ item[itemKey] ? item[itemKey] : 'nenhum' }}</span>
                     </li>
                 </td>
             </tr>
