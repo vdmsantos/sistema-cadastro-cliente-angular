@@ -21,7 +21,7 @@
         <tbody *ngIf="list_items && list_items.length > 0">
             <tr *ngFor="let item of listItemsToDisplay; let i = index">
                 <!-- Botões -->
-                <td *ngIf="list_hasActionButtons" class="[display:-webkit-box;] py-1 pl-3 border border-r-0 rounded-md rounded-r-none  border-gray-300">
+                <td *ngIf="list_hasActionButtons" class="[display:-webkit-box;] py-2 md:py-1 pl-3 border border-r-0 rounded-md rounded-r-none  border-gray-300">
                     <div class="flex gap-1">
                         <!-- Botão excluir -->
                         <button
@@ -42,7 +42,7 @@
                     </div>
                 </td>
                 <!-- Item da lista -->
-                <td *ngFor="let itemKey of objectKeysInOrder" class="py-1 border-y last:border-r last:rounded-r-md border-gray-300">
+                <td *ngFor="let itemKey of objectKeysInOrder" class="py-2 md:py-1 border-y last:border-r last:rounded-r-md border-gray-300">
                     <li
                         [style]="verificarTextoNenhum(item[itemKey])"
                         class="[display:-webkit-box;] line-clamp-1 text-center"
