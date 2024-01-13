@@ -474,6 +474,13 @@ export class ClienteService {
 
     public getClientesListSignal = computed(this.paginatedClientesListSignal)
 
+    public last5ClientesAddedSignal = computed(() => {
+        const newObject: ClienteEntity[] = JSON.parse(JSON.stringify(this.getClientesListSignal()))
+        const clientesSortedByCriadoEm = newObject.sort((a, b) => new Date(b.criado_em).getTime() - new Date(a.criado_em).getTime())
+        const last5AddedClients = clientesSortedByCriadoEm.slice(0, 5)
+        return last5AddedClients
+    })
+
     public fetchClientesList({ limit, order, orderByColumn, searchQuery, searchBy, page, startByOrContain }: PaginationOptionsType = {} as PaginationOptionsType) {
         this.paginationService.setLastPaginationOptionsUsedSig({ limit, order, orderByColumn, searchQuery, searchBy, page, startByOrContain })
         // Call pagination method on ClienteList.
