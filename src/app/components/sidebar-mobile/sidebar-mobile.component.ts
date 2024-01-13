@@ -21,8 +21,8 @@ export class SidebarMobileComponent {
             icon: PrimeIcons.ALIGN_JUSTIFY,
         },
         {
-            title: '',
-            url: 'LOGO',
+            title: 'Inicio',
+            url: '/' + APP_ROUTE_PATHS.INICIO,
             icon: 'LOGO',
         },
         // {

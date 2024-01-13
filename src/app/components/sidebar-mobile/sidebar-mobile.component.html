@@ -10,18 +10,20 @@
         <div *ngFor="let item of menu_items" class="flex w-1/3">
             <!-- Menu item -->
             <a class="flex flex-col justify-center w-full items-center gap-1 p-3 hover:bg-sky-100 rounded-md transition-all"
-                *ngIf="item.url !== 'SEPARADOR' && item.url !== 'LOGO'"
-                [href]="item.url"
+                *ngIf="item.url !== 'SEPARADOR' && item.icon !== 'LOGO'"
                 [routerLink]="item.url"
-                routerLinkActive="bg-sky-300 hover:bg-sky-300 font-semibold text-black/80">
+                routerLinkActive="bg-sky-200 hover:bg-sky-200 font-semibold text-black/80">
                 <i [class]="item.icon"></i>
                 <p class="w-fit transition-all whitespace-nowrap">{{ item.title }}</p>
             </a>
             <!-- Logo -->
-            <div *ngIf="item.url === 'LOGO'" class="flex w-full justify-center">
+            <a *ngIf="item.icon === 'LOGO'"
+                [routerLink]="item.url"
+                routerLinkActive="bg-sky-200 hover:bg-sky-200 font-semibold text-black/80"
+                class="flex w-full justify-center">
                 <img src="https://www.alura.com.br/artigos/assets/novidades-angular-17/imagem1.gif"
-                    class="object-contain flex pointer-events-none drop-shadow-xl rounded-lg">
-            </div>
+                    class="object-contain flex  pointer-events-none drop-shadow-xl bg-transparent rounded-lg">
+            </a>
         </div>
     </div>
 </section>

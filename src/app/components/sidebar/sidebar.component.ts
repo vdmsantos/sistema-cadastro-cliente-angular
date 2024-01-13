@@ -12,6 +12,16 @@ export class SidebarComponent {
 
     menu_items = [
         {
+            title: 'Inicio',
+            url: 'SEPARADOR',
+            icon: 'SEPARADOR',
+        },
+        {
+            title: 'Inicio',
+            url: '/' + APP_ROUTE_PATHS.INICIO,
+            icon: PrimeIcons.HOME,
+        },
+        {
             title: 'Cadastro',
             url: 'SEPARADOR',
             icon: 'SEPARADOR',

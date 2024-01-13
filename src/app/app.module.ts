@@ -26,6 +26,8 @@ import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.
 import { DialogEditComponent } from './components/dialog-edit/dialog-edit.component';
 import { FormCustomerComponent } from './components/form-customer/form-customer.component';
 import { SidebarMobileComponent } from './components/sidebar-mobile/sidebar-mobile.component';
+import { InicioComponent } from './pages/inicio/inicio.component';
+import { ToLocaleStringPipe } from './pipes/to-locale-string.pipe';
 
 @NgModule({
     declarations: [
@@ -42,7 +44,9 @@ import { SidebarMobileComponent } from './components/sidebar-mobile/sidebar-mobi
         DialogDeleteComponent,
         DialogEditComponent,
         FormCustomerComponent,
-        SidebarMobileComponent
+        SidebarMobileComponent,
+        InicioComponent,
+        ToLocaleStringPipe
     ],
     imports: [
         NgxMaskDirective,
