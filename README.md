@@ -1,27 +1,130 @@
-# SistemaCadastroClienteAngular
+# Sistema de Cadastro de Clientes
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.10.
+Este projeto foi feito com [Angular CLI](https://github.com/angular/angular-cli) versão 16.2.10.
 
-## Development server
+## Contato do desenvolvedor
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Este projeto foi feito por **Luiz Carlos Comparin**.
 
-## Code scaffolding
+-   Autor - Luiz Comparin
+-   LinkedIn - [Luiz Comparin | LinkedIn](https://www.linkedin.com/in/luiz-carlos-comparin/)
+-   Email - [luizcomparin18@gmail.com](mailto:luizcomparin18@gmail.com)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Descrição
 
-## Build
+Esta é uma aplicação front-end de teste para a vaga de desenvolvedor Angular Júnior/Pleno. </br>
+Esta aplicação usa o localhost do navegador para armazenar dados. </br>
+Este app está hospedado usando Firebase. [Clique aqui para acessar.](https://tailwindcss.com/docs/installation)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Principais tecnologias
 
-## Running unit tests
+Runtime [Node.js 18.18.2](https://nodejs.org/en/blog/release/v18.18.2) </br>
+Linguagem [TypeScript](https://www.typescriptlang.org/) </br>
+Framework web [Angular 16.2](https://github.com/nestjs/nest). </br>
+Framework CSS (estilização) [TailwindCSS](https://tailwindcss.com/docs/installation) </br>
+Hospedagem [Firebase](https://firebase.google.com/?hl=pt) </br>
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Instalação de dependências
 
-## Running end-to-end tests
+Este projeto foi criado usando Node 18.18.2.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+1. Instale o [Node 18.18.2](https://nodejs.org/en/blog/release/v18.18.2).
+2. Instale o [Angular 16.2](https://github.com/angular/angular-cli).
+3. Instale todas as dependências rodando no terminal `npm install`.
 
-## Further help
+## Rodar a aplicação
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Execute o script `ng serve` para inicar a aplicação na porta `http://localhost:4200/`.
+
+## Buildar a aplicação
+
+Execute o script `ng build` para buildar o projeto. A build será gerada no diretório `build/`.
+
+### Localhost
+
+A aplicação armazena dados usando o localhost do navegador. A chave dos dados está sob o nome de `clientes_list_localhost`.
+
+## Estrutura do projeto
+
+### Telas:
+
+#### Cadastrar cliente
+
+_Ações e features:_ </br>
+
+-   Salvar novo cliente no localhost </br>
+-   Formulário reativo </br>
+-   Validação de inputs </br>
+
+#### Listar clientes
+
+_Ações e configurações:_ </br>
+
+-   Consultar do localhost </br>
+-   Pesquisar por nome </br>
+-   Pesquisar por cpf </br>
+-   Escolher se inicia pela pesquisa ou se contém </br>
+-   Ordenar por ordem crescente e decrescente </br>
+-   Ordenar por nome </br>
+-   Ordenar por cpf </br>
+-   Ordenar por data de criação </br>
+-   Ordenar por data de modificação </br>
+-   Paginação (definir quantidade de itens por página) </br>
+-   Excluir cliente </br>
+-   Editar cliente (abre dialog com tela e campos para editar e salvar) </br>
+
+### Entidades
+
+```
+Cliente: {
+    id: UUID,
+    nome: string,
+    cpf: string,
+    telefone: string,
+    endereco: Endereco
+    atualizado_em: string (Date UTC ISOString)
+    criado_em: string (Date UTC ISOString)
+}
+
+Endereco: {
+    rua: string,
+    bairro: string,
+    cidade: string,
+    estado: string,
+    cep: string,
+    numero: string
+}
+
+```
+
+### Pastas
+
+```
+app
+│
+├── components                      -> Componentes de uso compartilhado entre a aplicação.
+├── entities                        -> Pasta contendo a entidade Cliente.
+├── pages                           -> Páginas acessíveis pelas rotas no projeto.
+├── pipes                           -> Pipes de transformação de valores no template HTML.
+│
+├── services
+│	├─ cliente-form.service.ts      -> Service que contém o formulários de cliente, usando Reactive Forms.
+│	├─ helper.service.ts            -> Service com métodos auxiliares.
+│	├─ cliente.service.ts           -> Service com a lógica de consultar, criar, excluir e editar um Cliente.
+│	├─ local-storage.service.ts     -> Service responsável por armazenar e consultar dados do localstorage.
+│	└─ pagination.service.ts        -> Service contendo a lógica de paginação, filtragem e ordenação da lista.
+│
+└── types                           -> Pasta contendo a interface Endereco e os types de paginação.
+	└─ paginationTypes              -> Types, enums, interfaces relacionados à paginação.
+
+```
+
+### Considerações importantes
+
+#### Gerenciamento de estado / Services
+
+O gerenciamento de estado da aplicação é feito através dos Services, que são injetados nos componentes através do `constructor`.
+
+#### Componentes
+
+Os componentes são páginas e componentes visuais diversos da aplicação, como botões personalizados, dialogs, inputs e mais.
