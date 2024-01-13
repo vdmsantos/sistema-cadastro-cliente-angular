@@ -6,10 +6,8 @@
             <i [class]="PrimeIcons.TIMES" class="flex"></i>
         </button>
     </div>
-    <div class="flex text-base">
-        <p>Deseja excluir&nbsp;</p>
-        <strong>{{dialogData.clienteEntity.nome}}</strong>
-        <p>?</p>
+    <div class="text-base">
+        Deseja excluir&nbsp;<strong>{{dialogData.clienteEntity.nome}}</strong>?
     </div>
     <div class="flex w-full gap-2 mt-2 justify-between">
         <button mat-dialog-close class="custom-btn !text-base bg-black/70 border-none !px-2">Não</button>
