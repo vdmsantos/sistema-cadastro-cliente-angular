@@ -37,6 +37,7 @@
             <p class="text-lg font-semibold">2. Endereço</p>
             <div class="grid grid-cols-2  gap-2">
                 <div class="relative">
+                    <!-- Cep input -->
                     <app-input
                         [input_formControl]="getClienteEnderecoFormControl('cep')"
                         [input_formGroup]="clienteFormGroup"
@@ -45,38 +46,44 @@
                         input_placeholder="00000-000"
                         input_label="CEP*">
                     </app-input>
+                    <!-- Button getCep -->
                     <button pTooltip="Preencher endereço pelo CEP"
                         (click)="getCepAndSetClienteEnderecoForm(getClienteEnderecoFormControl('cep').value)"
-                        class="absolute right-0 top-[40%] my-auto bottom-0 rounded-r-md px-1 bg-sky-300 hover:bg-sky-200 transition-all">
+                        class="absolute right-0 top-[40%] my-auto bottom-0 rounded-r-md px-2 bg-sky-300 hover:bg-sky-200 transition-all">
                         <i *ngIf="!loadingCep" [class]="PrimeIcons.CHEVRON_RIGHT" ngClass="text-xs"></i>
                         <i *ngIf="loadingCep" [class]="PrimeIcons.SPINNER" ngClass="text-xs animate-spin"></i>
                     </button>
                     <p class="absolute top-[55%] right-6 text-[crimson] text-xs">{{cepErrorMessage}}</p>
                 </div>
+                <!-- Estado -->
                 <app-input
                     [input_formControl]="getClienteEnderecoFormControl('estado')"
                     [input_formGroup]="clienteFormGroup"
                     input_placeholder="Estado"
                     input_label="Estado*">
                 </app-input>
+                <!-- Cidade -->
                 <app-input
                     [input_formControl]="getClienteEnderecoFormControl('cidade')"
                     [input_formGroup]="clienteFormGroup"
                     input_placeholder="Cidade"
                     input_label="Cidade*">
                 </app-input>
+                <!-- Bairro -->
                 <app-input
                     [input_formControl]="getClienteEnderecoFormControl('bairro')"
                     [input_formGroup]="clienteFormGroup"
                     input_placeholder="Bairro"
                     input_label="Bairro*">
                 </app-input>
+                <!-- Rua -->
                 <app-input
                     [input_formControl]="getClienteEnderecoFormControl('rua')"
                     [input_formGroup]="clienteFormGroup"
                     input_placeholder="Rua"
                     input_label="Rua*">
                 </app-input>
+                <!-- Numero -->
                 <app-input
                     [input_formControl]="getClienteEnderecoFormControl('numero')"
                     [input_formGroup]="clienteFormGroup"
