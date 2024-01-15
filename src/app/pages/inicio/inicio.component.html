@@ -5,8 +5,12 @@
     <div class="flex flex-col p-4 md:p-8 gap-8 md:gap-10 bg-white shadow-md rounded-lg w-full h-full overflow-y-auto">
         <!-- Page header -->
         <div class="flex flex-col gap-4">
-            <!-- Title -->
-            <p class="text-2xl font-semibold">Olá, usuário!</p>
+            <div class="flex flex-col gap-0">
+                <!-- Title -->
+                <p class="text-2xl font-semibold">Olá, usuário!</p>
+                <!-- Date -->
+                <p class="text-[13px] ml-1">{{ currentDateSignal() }}</p>
+            </div>
             <!-- Divisor -->
             <div class="w-full h-[1px] bg-black/10"></div>
         </div>
