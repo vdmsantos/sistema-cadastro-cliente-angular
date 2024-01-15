@@ -30,6 +30,11 @@ import { SidebarMobileComponent } from './components/sidebar-mobile/sidebar-mobi
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { ToLocaleStringPipe } from './pipes/to-locale-string.pipe';
 import { DialogMobileListOptionsComponent } from './components/dialog-mobile-list-options/dialog-mobile-list-options.component';
+import { SearchConfigComponent } from './pages/listar-clientes/components/search-config/search-config.component';
+import { ButtonAdd10ClientesComponent } from './pages/listar-clientes/components/button-add-10-clientes/button-add-10-clientes.component';
+import { ButtonClearClientesListComponent } from './pages/listar-clientes/components/button-clear-clientes-list/button-clear-clientes-list.component';
+import { CardsActionsComponent } from './pages/inicio/components/cards-actions/cards-actions.component';
+import { CardsLastClientesAddedComponent } from './pages/inicio/components/cards-last-clientes-added/cards-last-clientes-added.component';
 
 @NgModule({
     declarations: [
@@ -49,7 +54,12 @@ import { DialogMobileListOptionsComponent } from './components/dialog-mobile-lis
         SidebarMobileComponent,
         InicioComponent,
         ToLocaleStringPipe,
-        DialogMobileListOptionsComponent
+        DialogMobileListOptionsComponent,
+        SearchConfigComponent,
+        ButtonAdd10ClientesComponent,
+        ButtonClearClientesListComponent,
+        CardsActionsComponent,
+        CardsLastClientesAddedComponent
     ],
     imports: [
         NgxMaskDirective,
