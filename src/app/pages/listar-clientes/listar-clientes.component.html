@@ -1,33 +1,11 @@
 <section class="flex flex-col h-full md:h-[calc(100dvh-24px)] gap-2 ">
-    <app-page-header
-        _pageTitle="Listar clientes">
-    </app-page-header>
+    <!-- Page header -->
+    <app-page-header _pageTitle="Listar clientes" />
+    <!-- Page content -->
     <div class="flex flex-col p-2 md:p-4 md:px-6 max-h-[calc(100%-72px)] bg-white shadow-md rounded-lg w-full h-full">
-        <!-- Button Configurações de pesquisa -->
-        <button (click)="openSearchConfigDialog()" class="md:hidden z-50 fixed bottom-16 right-2 custom-btn !w-fit !px-4 !py-[10px] self-end my-1">
-            <i [class]="PrimeIcons.COG" ngClass="text-2xl"></i>
-            <!-- <span>Configurações de pesquisa</span> -->
-        </button>
         <!-- Configurações de pesquisa -->
-        <div class="hidden md:flex flex-col md:flex-row flex-initial justify-between w-full p-4 my-2 gap-4 md:gap-8 border font-semibold rounded-md border-gray-300 bg-sky-100">
-            <!-- Ordenador -->
-            <app-list-sorter
-                (sorter_OnSort)="fetchClientesList({
-                    orderByColumn: $event.orderByColumn,
-                    order: $event.order
-		        })">
-            </app-list-sorter>
-            <!-- Input pesquisar -->
-            <app-input-search
-                (onSubmit)="fetchClientesList({
-                    page: $event.page,
-                    searchQuery: $event.searchQuery,
-                    searchBy: $event.searchBy,
-                    startByOrContain:$event.startByOrContain
-                })">
-            </app-input-search>
-        </div>
-        <!-- Dados/corpo da lista -->
+        <app-search-config />
+        <!-- Lista -->
         <div class="relative w-full gap-2 overflow-y-scroll">
             <app-list
                 [list_items]="getListItems(clientesListSignal())"
@@ -43,16 +21,10 @@
                 limit:$event.limit
             })">
         </app-list-paginator>
-        <!-- Buttons Add +10 & Clear List -->
+        <!-- Botões Add +10 & Limpar lista -->
         <div class="flex gap-1 mt-4 w-fit">
-            <button (click)="add10Clientes()" class="custom-btn items-center flex gap-2 text-sm whitespace-nowrap">
-                <i [class]="PrimeIcons.PLUS_CIRCLE"></i>
-                <span>Add 10 clientes</span>
-            </button>
-            <button (click)="clearClienteList()" class="custom-btn items-center flex gap-2 text-sm whitespace-nowrap">
-                <i [class]="PrimeIcons.TRASH"></i>
-                <span>Limpar lista</span>
-            </button>
+            <app-button-add-10-clientes />
+            <app-button-clear-clientes-list />
         </div>
     </div>
 </section>
