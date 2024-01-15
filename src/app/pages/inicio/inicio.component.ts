@@ -1,10 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
-import { PrimeIcons } from 'primeng/api';
-import { APP_ROUTE_PATHS } from '../../app-routing.module';
-import { ClienteService } from '../../services/cliente.service';
-import { MatDialog } from '@angular/material/dialog';
-import { DialogEditComponent } from '../../components/dialog-edit/dialog-edit.component';
-import { ClienteEntity } from '../../entities/cliente.entity';
+import { Component, signal } from '@angular/core';
 
 @Component({
     selector: 'app-inicio',
@@ -12,18 +6,12 @@ import { ClienteEntity } from '../../entities/cliente.entity';
     styleUrls: ['./inicio.component.scss']
 })
 export class InicioComponent {
-    constructor(
-        private clienteService: ClienteService,
-        private dialog: MatDialog,
-    ) {
+    constructor() {
         setInterval(() => {
             this.createDateDisplay()
         }, 500)
     }
-    PrimeIcons = PrimeIcons
-    APP_ROUTE_PATHS = APP_ROUTE_PATHS
 
-    last5ClientesAddedSignal = this.clienteService.last5ClientesAddedSignal
     currentDateSignal = signal<string>(this.createDateDisplay())
 
     createDateDisplay() {
@@ -38,14 +26,5 @@ export class InicioComponent {
         const formattedDateString = `${weekDay} ${day}, ${month} ${year}, ${hourMinSec}`
         this.currentDateSignal?.set(formattedDateString)
         return formattedDateString
-    }
-
-    openEditDialog(clienteEntity: ClienteEntity) {
-        this.dialog.open(DialogEditComponent, {
-            maxWidth: '100dvw',
-            data: {
-                clienteEntity
-            }
-        })
     }
 }

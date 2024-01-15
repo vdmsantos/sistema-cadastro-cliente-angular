@@ -1,7 +1,4 @@
 <section class="flex flex-col h-[calc(100dvh-80px)] md:h-[calc(100dvh-20px)] gap-2">
-    <!-- <app-page-header
-        _pageTitle="Cadastrar novo cliente">
-    </app-page-header> -->
     <div class="flex flex-col p-4 md:p-8 gap-8 md:gap-10 bg-white shadow-md rounded-lg w-full h-full overflow-y-auto">
         <!-- Page header -->
         <div class="flex flex-col gap-4">
@@ -9,7 +6,7 @@
                 <!-- Title -->
                 <p class="text-2xl font-semibold">Olá, usuário!</p>
                 <!-- Date -->
-                <p class="text-[13px] ml-1">{{ currentDateSignal() }}</p>
+                <p class="text-[13px]">{{ currentDateSignal() }}</p>
             </div>
             <!-- Divisor -->
             <div class="w-full h-[1px] bg-black/10"></div>
@@ -17,47 +14,9 @@
         <!-- Page body -->
         <div class="flex flex-col gap-12 md:gap-16  w-full h-full">
             <!-- Cards ações -->
-            <div class="flex flex-col gap-2">
-                <p class="text-lg font-semibold">Ações</p>
-                <div class="flex gap-4">
-                    <a class="flex flex-col p-4 gap-2 w-[130px] dh-[150px] bg-white rounded-lg shadow-md hover:outline hover:outline-1 hover:outline-sky-300"
-                        [routerLink]="'/' + APP_ROUTE_PATHS.CADASTRAR_CLIENTE">
-                        <i [class]="PrimeIcons.PLUS" ngClass="text-2xl"></i>
-                        <p class="font-semiboldd">Criar novo cliente</p>
-                        <span class="flex px-3 bg-sky-300 w-fit rounded-full font-semibold">Navegar</span>
-                    </a>
-                    <a class="flex flex-col p-4 gap-2 w-[130px] dh-[150px] bg-white rounded-lg shadow-md hover:outline hover:outline-1 hover:outline-sky-300"
-                        [routerLink]="'/' + APP_ROUTE_PATHS.LISTAR_CLIENTES">
-                        <i [class]="PrimeIcons.ALIGN_CENTER" ngClass="text-2xl"></i>
-                        <p class="font-semiboldd">Consultar clientes</p>
-                        <span class="flex px-3 bg-sky-300 w-fit rounded-full font-semibold">Navegar</span>
-                    </a>
-                </div>
-            </div>
+            <app-cards-actions />
             <!-- Cards ultimos clientes criados -->
-            <div class="flex flex-col gap-2">
-                <p class="text-lg font-semibold">Últimos clientes adicionados</p>
-                <!-- Cards wrapper -->
-                <div *ngIf="last5ClientesAddedSignal().length > 0" class="flex gap-2 pb-4 overflow-x-auto">
-                    <!-- Card -->
-                    <button *ngFor="let cliente of last5ClientesAddedSignal()"
-                        (click)="openEditDialog(cliente)"
-                        class="group flex flex-col p-4 gap-2 min-w-[180px] max-w-[180px] md:min-w-[200px] md:max-w-[200px] bg-white rounded-lg border shadow-md hover:shadow-lg transition-all">
-                        <div class="flex gap-2 items-center text-start">
-                            <i [class]="PrimeIcons.USER" ngClass="text-lg group-hover:hidden"></i>
-                            <i [class]="PrimeIcons.PENCIL" ngClass="text-lg hidden group-hover:flex"></i>
-                            <p class="line-clamp-1" [title]="cliente.nome">{{cliente.nome}}</p>
-                        </div>
-                        <p class="font-semiboldd text-xs">{{cliente.criado_em | toLocaleString}}</p>
-                    </button>
-                </div>
-                <div *ngIf="last5ClientesAddedSignal().length === 0">
-                    <p class="text-base w-fit">
-                        <a [routerLink]="'/' + APP_ROUTE_PATHS.CADASTRAR_CLIENTE"
-                            class="underline underline-offset-2 text-sky-600">Adicione um cliente</a>&nbsp;para começar.
-                    </p>
-                </div>
-            </div>
+            <app-cards-last-clientes-added />
         </div>
     </div>
 </section>
