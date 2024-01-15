@@ -1,0 +1,17 @@
+<div class="flex flex-col gap-2">
+    <p class="text-lg font-semibold">Ações</p>
+    <div class="flex gap-4">
+        <a class="flex flex-col p-4 gap-2 w-[130px] dh-[150px] bg-white rounded-lg shadow-md hover:outline hover:outline-1 hover:outline-sky-300"
+            [routerLink]="'/' + APP_ROUTE_PATHS.CADASTRAR_CLIENTE">
+            <i [class]="PrimeIcons.PLUS" ngClass="text-2xl"></i>
+            <p class="font-semiboldd">Criar novo cliente</p>
+            <span class="flex px-3 bg-sky-300 w-fit rounded-full font-semibold">Navegar</span>
+        </a>
+        <a class="flex flex-col p-4 gap-2 w-[130px] dh-[150px] bg-white rounded-lg shadow-md hover:outline hover:outline-1 hover:outline-sky-300"
+            [routerLink]="'/' + APP_ROUTE_PATHS.LISTAR_CLIENTES">
+            <i [class]="PrimeIcons.ALIGN_CENTER" ngClass="text-2xl"></i>
+            <p class="font-semiboldd">Consultar clientes</p>
+            <span class="flex px-3 bg-sky-300 w-fit rounded-full font-semibold">Navegar</span>
+        </a>
+    </div>
+</div>
