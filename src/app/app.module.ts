@@ -19,7 +19,7 @@ import { InputComponent } from './components/input/input.component';
 import { ListComponent } from './components/list/list.component';
 // OTHERS
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { ListSorterComponent } from './components/list-sorter/list-sorter.component';
 import { InputSearchComponent } from './components/input-search/input-search.component';
 import { ListPaginatorComponent } from './components/list-paginator/list-paginator.component';
@@ -68,7 +68,6 @@ import { DialogMobileListOptionsComponent } from './components/dialog-mobile-lis
     providers: [
         provideNgxMask(),
         MessageService,
-        ConfirmationService,
     ],
     bootstrap: [AppComponent]
 })
