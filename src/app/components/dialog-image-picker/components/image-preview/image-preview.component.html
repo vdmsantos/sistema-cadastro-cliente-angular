@@ -1,0 +1,8 @@
+<div class="w-[200px] md:w-[250px] h-[200px] md:h-[250px] outline outline-1 outline-gray-200 relative overflow-hidden">
+    <i *ngIf="isLoadingAndHasImage" [class]="PrimeIcons.SPINNER" ngClass="absolute opacity-50 inset-0 flex animate-spin w-full h-full rounded-full justify-center items-center text-black/80 text-3xl bg-gray-200"></i>
+    <img
+        *ngIf="cropImgPreview"
+        class=" rounded-full object-contain bg-gray-200"
+        [(src)]="cropImgPreview">
+    <i *ngIf="isNotLoadingAndHasNoImage" [class]="PrimeIcons.USER" ngClass="flex w-full h-full rounded-full justify-center items-center text-black/50 text-3xl bg-gray-200"></i>
+</div>
