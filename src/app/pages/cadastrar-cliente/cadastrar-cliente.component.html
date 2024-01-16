@@ -2,9 +2,12 @@
     <app-page-header
         _pageTitle="Cadastrar novo cliente">
     </app-page-header>
-    <div class="flex flex-col p-4 md:px-6 bg-white shadow-md rounded-lg w-full h-full">
+    <div class="flex flex-col-reverse md:flex-row p-4 md:px-6 gap-8 bg-white shadow-md rounded-lg w-full h-full">
         <div class="max-w-[500px]">
-            <app-form-customer></app-form-customer>
+            <app-form-customer />
+        </div>
+        <div>
+            <app-form-profile-image />
         </div>
     </div>
 </section>

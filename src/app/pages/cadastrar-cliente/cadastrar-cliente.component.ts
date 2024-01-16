@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ClienteFormFields, ClienteFormService } from '../../services/cliente-form.service';
+import { ClienteFormService } from '../../services/cliente-form.service';
 
 @Component({
     selector: 'app-cadastrar-cliente',
@@ -8,14 +8,10 @@ import { ClienteFormFields, ClienteFormService } from '../../services/cliente-fo
 })
 export class CadastrarClienteComponent {
     constructor(
-        public clienteService: ClienteFormService
+        public clienteformService: ClienteFormService,
     ) { }
 
-    clienteFormGroup = this.clienteService.getClienteFormGroup()
-    getClienteFormControl = this.clienteService.getClienteFormControl.bind(this.clienteService);
-    getClienteEnderecoFormControl = this.clienteService.getClienteEnderecoFormControl.bind(this.clienteService);
-
     submitForm() {
-        this.clienteService.submit()
+        this.clienteformService.submit()
     }
 }
