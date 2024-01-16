@@ -136,7 +136,7 @@ export class DialogImagePickerComponent implements OnInit {
         this.imageBase64 = imageBase64
     }
 
-    async convertFromBlobToBase64(imageBlob: Blob) {
+    private async convertFromBlobToBase64(imageBlob: Blob) {
         // Source: https://stackoverflow.com/a/77311335/19709090
         const reader = new FileReader();
         reader.readAsDataURL(imageBlob);
@@ -163,7 +163,7 @@ export class DialogImagePickerComponent implements OnInit {
         this.clienteFormService.getClienteFormControl('image_profile_url').setValue(imageUrl)
     }
 
-    showToastMessage(severity: 'success' | 'error', message: string) {
+    private showToastMessage(severity: 'success' | 'error', message: string) {
         this.messageService.add({
             severity: severity,
             summary: message,
@@ -174,7 +174,7 @@ export class DialogImagePickerComponent implements OnInit {
         this.closeDialogOnBrowserBackNavigation()
     }
 
-    closeDialogOnBrowserBackNavigation() {
+    private closeDialogOnBrowserBackNavigation() {
         // https://stackoverflow.com/a/58077214/19709090
         if (isPlatformBrowser(this.platformId)) {
             history.pushState({}, document.getElementsByTagName('title')[0].innerHTML, window.location.href);

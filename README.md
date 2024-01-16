@@ -40,12 +40,12 @@ Execute o script `ng serve` para inicar a aplicação na porta `http://localhost
 
 Execute o script `ng build` para buildar o projeto. A build será gerada no diretório `dist/`.
 
-### Local Storage
+## Estrutura do projeto
+
+## Local Storage
 
 Esta aplicação usa o localstorage do navegador para armazenar dados. A chave dos dados está sob o nome de `clientes_list_localstorage`. <br/>
 As imagens de perfil são comprimidas e salvas como `string base64` no localstorage, na propriedade `image_profile_url`.
-
-## Estrutura do projeto
 
 ### Telas:
 
