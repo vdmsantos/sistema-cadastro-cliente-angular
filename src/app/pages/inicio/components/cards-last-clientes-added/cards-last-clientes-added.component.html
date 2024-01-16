@@ -7,13 +7,16 @@
             (click)="openEditDialog(cliente)"
             class="group flex flex-col p-4 gap-2 min-w-[180px] max-w-[180px] md:min-w-[200px] md:max-w-[200px] bg-white rounded-lg border shadow-md hover:shadow-lg transition-all">
             <div class="flex gap-2 items-center text-start">
-                <i [class]="PrimeIcons.USER" ngClass="text-lg group-hover:hidden"></i>
+                <div class="group-hover:hidden flex items-center max-w-[28px] max-h-[28px]">
+                    <app-profile-image [image_url]="cliente.image_profile_url" default_image_class=" !text-lg " />
+                </div>
                 <i [class]="PrimeIcons.PENCIL" ngClass="text-lg hidden group-hover:flex"></i>
                 <p class="line-clamp-1" [title]="cliente.nome">{{cliente.nome}}</p>
             </div>
             <p class="font-semiboldd text-xs">{{cliente.criado_em | toLocaleString}}</p>
         </button>
     </div>
+    <!-- Se não tiver nenhum cliente adicionado -->
     <div *ngIf="last5ClientesAddedSignal().length === 0">
         <p class="text-base w-fit">
             <a [routerLink]="'/' + APP_ROUTE_PATHS.CADASTRAR_CLIENTE"
