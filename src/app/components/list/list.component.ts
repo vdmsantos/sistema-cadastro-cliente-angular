@@ -4,6 +4,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ClienteEntity } from '../../entities/cliente.entity';
 import { DialogDeleteComponent } from '../dialog-delete/dialog-delete.component';
 import { DialogEditComponent } from '../dialog-edit/dialog-edit.component';
+import { ClienteFormFields, EnderecoFormFields } from '../../services/cliente-form.service';
 
 @Component({
     selector: 'app-list',
@@ -28,10 +29,11 @@ export class ListComponent implements OnChanges, OnInit {
      */
     @Input({ required: true }) list_tableFields!: { label: string, column: string; }[]
     @Input() list_hasActionButtons: boolean = true
-    headerItems = this.list_tableFields?.map(data => data.label)
     objectKeysInOrder = this.list_tableFields?.map(data => data.column)
     dialogRef!: MatDialogRef<DialogDeleteComponent | DialogEditComponent>;
     PrimeIcons = PrimeIcons
+    ClienteFormFields = ClienteFormFields
+    EnderecoFormFields = EnderecoFormFields
     PAGE_TEXT = {
         CLIENTE_EMPTY_LIST: 'Nenhum cliente encontrado.',
         EDIT_BUTTON_TOOLTIP: 'Editar',
@@ -40,14 +42,12 @@ export class ListComponent implements OnChanges, OnInit {
 
     ngOnInit(): void {
         this.setObjectKeysInOrder()
-        this.setHeaderItems()
         this.setItemsToDisplay()
     }
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes['list_tableFields']) {
             this.setObjectKeysInOrder()
-            this.setHeaderItems()
         }
         if (changes['list_items']) {
             this.setItemsToDisplay()
@@ -56,10 +56,6 @@ export class ListComponent implements OnChanges, OnInit {
 
     setObjectKeysInOrder() {
         this.objectKeysInOrder = this.list_tableFields?.map(data => data.column)
-    }
-
-    setHeaderItems() {
-        this.headerItems = this.list_tableFields?.map(data => data.label)
     }
 
     setItemsToDisplay() {
@@ -72,8 +68,8 @@ export class ListComponent implements OnChanges, OnInit {
         })
     }
 
-    verificarTextoNenhum(texto: string) {
-        if (texto === 'nenhum' || !texto) return 'color:tomato'
+    verificarTextoNenhum(texto: string, key?: string) {
+        if ((texto === 'nenhum' || !texto) && key !== ClienteFormFields.image_profile_url) return 'color:tomato'
         else return ''
     }
 
