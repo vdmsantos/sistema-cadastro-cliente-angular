@@ -8,6 +8,7 @@ export class ClienteEntity {
     endereco!: Endereco
     atualizado_em!: string
     criado_em!: string
+    image_profile_url!: string
 
     public constructor(init?: Partial<ClienteEntity>) {
         Object.assign(this, init);

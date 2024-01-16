@@ -6,7 +6,7 @@ import { Endereco } from '../types/endereco.interface';
 import { ClienteService } from './cliente.service';
 import { MessageService } from 'primeng/api';
 
-const EnderecoFormFields = {
+export const EnderecoFormFields = {
     bairro: 'bairro',
     cep: 'cep',
     cidade: 'cidade',
@@ -23,6 +23,7 @@ export const ClienteFormFields = {
     endereco: 'endereco',
     nome: 'nome',
     telefone: 'telefone',
+    image_profile_url: 'image_profile_url'
 } as const
 
 class ClienteFormType {
@@ -33,6 +34,7 @@ class ClienteFormType {
     [ClienteFormFields.endereco]!: FormGroup<EnderecoFormType>
     [ClienteFormFields.nome]!: FormControl<string>
     [ClienteFormFields.telefone]!: FormControl<string>
+    [ClienteFormFields.image_profile_url]!: FormControl<string | null>
 }
 
 class EnderecoFormType {
@@ -54,7 +56,7 @@ export class ClienteFormService {
         private readonly messageService: MessageService,
     ) { }
 
-    CURRENT_UTC_DATE_ISO_STRING = new Date().toISOString()
+    private CURRENT_UTC_DATE_ISO_STRING = new Date().toISOString()
 
     private clienteForm = this.createNewClienteForm()
     // private enderecoForm = this.createNewEnderecoForm()
@@ -70,6 +72,7 @@ export class ClienteFormService {
             cpf: new FormControl(clienteEntity?.cpf || '', { nonNullable: true, validators: [Validators.required] }),
             nome: new FormControl(clienteEntity?.nome || '', { nonNullable: true, validators: [Validators.required] }),
             telefone: new FormControl(clienteEntity?.telefone || '', { nonNullable: true, validators: [Validators.required] }),
+            image_profile_url: new FormControl(clienteEntity?.image_profile_url || '', {}),
             endereco: this.createNewEnderecoForm(clienteEntity?.endereco)
         })
     }
@@ -90,7 +93,7 @@ export class ClienteFormService {
     }
 
     public getClienteFormControl(field: keyof typeof ClienteFormFields) {
-        return this.clienteForm?.get(field) as FormControl<typeof field>
+        return this.clienteForm?.get(field) as FormControl<string>
     }
 
     public getClienteEnderecoFormControl(field: keyof typeof EnderecoFormFields) {
@@ -119,6 +122,7 @@ export class ClienteFormService {
     public submit() {
         this.isSubmitedSignal.set(true)
 
+        console.log('clienteForm', this.clienteForm)
         if (this.getClienteFormGroup().invalid) {
             this.showToastMessage('error', 'Verifique os campos antes de salvar.')
             return
@@ -132,6 +136,7 @@ export class ClienteFormService {
             criado_em: this.getClienteFormControl('criado_em').value,
             atualizado_em: new Date().toISOString(),
             telefone: this.getClienteFormControl('telefone').value,
+            image_profile_url: this.getClienteFormControl('image_profile_url').value,
             endereco: {
                 bairro: this.getClienteEnderecoFormControl('bairro').value,
                 cep: this.getClienteEnderecoFormControl('cep').value,
