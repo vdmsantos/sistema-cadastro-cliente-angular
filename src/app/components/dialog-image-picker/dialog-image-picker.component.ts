@@ -34,9 +34,34 @@ export class DialogImagePickerComponent implements OnInit {
     scale = 1;
     loading = true
 
+    COMPONENT_TEXTS = {
+        INPUT_TOOLTIP: 'Selecionar imagem do dispositivo.'
+    }
+
+    hasImage() {
+        if (this.imgChangeEvent || this.originalImage || this.cropImgPreview) return true
+        else return false
+    }
+
+    isLoadingAndHasImage() {
+        if (this.loading && (this.originalImage || this.cropImgPreview)) return true
+        else return false
+    }
+
+    isNotLoadingAndHasNoImage() {
+        if (!this.cropImgPreview && (!this.loading || !this.originalImage)) return true
+        else return false
+    }
+
+    hasNoImage() {
+        if (!this.imgChangeEvent && !this.originalImage && !this.cropImgPreview) return true
+        else return false
+    }
+
     removeImage() {
         this.imgChangeEvent = null
         this.cropImgPreview = ''
+        this.originalImage = ''
         this.imageBase64 = ''
     }
 
