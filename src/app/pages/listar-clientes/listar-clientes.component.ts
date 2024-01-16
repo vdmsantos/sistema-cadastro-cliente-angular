@@ -3,6 +3,7 @@ import { ClienteEntity } from '../../entities/cliente.entity';
 import { ClienteService } from '../../services/cliente.service';
 import { PaginationOptionsType } from '../../types/paginationTypes/pagination-options.type';
 import { PaginationService } from '../../services/pagination.service';
+import { ClienteFormFields, EnderecoFormFields } from '../../services/cliente-form.service';
 
 @Component({
     selector: 'app-listar-clientes',
@@ -25,47 +26,51 @@ export class ListarClientesComponent implements OnInit {
 
     list_tableFields: { label: string, column: string }[] = [
         {
-            column: 'nome',
+            column: ClienteFormFields.image_profile_url,
+            label: 'Foto de perfil'
+        },
+        {
+            column: ClienteFormFields.nome,
             label: 'Nome'
         },
         {
-            column: 'cpf',
+            column: ClienteFormFields.cpf,
             label: 'CPF'
         },
         {
-            column: 'telefone',
+            column: ClienteFormFields.telefone,
             label: 'Telefone'
         },
         {
-            column: 'criado_em',
+            column: ClienteFormFields.criado_em,
             label: 'Data de criação'
         },
         {
-            column: 'atualizado_em',
+            column: ClienteFormFields.atualizado_em,
             label: 'Data de modificação'
         },
         {
-            column: 'cep',
+            column: EnderecoFormFields.cep,
             label: 'CEP'
         },
         {
-            column: 'estado',
+            column: EnderecoFormFields.estado,
             label: 'Estado'
         },
         {
-            column: 'cidade',
+            column: EnderecoFormFields.cidade,
             label: 'Cidade'
         },
         {
-            column: 'bairro',
+            column: EnderecoFormFields.bairro,
             label: 'Bairro'
         },
         {
-            column: 'rua',
+            column: EnderecoFormFields.rua,
             label: 'Rua'
         },
         {
-            column: 'numero',
+            column: EnderecoFormFields.numero,
             label: 'Número'
         },
     ]
