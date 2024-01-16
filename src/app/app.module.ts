@@ -35,6 +35,10 @@ import { ButtonAdd10ClientesComponent } from './pages/listar-clientes/components
 import { ButtonClearClientesListComponent } from './pages/listar-clientes/components/button-clear-clientes-list/button-clear-clientes-list.component';
 import { CardsActionsComponent } from './pages/inicio/components/cards-actions/cards-actions.component';
 import { CardsLastClientesAddedComponent } from './pages/inicio/components/cards-last-clientes-added/cards-last-clientes-added.component';
+import { DialogImagePickerComponent } from './components/dialog-image-picker/dialog-image-picker.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { FormProfileImageComponent } from './components/form-profile-image/form-profile-image.component';
+import { ProfileImageComponent } from './components/profile-image/profile-image.component';
 
 @NgModule({
     declarations: [
@@ -59,7 +63,10 @@ import { CardsLastClientesAddedComponent } from './pages/inicio/components/cards
         ButtonAdd10ClientesComponent,
         ButtonClearClientesListComponent,
         CardsActionsComponent,
-        CardsLastClientesAddedComponent
+        CardsLastClientesAddedComponent,
+        DialogImagePickerComponent,
+        FormProfileImageComponent,
+        ProfileImageComponent
     ],
     imports: [
         NgxMaskDirective,
@@ -73,7 +80,8 @@ import { CardsLastClientesAddedComponent } from './pages/inicio/components/cards
         MatDialogModule,
         ConfirmPopupModule,
         ToastModule,
-        HttpClientModule
+        HttpClientModule,
+        ImageCropperModule
     ],
     providers: [
         provideNgxMask(),
