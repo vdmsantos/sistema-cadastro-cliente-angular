@@ -1,0 +1,38 @@
+<div class="flex gap-1">
+    <button
+        (click)="emitRotateImageRight()"
+        pTooltip="Girar 90°"
+        class="custom-btn flex w-[34px] h-[32px] justify-center items-center bg-transparent hover:bg-sky-100 text-sky-900">
+        <i [class]="PrimeIcons.REFRESH" ngClass="flex text-sm"></i>
+    </button>
+    <button
+        (click)="emitFlipHorizontal()"
+        pTooltip="Espelhar na horizontal"
+        class="custom-btn flex w-[34px] h-[32px] justify-center items-center bg-transparent hover:bg-sky-100 text-sky-900">
+        <i [class]="PrimeIcons.ARROW_H" ngClass="flex text-sm"></i>
+    </button>
+    <button
+        (click)="emitFlipVertical()"
+        pTooltip="Espelhar na vertical"
+        class="custom-btn flex w-[34px] h-[32px] justify-center items-center bg-transparent hover:bg-sky-100 text-sky-900">
+        <i [class]="PrimeIcons.ARROW_V" ngClass="flex text-sm"></i>
+    </button>
+    <button
+        (click)="emitZoomIn()"
+        pTooltip="Aumentar zoom"
+        class="custom-btn flex w-[34px] h-[32px] justify-center items-center bg-transparent hover:bg-sky-100 text-sky-900">
+        <i [class]="PrimeIcons.PLUS" ngClass="flex text-sm"></i>
+    </button>
+    <button
+        (click)="emitZoomOut()"
+        pTooltip="Diminuir zoom"
+        class="custom-btn flex w-[34px] h-[32px] justify-center items-center bg-transparent hover:bg-sky-100 text-sky-900">
+        <i [class]="PrimeIcons.MINUS" ngClass="flex text-sm"></i>
+    </button>
+    <button
+        (click)="emitRemoveImage()"
+        pTooltip="Remover imagem"
+        class="custom-btn flex w-[34px] h-[32px] justify-center items-center bg-transparent hover:bg-sky-100 text-sky-900">
+        <i [class]="PrimeIcons.TIMES" ngClass="flex text-sm"></i>
+    </button>
+</div>
