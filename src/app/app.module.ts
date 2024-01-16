@@ -39,6 +39,9 @@ import { DialogImagePickerComponent } from './components/dialog-image-picker/dia
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { FormProfileImageComponent } from './components/form-profile-image/form-profile-image.component';
 import { ProfileImageComponent } from './components/profile-image/profile-image.component';
+import { ButtonsCropControlsComponent } from './components/dialog-image-picker/components/buttons-crop-controls/buttons-crop-controls.component';
+import { ImagePreviewComponent } from './components/dialog-image-picker/components/image-preview/image-preview.component';
+import { DialogHeaderComponent } from './components/dialog-header/dialog-header.component';
 
 @NgModule({
     declarations: [
@@ -66,7 +69,10 @@ import { ProfileImageComponent } from './components/profile-image/profile-image.
         CardsLastClientesAddedComponent,
         DialogImagePickerComponent,
         FormProfileImageComponent,
-        ProfileImageComponent
+        ProfileImageComponent,
+        ButtonsCropControlsComponent,
+        ImagePreviewComponent,
+        DialogHeaderComponent
     ],
     imports: [
         NgxMaskDirective,
