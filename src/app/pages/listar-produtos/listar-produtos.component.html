@@ -1,0 +1,30 @@
+<section class="flex flex-col h-full md:h-[calc(100dvh-24px)] gap-2 ">
+    <!-- Page header -->
+    <app-page-header _pageTitle="Listar produtos" />
+    <!-- Page content -->
+    <div class="flex flex-col p-2 md:p-4 md:px-6 max-h-[calc(100%-72px)] bg-white shadow-md rounded-lg w-full h-full">
+        <!-- Configurações de pesquisa -->
+        <app-produto-search-config />
+        <!-- Lista -->
+        <div class="relative w-full gap-2 overflow-y-scroll">
+            <app-produto-list
+                [list_items]="getListItems(produtosListSignal())"
+                [list_tableFields]="list_tableFields">
+            </app-produto-list>
+        </div>
+        <!-- Paginador -->
+        <app-list-paginator
+            [paginationMeta]="paginationMetaSignal()"
+            [limit]="lastPaginationOptionsUsedSig().limit!"
+            (atualizarConsulta)="fetchProdutosList({
+                page:$event.currentPage,
+                limit:$event.limit
+            })">
+        </app-list-paginator>
+        <!-- Botões Add +10 & Limpar lista -->
+        <div class="flex gap-1 mt-4 w-fit">
+            <!-- <app-button-add-10-clientes />
+            <app-button-clear-clientes-list /> -->
+        </div>
+    </div>
+</section>

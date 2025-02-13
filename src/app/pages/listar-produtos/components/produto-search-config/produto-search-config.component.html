@@ -1,0 +1,25 @@
+<div>
+    <!-- MOBILE Button Configurações de pesquisa -->
+    <button (click)="openSearchConfigDialog()" class="md:hidden z-50 fixed bottom-16 right-2 custom-btn !w-fit !px-4 !py-[10px] self-end my-1">
+        <i [class]="PrimeIcons.COG" ngClass="text-2xl"></i>
+    </button>
+    <!-- DESKTOP Section Configurações de pesquisa -->
+    <div class="hidden md:flex flex-col md:flex-row flex-initial justify-between w-full p-4 my-2 gap-4 md:gap-8 border font-semibold rounded-md border-gray-300 bg-sky-100">
+        <!-- Ordenador -->
+        <app-produto-list-sorter
+            (sorter_OnSort)="fetchProdutosList({
+                orderByColumn: $event.orderByColumn,
+                order: $event.order
+            })">
+        </app-produto-list-sorter>
+        <!-- Input pesquisar -->
+        <app-produto-input-search
+            (onSubmit)="fetchProdutosList({
+                page: $event.page,
+                searchQuery: $event.searchQuery,
+                searchBy: $event.searchBy,
+                startByOrContain:$event.startByOrContain
+            })">
+        </app-produto-input-search>
+    </div>
+</div>

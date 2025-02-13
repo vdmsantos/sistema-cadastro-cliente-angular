@@ -1,0 +1,28 @@
+<!-- Dialog Configurações de pesquisa -->
+<div class="flex flex-col w-full p-4 py-6 md:py-4 gap-6 md:gap-4 border font-semibold rounded-md border-gray-300">
+    <app-dialog-header [dialog_icon]="PrimeIcons.COG" dialog_title="Opções de pesquisa" />
+    <!-- Divisor -->
+    <div class="md:hidden w-full h-[1px] bg-black/10"></div>
+    <!-- Input pesquisar -->
+    <app-produto-input-search
+        (onSubmit)="fetchProdutosList({
+            page: $event.page,
+            searchQuery: $event.searchQuery,
+            searchBy: $event.searchBy,
+            startByOrContain:$event.startByOrContain
+        })">
+    </app-produto-input-search>
+    <!-- Divisor -->
+    <div class="md:hidden w-full h-[1px] bg-black/10"></div>
+    <!-- Ordenador -->
+    <app-produto-list-sorter
+        (sorter_OnSort)="fetchProdutosList({
+            orderByColumn: $event.orderByColumn,
+            order: $event.order
+        })">
+    </app-produto-list-sorter>
+    <!-- Divisor -->
+    <div class="md:hidden w-full h-[1px] bg-black/10"></div>
+    <!-- Button confirmar -->
+    <button mat-dialog-close class="custom-btn !py-2 !text-base">Confirmar</button>
+</div>
