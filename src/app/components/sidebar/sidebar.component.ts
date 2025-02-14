@@ -2,14 +2,12 @@ import { Component } from '@angular/core';
 import { PrimeIcons } from 'primeng/api';
 import { APP_ROUTE_PATHS } from '../../app-routing.module';
 
-
 @Component({
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html',
-    styleUrls: ['./sidebar.component.scss']
+    styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent {
-
     menu_items = [
         {
             title: 'Inicio',
@@ -51,5 +49,20 @@ export class SidebarComponent {
             url: '/' + APP_ROUTE_PATHS.LISTAR_PRODUTOS,
             icon: PrimeIcons.ALIGN_JUSTIFY,
         },
-    ]
+        {
+            title: 'Pedidos',
+            url: 'SEPARADOR',
+            icon: 'SEPARADOR',
+        },
+        {
+            title: 'Cadastrar Pedido',
+            url: '/' + APP_ROUTE_PATHS.CADASTRAR_PEDIDO,
+            icon: PrimeIcons.PLUS,
+        },
+        {
+            title: 'Listar Pedidos',
+            url: '/' + APP_ROUTE_PATHS.LISTAR_PEDIDOS,
+            icon: PrimeIcons.ALIGN_JUSTIFY,
+        },
+    ];
 }

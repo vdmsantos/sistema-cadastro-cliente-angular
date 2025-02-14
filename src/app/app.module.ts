@@ -50,6 +50,8 @@ import { ProdutoListSorterComponent } from './components/produto-list-sorter/pro
 import { ProdutoListComponent } from './components/produto-list/produto-list.component';
 import { ProdutoSearchConfigComponent } from './pages/listar-produtos/components/produto-search-config/produto-search-config.component';
 import { ProdutoDialogMobileListOptionsComponent } from './components/produto-dialog-mobile-list-options/produto-dialog-mobile-list-options.component';
+import { CadastrarPedidoComponent } from './pages/cadastrar-pedido/cadastrar-pedido.component';
+import { ListarPedidoComponent } from './pages/listar-pedido/listar-pedido.component';
 
 @NgModule({
     declarations: [
@@ -89,6 +91,8 @@ import { ProdutoDialogMobileListOptionsComponent } from './components/produto-di
         ProdutoListComponent,
         ProdutoSearchConfigComponent,
         ProdutoDialogMobileListOptionsComponent,
+        CadastrarPedidoComponent,
+        ListarPedidoComponent,
     ],
     imports: [
         NgxMaskDirective,
@@ -103,12 +107,9 @@ import { ProdutoDialogMobileListOptionsComponent } from './components/produto-di
         ConfirmPopupModule,
         ToastModule,
         HttpClientModule,
-        ImageCropperModule
+        ImageCropperModule,
     ],
-    providers: [
-        provideNgxMask(),
-        MessageService,
-    ],
-    bootstrap: [AppComponent]
+    providers: [provideNgxMask(), MessageService],
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
