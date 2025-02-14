@@ -42,6 +42,14 @@ import { ProfileImageComponent } from './components/profile-image/profile-image.
 import { ButtonsCropControlsComponent } from './components/dialog-image-picker/components/buttons-crop-controls/buttons-crop-controls.component';
 import { ImagePreviewComponent } from './components/dialog-image-picker/components/image-preview/image-preview.component';
 import { DialogHeaderComponent } from './components/dialog-header/dialog-header.component';
+import { CadastrarProdutoComponent } from './pages/cadastrar-produto/cadastrar-produto.component';
+import { FormProductComponent } from './components/form-product/form-product.component';
+import { ListarProdutosComponent } from './pages/listar-produtos/listar-produtos.component';
+import { ProdutoInputSearchComponent } from './components/produto-input-search/produto-input-search.component';
+import { ProdutoListSorterComponent } from './components/produto-list-sorter/produto-list-sorter.component';
+import { ProdutoListComponent } from './components/produto-list/produto-list.component';
+import { ProdutoSearchConfigComponent } from './pages/listar-produtos/components/produto-search-config/produto-search-config.component';
+import { ProdutoDialogMobileListOptionsComponent } from './components/produto-dialog-mobile-list-options/produto-dialog-mobile-list-options.component';
 
 @NgModule({
     declarations: [
@@ -72,7 +80,15 @@ import { DialogHeaderComponent } from './components/dialog-header/dialog-header.
         ProfileImageComponent,
         ButtonsCropControlsComponent,
         ImagePreviewComponent,
-        DialogHeaderComponent
+        DialogHeaderComponent,
+        CadastrarProdutoComponent,
+        FormProductComponent,
+        ListarProdutosComponent,
+        ProdutoInputSearchComponent,
+        ProdutoListSorterComponent,
+        ProdutoListComponent,
+        ProdutoSearchConfigComponent,
+        ProdutoDialogMobileListOptionsComponent,
     ],
     imports: [
         NgxMaskDirective,

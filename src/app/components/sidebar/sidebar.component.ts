@@ -22,7 +22,7 @@ export class SidebarComponent {
             icon: PrimeIcons.HOME,
         },
         {
-            title: 'Cadastro',
+            title: 'Clientes',
             url: 'SEPARADOR',
             icon: 'SEPARADOR',
         },
@@ -32,13 +32,23 @@ export class SidebarComponent {
             icon: PrimeIcons.PLUS,
         },
         {
-            title: 'Consulta',
+            title: 'Listar clientes',
+            url: '/' + APP_ROUTE_PATHS.LISTAR_CLIENTES,
+            icon: PrimeIcons.ALIGN_JUSTIFY,
+        },
+        {
+            title: 'Produtos',
             url: 'SEPARADOR',
             icon: 'SEPARADOR',
         },
         {
-            title: 'Listar clientes',
-            url: '/' + APP_ROUTE_PATHS.LISTAR_CLIENTES,
+            title: 'Cadastrar produto',
+            url: '/' + APP_ROUTE_PATHS.CADASTRAR_PRODUTO,
+            icon: PrimeIcons.PLUS,
+        },
+        {
+            title: 'Listar produtos',
+            url: '/' + APP_ROUTE_PATHS.LISTAR_PRODUTOS,
             icon: PrimeIcons.ALIGN_JUSTIFY,
         },
     ]

@@ -1,0 +1,47 @@
+<div class="flex flex-col gap-8 w-full h-full">
+    <div class="flex flex-col gap-8 w-full max-w-[500px]">
+        <!-- Dados do produto -->
+        <div class="flex flex-col gap-2">
+            <p class="text-lg font-semibold">1. Dados do produto</p>
+            
+            <!-- Nome do Produto -->
+            <div class="w-full">
+                <app-input
+                    [input_formControl]="getProdutoFormControl('nome')"
+                    [input_formGroup]="produtoFormGroup"
+                    input_placeholder="Nome do Produto"
+                    input_label="Nome do Produto*"
+                    input_required="true">
+                </app-input>
+            </div>
+
+            <!-- Descrição do Produto -->
+            <div class="w-full">
+                <app-input
+                    [input_formControl]="getProdutoFormControl('descricao')"
+                    [input_formGroup]="produtoFormGroup"
+                    input_placeholder="Descrição do Produto"
+                    input_label="Descrição*"
+                    input_required="true">
+                </app-input>
+            </div>
+
+            <!-- Preço do Produto -->
+            <div class="w-full">
+                <app-input
+                  [input_formControl]="getProdutoFormControl('preco')"
+                  [input_formGroup]="produtoFormGroup"
+                  input_placeholder="R$ 0,00"
+                  input_label="Preço*"
+                  input_required="true">
+                </app-input>
+              </div>
+        </div>
+
+    <!-- Botão salvar -->
+    <div class="flex w-full justify-center">
+        <button mat-dialog-close (click)="submitForm()" class="custom-btn !py-1 !px-20">
+            Salvar
+        </button>
+    </div>
+</div>
