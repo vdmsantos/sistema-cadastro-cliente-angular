@@ -1,0 +1,12 @@
+<div class="flex flex-col w-full max-h-[93dvh] p-8 gap-6 bg-white">
+    <app-dialog-header [dialog_icon]="PrimeIcons.TRASH" dialog_title="Excluir produto" />
+    <div class="text-base">
+        Deseja excluir&nbsp;<strong>{{dialogData.produtoEntity.nome}}</strong>?
+    </div>
+    <div class="flex w-full gap-2 mt-2 justify-between">
+        <button mat-dialog-close class="custom-btn !text-base bg-black/70 border-none !px-2">Não</button>
+        <button mat-dialog-close class="custom-btn !text-base !px-2 py-1"
+            (click)="deleteProdutoById()">Sim
+        </button>
+    </div>
+</div>

@@ -52,6 +52,8 @@ import { ProdutoSearchConfigComponent } from './pages/listar-produtos/components
 import { ProdutoDialogMobileListOptionsComponent } from './components/produto-dialog-mobile-list-options/produto-dialog-mobile-list-options.component';
 import { CadastrarPedidoComponent } from './pages/cadastrar-pedido/cadastrar-pedido.component';
 import { ListarPedidoComponent } from './pages/listar-pedido/listar-pedido.component';
+import { ProdutoDialogEditComponent } from './components/produto-dialog-edit/produto-dialog-edit.component';
+import { ProdutoDialogDeleteComponent } from './components/produto-dialog-delete/produto-dialog-delete.component';
 
 @NgModule({
     declarations: [
@@ -93,6 +95,8 @@ import { ListarPedidoComponent } from './pages/listar-pedido/listar-pedido.compo
         ProdutoDialogMobileListOptionsComponent,
         CadastrarPedidoComponent,
         ListarPedidoComponent,
+        ProdutoDialogEditComponent,
+        ProdutoDialogDeleteComponent,
     ],
     imports: [
         NgxMaskDirective,

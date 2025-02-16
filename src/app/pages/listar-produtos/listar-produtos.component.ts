@@ -61,7 +61,7 @@ export class ListarProdutosComponent implements OnInit {
         return produtos.map(item => {
             return {
                 ...item,
-                preco: item.preco ? `R$ ${item.preco}` : 'R$ 0,00',
+                preco: item.preco,
             };
         });
     }

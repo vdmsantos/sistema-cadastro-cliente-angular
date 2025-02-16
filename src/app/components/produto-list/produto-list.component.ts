@@ -2,8 +2,8 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { PrimeIcons } from 'primeng/api';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ProdutoEntity } from '../../entities/produto.entity';
-import { DialogDeleteComponent } from '../dialog-delete/dialog-delete.component';
-import { DialogEditComponent } from '../dialog-edit/dialog-edit.component';
+import { ProdutoDialogDeleteComponent } from '../produto-dialog-delete/produto-dialog-delete.component';
+import { ProdutoDialogEditComponent } from '../produto-dialog-edit/produto-dialog-edit.component';
 import { ProdutoFormFields } from '../../services/produto-form.service';
 
 @Component({
@@ -31,11 +31,11 @@ export class ProdutoListComponent implements OnChanges, OnInit {
     @Input({ required: true }) list_tableFields!: { label: string, column: string; }[]
     @Input() list_hasActionButtons: boolean = true
     objectKeysInOrder = this.list_tableFields?.map(data => data.column)
-    dialogRef!: MatDialogRef<DialogDeleteComponent | DialogEditComponent>;
+    dialogRef!: MatDialogRef<ProdutoDialogDeleteComponent | ProdutoDialogEditComponent>;
     PrimeIcons = PrimeIcons
     ProdutoFormFields = ProdutoFormFields
     PAGE_TEXT = {
-        CLIENTE_EMPTY_LIST: 'Nenhum cliente encontrado.',
+        PRODUTO_EMPTY_LIST: 'Nenhum produto encontrado.',
         EDIT_BUTTON_TOOLTIP: 'Editar',
         DELETE_BUTTON_TOOLTIP: 'Excluir',
     }
@@ -73,8 +73,8 @@ export class ProdutoListComponent implements OnChanges, OnInit {
         else return ''
     }
 
-    openEditDialog(clienteEntity: ProdutoEntity) {
-        this.dialogRef = this.dialog.open(DialogEditComponent, {
+    openEditDialog(produtoEntity: ProdutoEntity) {
+        this.dialogRef = this.dialog.open(ProdutoDialogEditComponent, {
             height: 'auto',
             width: 'fit',
             maxWidth: `100vw`,
@@ -82,18 +82,18 @@ export class ProdutoListComponent implements OnChanges, OnInit {
             disableClose: false,
             data: {
                 fecharGerarPDFDialog: this.dialogRef?.close,
-                clienteEntity
+                produtoEntity
             }
         });
     }
 
-    openDeleteDialog(clienteEntity: ProdutoEntity) {
-        this.dialogRef = this.dialog.open(DialogDeleteComponent, {
+    openDeleteDialog(produtoEntity: ProdutoEntity) {
+        this.dialogRef = this.dialog.open(ProdutoDialogDeleteComponent, {
             height: 'auto',
             width: 'fit', panelClass: 'rounded-[0.75rem]',
             disableClose: false,
             data: {
-                clienteEntity
+                produtoEntity
             }
         });
     }
