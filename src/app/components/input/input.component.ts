@@ -18,7 +18,7 @@ export class InputComponent {
     @Input() input_type!: string
     @Input() input_placeholder!: string
     @Input() input_mask: string = ''
-    @Input() input_thousandSeparator!: string
+    @Input() input_thousandSeparator: string = '.'
     @Input() input_decimalMarker: "." | "," | [".", ","] = ','
     @Input() input_leadZero!: boolean
     @Input() input_prefix: string = ''

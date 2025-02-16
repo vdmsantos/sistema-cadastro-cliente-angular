@@ -29,13 +29,17 @@
             <!-- Preço do Produto -->
             <div class="w-full">
                 <app-input
-                  [input_formControl]="getProdutoFormControl('preco')"
-                  [input_formGroup]="produtoFormGroup"
-                  input_placeholder="R$ 0,00"
-                  input_label="Preço*"
-                  input_required="true">
+                    [input_formControl]="getProdutoFormControl('preco')"
+                    [input_formGroup]="produtoFormGroup"
+                    input_placeholder="R$ 0,00"
+                    input_label="Preço*"
+                    input_required="true"
+                    input_mask="separator.2"
+                    input_prefix="R$ "
+                    input_thousandSeparator="."
+                    input_decimalMarker="," >
                 </app-input>
-              </div>
+            </div>
         </div>
 
     <!-- Botão salvar -->

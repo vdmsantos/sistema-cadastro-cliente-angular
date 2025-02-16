@@ -6,10 +6,10 @@
         [placeholder]="input_placeholder || ''"
         [mask]="input_mask"
         [thousandSeparator]="input_thousandSeparator"
-        [maxLength]="input_maxLength"
         [decimalMarker]="input_decimalMarker"
         [leadZero]="input_leadZero"
         [prefix]="input_prefix"
+        [maxLength]="input_maxLength"
         (keyup.enter)="emitEvent($event)"
         oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
         [ngClass]="{'!border-red-500 placeholder:text-[crimson]':inputHasError(),

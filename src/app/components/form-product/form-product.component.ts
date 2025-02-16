@@ -16,23 +16,6 @@ export class FormProductComponent {
   getProdutoFormControl = this.produtoFormService.getProdutoFormControl.bind(this.produtoFormService);
   PrimeIcons = PrimeIcons;
 
-  formatarPreco() {
-    const precoControl = this.getProdutoFormControl('preco');
-    let precoValue = precoControl?.value;
-
-    if (precoValue) {
-      // Remove tudo que não for número, preservando o ponto e a vírgula
-      precoValue = precoValue.replace(/\D/g, '');
-
-      // Adiciona separadores de milhar e vírgula para decimal
-      let precoFormatado = precoValue.replace(/(\d)(\d{3})$/, '$1.$2'); // Milhar
-      precoFormatado = precoFormatado.replace(/(\d)(\d{2})$/, '$1,$2'); // Decimal
-
-      // Atualiza o valor do controle
-      precoControl?.setValue(precoFormatado, { emitEvent: false });
-    }
-  }
-
   submitForm() {
     this.produtoFormService.submit();
   }

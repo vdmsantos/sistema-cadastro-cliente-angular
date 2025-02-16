@@ -12,7 +12,6 @@ export const ProdutoFormFields = {
     preco: "preco",
     criado_em: "criado_em",
     atualizado_em: "atualizado_em",
-    image_profile_url: "image_profile_url"
 } as const;
 
 class ProdutoFormType {
@@ -22,7 +21,6 @@ class ProdutoFormType {
     [ProdutoFormFields.preco]!: FormControl<string>;
     [ProdutoFormFields.criado_em]!: FormControl<string>;
     [ProdutoFormFields.atualizado_em]!: FormControl<string>;
-    [ProdutoFormFields.image_profile_url]!: FormControl<string | null>;
 }
 
 @Injectable({
@@ -50,7 +48,6 @@ export class ProdutoFormService {
             preco: new FormControl(produtoEntity?.preco || '', { nonNullable: true, validators: [Validators.required] }),
             criado_em: new FormControl(produtoEntity?.criado_em || this.CURRENT_UTC_DATE_ISO_STRING, { nonNullable: true, validators: [Validators.required] }),
             atualizado_em: new FormControl(produtoEntity?.atualizado_em || this.CURRENT_UTC_DATE_ISO_STRING, { nonNullable: true, validators: [Validators.required] }),
-            image_profile_url: new FormControl(produtoEntity?.image_profile_url || '', {}),
         });
     }
 
@@ -86,7 +83,6 @@ export class ProdutoFormService {
             preco: this.getProdutoFormControl('preco').value,
             criado_em: this.getProdutoFormControl('criado_em').value,
             atualizado_em: this.getProdutoFormControl('atualizado_em').value,
-            image_profile_url: this.getProdutoFormControl('image_profile_url').value,
         });
 
         this.produtoService.createOrUpdate(produtoFromForm);
