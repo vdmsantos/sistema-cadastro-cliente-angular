@@ -4,26 +4,28 @@
         <div class="flex flex-col gap-2">
             <p class="text-lg font-semibold">1. Dados do produto</p>
             
-            <!-- Nome do Produto -->
-            <div class="w-full">
-                <app-input
-                    [input_formControl]="getProdutoFormControl('nome')"
-                    [input_formGroup]="produtoFormGroup"
-                    input_placeholder="Nome do Produto"
-                    input_label="Nome do Produto*"
-                    input_required="true">
-                </app-input>
-            </div>
+            <div class="flex gap-2 w-full">
+                <!-- Nome do Produto -->
+                <div class="w-full">
+                    <app-input
+                        [input_formControl]="getProdutoFormControl('nome')"
+                        [input_formGroup]="produtoFormGroup"
+                        input_placeholder="Nome do Produto"
+                        input_label="Nome do Produto*"
+                        input_required="true">
+                    </app-input>
+                </div>
 
-            <!-- Descrição do Produto -->
-            <div class="w-full">
-                <app-input
-                    [input_formControl]="getProdutoFormControl('descricao')"
-                    [input_formGroup]="produtoFormGroup"
-                    input_placeholder="Descrição do Produto"
-                    input_label="Descrição*"
-                    input_required="true">
-                </app-input>
+                <!-- Descrição do Produto -->
+                <div class="w-full">
+                    <app-input
+                        [input_formControl]="getProdutoFormControl('descricao')"
+                        [input_formGroup]="produtoFormGroup"
+                        input_placeholder="Descrição do Produto"
+                        input_label="Descrição*"
+                        input_required="true">
+                    </app-input>
+                </div>
             </div>
 
             <!-- Preço do Produto -->
@@ -40,12 +42,37 @@
                     input_decimalMarker="," >
                 </app-input>
             </div>
+
+            <div class="flex gap-2 w-full">
+                <!-- Unidade de Medida -->
+                <div class="w-full">
+                    <p-dropdown 
+                        [options]="unidadesMedida"
+                        [formControl]="getProdutoFormControl('unidade_medida')"
+                        placeholder="Selecione a Unidade de Medida"
+                        optionLabel="label"
+                        optionValue="value">
+                    </p-dropdown>
+                </div>
+
+                <!-- Quantidade em Estoque -->
+                <div class="w-full">
+                    <app-input
+                        [input_formControl]="getProdutoFormControl('quantidade_estoque')"
+                        [input_formGroup]="produtoFormGroup"
+                        input_placeholder="Quantidade"
+                        input_label="Quantidade em Estoque*"
+                        input_required="true">
+                    </app-input>
+                </div>
+            </div>
         </div>
 
-    <!-- Botão salvar -->
-    <div class="flex w-full justify-center">
-        <button mat-dialog-close (click)="submitForm()" class="custom-btn !py-1 !px-20">
-            Salvar
-        </button>
+        <!-- Botão salvar -->
+        <div class="flex w-full justify-center">
+            <button mat-dialog-close (click)="submitForm()" class="custom-btn !py-1 !px-20">
+                Salvar
+            </button>
+        </div>
     </div>
 </div>

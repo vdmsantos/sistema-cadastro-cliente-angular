@@ -9,6 +9,7 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastModule } from 'primeng/toast';
+import { DropdownModule } from 'primeng/dropdown';
 // COMPONENTS
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -54,6 +55,9 @@ import { CadastrarPedidoComponent } from './pages/cadastrar-pedido/cadastrar-ped
 import { ListarPedidoComponent } from './pages/listar-pedido/listar-pedido.component';
 import { ProdutoDialogEditComponent } from './components/produto-dialog-edit/produto-dialog-edit.component';
 import { ProdutoDialogDeleteComponent } from './components/produto-dialog-delete/produto-dialog-delete.component';
+import { ProdutoDialogImagePickerComponent } from './components/produto-dialog-image-picker/produto-dialog-image-picker.component';
+import { FormProdutoImageComponent } from './components/form-produto-image/form-produto-image.component';
+import { ProdutoImageComponent } from './components/produto-image/produto-image.component';
 
 @NgModule({
     declarations: [
@@ -97,6 +101,9 @@ import { ProdutoDialogDeleteComponent } from './components/produto-dialog-delete
         ListarPedidoComponent,
         ProdutoDialogEditComponent,
         ProdutoDialogDeleteComponent,
+        ProdutoDialogImagePickerComponent,
+        FormProdutoImageComponent,
+        ProdutoImageComponent,
     ],
     imports: [
         NgxMaskDirective,
@@ -112,6 +119,7 @@ import { ProdutoDialogDeleteComponent } from './components/produto-dialog-delete
         ToastModule,
         HttpClientModule,
         ImageCropperModule,
+        DropdownModule,
     ],
     providers: [provideNgxMask(), MessageService],
     bootstrap: [AppComponent],

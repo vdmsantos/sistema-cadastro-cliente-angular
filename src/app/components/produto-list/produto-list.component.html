@@ -4,55 +4,65 @@
         <thead class="sticky top-0">
             <tr>
                 <!-- Header Ações -->
-                <th *ngIf="list_hasActionButtons" class="min-w-[90px] border border-r-0 rounded-l-md border-gray-300 bg-sky-100">
-                    Ações
-                </th>
+                <th *ngIf="list_hasActionButtons" class=" min-w-[90px] border border-r-0 rounded-l-md border-gray-300 bg-sky-100">Ações</th>
                 <!-- Header outros campos -->
                 <th *ngFor="let item of list_tableFields" class="group border-y last:rounded-r-md last:border-r border-gray-300 bg-sky-100">
-                    <div class="w-[140px] md:w-[180px] min-w-[100px] py-4 resize-x overflow-x-auto bg-transparent font-semibold">
-                        <p [title]="item.label" class="px-4 line-clamp-1 border-r group-first:border-l group-last:border-r-0 border-gray-300">
-                            {{ item.label }}
-                        </p>
+                    <div
+                        class="w-[140px] md:w-[180px] min-w-[100px] py-4 resize-x overflow-x-auto bg-transparent font-semibold "
+                        [ngClass]="{'w-[80px] md:w-[80px] min-w-[80px]':item.label === 'Foto'}">
+                        <p [title]="item.label" class=" px-4 line-clamp-1 border-r group-first:border-l group-last:border-r-0 border-gray-300">{{item.label}}</p>
                     </div>
                 </th>
             </tr>
         </thead>
-        
-        <!-- Nenhum item na lista -->
         <tbody *ngIf="!list_items || list_items.length === 0">
             <tr>
-                <td colspan="400" class="py-4 px-4 text-base md:text-lg border border-gray-300 rounded-lg">
-                    {{ PAGE_TEXT.PRODUTO_EMPTY_LIST }}
-                </td>
+                <td colspan="400" class="py-4 px-4 text-base md:text-lg border border-gray-300 rounded-lg">{{PAGE_TEXT.PRODUTO_EMPTY_LIST}}</td>
             </tr>
         </tbody>
-        
-        <!-- Lista com itens -->
         <tbody *ngIf="list_items && list_items.length > 0">
             <tr *ngFor="let item of listItemsToDisplay; let i = index">
                 <!-- Campo Botões -->
-                <td *ngIf="list_hasActionButtons" class="py-2 md:py-1 pl-3 border border-r-0 rounded-md rounded-r-none border-gray-300">
+                <td *ngIf="list_hasActionButtons" class="py-2 md:py-1 pl-3 border border-r-0 rounded-md rounded-r-none  border-gray-300">
                     <div class="flex gap-1">
                         <!-- Botão excluir -->
-                        <button [pTooltip]="PAGE_TEXT.DELETE_BUTTON_TOOLTIP" tooltipPosition="top"
-                            (click)="openDeleteDialog(list_items[i])" type="button"
-                            class="rounded-md w-fit h-fit flex transition-all p-1 px-2 bg-red-100 hover:bg-red-200">
+                        <button
+                            [pTooltip]="PAGE_TEXT.DELETE_BUTTON_TOOLTIP"
+                            tooltipPosition="top"
+                            (click)="openDeleteDialog(list_items[i])"
+                            type="button" class="rounded-md w-fit h-fit flex transition-all p-1 px-2 bg-red-100 hover:bg-red-200">
                             <i [class]="PrimeIcons.TRASH" ngClass="flex text-sm"></i>
                         </button>
                         <!-- Botão editar -->
-                        <button [pTooltip]="PAGE_TEXT.EDIT_BUTTON_TOOLTIP" tooltipPosition="top"
-                            (click)="openEditDialog(list_items[i])" type="button"
-                            class="rounded-md w-fit h-fit flex transition-all p-1 px-2 bg-indigo-100 hover:bg-indigo-200">
+                        <button
+                            [pTooltip]="PAGE_TEXT.EDIT_BUTTON_TOOLTIP"
+                            tooltipPosition="top"
+                            (click)="openEditDialog(list_items[i])"
+                            type="button" class=" rounded-md w-fit h-fit flex transition-all p-1 px-2 bg-indigo-100 hover:bg-indigo-200">
                             <i [class]="PrimeIcons.PENCIL" ngClass="flex text-sm"></i>
                         </button>
                     </div>
                 </td>
-                
-                <!-- Campos da lista -->
+                <!-- Item da lista -->
                 <td *ngFor="let itemKey of objectKeysInOrder" class="py-2 md:py-1 border-y last:border-r last:rounded-r-md border-gray-300">
-                    <li [style]="verificarTextoNenhum(item[itemKey], itemKey)" class="line-clamp-1 text-center"
-                        [title]="item[itemKey]">
-                        <span>{{ item[itemKey] || 'nenhum' }}</span>
+                    <li
+                        [style]="verificarTextoNenhum(item[itemKey], itemKey)"
+                        class="[display:-webkit-box;] line-clamp-1 text-center"
+                        [title]="itemKey !== ProdutoFormFields.image_produto_url ? item[itemKey] : 'Foto'">
+                        <!-- Campo Imagem de perfl -->
+                        <div *ngIf="itemKey === ProdutoFormFields.image_produto_url"
+                            class="flex justify-center w-full">
+                            <div class="w-fit max-w-[30px] max-h-[30px]">
+                                <app-profile-image
+                                    [image_url]="item[itemKey]"
+                                    default_image_class=" !text-black/80 !text-sm !rounded-full !p-1 !px-[7px] !bg-gray-200 "></app-profile-image>
+                            </div>
+                        </div>
+                        <span *ngIf="itemKey === ProdutoFormFields.preco">
+                            {{ item[itemKey] ? (item[itemKey] | currency: 'BRL': 'symbol' : '1.2-2') : 'nenhum' }}
+                        </span>
+                        <span *ngIf="itemKey !== ProdutoFormFields.preco &&
+                            itemKey !== ProdutoFormFields.image_produto_url">{{ item[itemKey] || 'nenhum' }}</span>
                     </li>
                 </td>
             </tr>
