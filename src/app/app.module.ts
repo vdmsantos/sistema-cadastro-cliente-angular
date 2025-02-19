@@ -57,6 +57,7 @@ import { ProdutoDialogDeleteComponent } from './components/produto-dialog-delete
 import { ProdutoDialogImagePickerComponent } from './components/produto-dialog-image-picker/produto-dialog-image-picker.component';
 import { FormProdutoImageComponent } from './components/form-produto-image/form-produto-image.component';
 import { ProdutoImageComponent } from './components/produto-image/produto-image.component';
+import { ProdutoInputComponent } from './components/produto-input/produto-input.component';
 
 @NgModule({
     declarations: [
@@ -103,6 +104,7 @@ import { ProdutoImageComponent } from './components/produto-image/produto-image.
         ProdutoDialogImagePickerComponent,
         FormProdutoImageComponent,
         ProdutoImageComponent,
+        ProdutoInputComponent,
     ],
     imports: [
         NgxMaskDirective,

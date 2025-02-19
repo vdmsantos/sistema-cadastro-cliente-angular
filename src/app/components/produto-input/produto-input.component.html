@@ -1,0 +1,18 @@
+<div [formGroup]="input_formGroup" class="flex flex-col w-full">
+    <p [ngClass]="inputHasError() ? 'text-[crimson]' : ''" class="mr-auto">{{ input_label }}</p>
+    <input [formControl]="input_formControl"
+        class="custom-input-med w-full"
+        [type]="input_type"
+        [placeholder]="input_placeholder || ''"
+        [mask]="input_mask"
+        [thousandSeparator]="input_thousandSeparator"
+        [decimalMarker]="input_decimalMarker"
+        [leadZero]="input_leadZero"
+        [prefix]="input_prefix"
+        [maxLength]="input_maxLength"
+        (keyup.enter)="emitEvent($event)"
+        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+        [ngClass]="{'!border-red-500 placeholder:text-[crimson]':inputHasError(),
+		'custom-disabled-input' : input_isDisabled}"
+        [pTooltip]="inputHasError() ? requiredErrorMessage : ''">
+</div>

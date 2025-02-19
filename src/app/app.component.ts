@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    title = 'Cadastro de Clientes ~ by Luiz Comparin';
+    title = 'Atividade de Testes | Viviane Torres';
 }
