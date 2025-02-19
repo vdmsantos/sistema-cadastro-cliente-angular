@@ -46,13 +46,14 @@
             <div class="flex gap-2 w-full">
                 <!-- Unidade de Medida -->
                 <div class="w-full">
-                    <p-dropdown 
-                        [options]="unidadesMedida"
-                        [formControl]="getProdutoFormControl('unidade_medida')"
-                        placeholder="Selecione a Unidade de Medida"
-                        optionLabel="label"
-                        optionValue="value">
-                    </p-dropdown>
+                    <label for="unidadeMedida" class="block text-sm font-medium text-gray-700">
+                        Unidade de Medida*
+                    </label>
+                    <select [formControl]="getProdutoFormControl('unidade_medida')" class="custom-select w-full">
+                        <option *ngFor="let unidade of unidadesMedida" [value]="unidade.value">
+                            {{ unidade.label }}
+                        </option>
+                    </select>
                 </div>
 
                 <!-- Quantidade em Estoque -->
@@ -62,7 +63,8 @@
                         [input_formGroup]="produtoFormGroup"
                         input_placeholder="Quantidade"
                         input_label="Quantidade em Estoque*"
-                        input_required="true">
+                        input_required="true"
+                        input_mask="separator.0">
                     </app-input>
                 </div>
             </div>

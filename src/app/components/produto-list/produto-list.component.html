@@ -59,10 +59,10 @@
                             </div>
                         </div>
                         <span *ngIf="itemKey === ProdutoFormFields.preco">
-                            {{ item[itemKey] ? (item[itemKey] | currency: 'BRL': 'symbol' : '1.2-2') : 'nenhum' }}
+                            {{ (item[itemKey] | currency: 'BRL': 'symbol' : '1.2-2') }}
                         </span>
                         <span *ngIf="itemKey !== ProdutoFormFields.preco &&
-                            itemKey !== ProdutoFormFields.image_produto_url">{{ item[itemKey] || 'nenhum' }}</span>
+                            itemKey !== ProdutoFormFields.image_produto_url">{{ item[itemKey] ?? 'nenhum' }}</span>
                     </li>
                 </td>
             </tr>

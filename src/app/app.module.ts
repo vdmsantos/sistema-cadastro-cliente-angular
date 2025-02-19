@@ -9,7 +9,6 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastModule } from 'primeng/toast';
-import { DropdownModule } from 'primeng/dropdown';
 // COMPONENTS
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -119,7 +118,6 @@ import { ProdutoImageComponent } from './components/produto-image/produto-image.
         ToastModule,
         HttpClientModule,
         ImageCropperModule,
-        DropdownModule,
     ],
     providers: [provideNgxMask(), MessageService],
     bootstrap: [AppComponent],
