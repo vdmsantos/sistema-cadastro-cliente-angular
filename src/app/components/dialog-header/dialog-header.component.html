@@ -1,7 +1,7 @@
 <div class="flex items-center gap-2">
     <i [class]="dialog_icon" ngClass="text-lg font-normal"></i>
     <p class="text-lg font-normal">{{ dialog_title }}</p>
-    <button mat-dialog-close class="flex justify-center items-center ml-auto p-2 hover:bg-black/5 rounded-full transition-all">
+    <button *ngIf="!dialog_hideCloseBtn" mat-dialog-close class="flex justify-center items-center ml-auto p-2 hover:bg-black/5 rounded-full transition-all">
         <i [class]="PrimeIcons.TIMES" class="flex"></i>
     </button>
 </div>

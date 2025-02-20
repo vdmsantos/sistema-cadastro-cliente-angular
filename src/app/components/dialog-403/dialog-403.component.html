@@ -1,0 +1,13 @@
+<div class="dialogContainer w-[400px] min-h-[300px] justify-between">
+    <app-dialog-header dialog_title="Erro de autenticação" [dialog_icon]="PrimeIcons.SIGN_OUT" [dialog_hideCloseBtn]="true" />
+    <div class="dialogContent !gap-0 justify-center">
+        <p class="text-lg">Não foi possível autenticar o usuário.</p>
+        <p class="text-lg">Por favor faça Login novamente.</p>
+    </div>
+    <div class="dialogFooter flex gap-2">
+        <a mat-dialog-close [href]="'#/'+APP_ROUTE_PATHS.LOGIN" class="btn-primary">
+            <i [class]="PrimeIcons.SIGN_IN"></i>
+            Ir para Login
+        </a>
+    </div>
+</div>

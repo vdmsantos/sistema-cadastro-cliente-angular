@@ -58,6 +58,8 @@ import { ProdutoDialogDeleteComponent } from './components/produto-dialog-delete
 import { ProdutoDialogImagePickerComponent } from './components/produto-dialog-image-picker/produto-dialog-image-picker.component';
 import { FormProdutoImageComponent } from './components/form-produto-image/form-produto-image.component';
 import { ProdutoImageComponent } from './components/produto-image/produto-image.component';
+import { LoginComponent } from './pages/login/login.component';
+import { Dialog403Component } from './components/dialog-403/dialog-403.component';
 
 @NgModule({
     declarations: [
@@ -104,6 +106,8 @@ import { ProdutoImageComponent } from './components/produto-image/produto-image.
         ProdutoDialogImagePickerComponent,
         FormProdutoImageComponent,
         ProdutoImageComponent,
+        LoginComponent,
+        Dialog403Component,
     ],
     imports: [
         NgxMaskDirective,
@@ -124,4 +128,4 @@ import { ProdutoImageComponent } from './components/produto-image/produto-image.
     providers: [provideNgxMask(), MessageService],
     bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

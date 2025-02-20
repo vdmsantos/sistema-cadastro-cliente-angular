@@ -8,8 +8,11 @@ import { ListarProdutosComponent } from './pages/listar-produtos/listar-produtos
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { CadastrarPedidoComponent } from './pages/cadastrar-pedido/cadastrar-pedido.component';
 import { ListarPedidoComponent } from './pages/listar-pedido/listar-pedido.component';
+import { AuthGuard } from './guards/auth.guard';
+import { LoginComponent } from './pages/login/login.component';
 
 export const APP_ROUTE_PATHS = {
+    LOGIN: 'login',
     INICIO: 'inicio',
     LISTAR_CLIENTES: 'listar-clientes',
     CADASTRAR_CLIENTE: 'cadastrar-cliente',
@@ -20,31 +23,45 @@ export const APP_ROUTE_PATHS = {
 };
 
 const routes: Routes = [
-    { path: '', redirectTo: APP_ROUTE_PATHS.INICIO, pathMatch: 'full' },
-    { path: APP_ROUTE_PATHS.INICIO, component: InicioComponent },
+    { path: '', redirectTo: APP_ROUTE_PATHS.LOGIN, pathMatch: 'full' },
+    {
+        path: APP_ROUTE_PATHS.LOGIN,
+        component: LoginComponent,
+    },
+    {
+        path: APP_ROUTE_PATHS.INICIO,
+        component: InicioComponent,
+        canActivate: [AuthGuard],
+    },
     {
         path: APP_ROUTE_PATHS.LISTAR_CLIENTES,
         component: ListarClientesComponent,
+        canActivate: [AuthGuard],
     },
     {
         path: APP_ROUTE_PATHS.CADASTRAR_CLIENTE,
         component: CadastrarClienteComponent,
+        canActivate: [AuthGuard],
     },
     {
         path: APP_ROUTE_PATHS.CADASTRAR_PRODUTO,
         component: CadastrarProdutoComponent,
+        canActivate: [AuthGuard],
     },
     {
         path: APP_ROUTE_PATHS.LISTAR_PRODUTOS,
         component: ListarProdutosComponent,
+        canActivate: [AuthGuard],
     },
     {
         path: APP_ROUTE_PATHS.CADASTRAR_PEDIDO,
         component: CadastrarPedidoComponent,
+        canActivate: [AuthGuard],
     },
     {
         path: APP_ROUTE_PATHS.LISTAR_PEDIDOS,
         component: ListarPedidoComponent,
+        canActivate: [AuthGuard],
     },
     { path: '**', redirectTo: APP_ROUTE_PATHS.INICIO, pathMatch: 'prefix' },
 ];
@@ -53,4 +70,4 @@ const routes: Routes = [
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
