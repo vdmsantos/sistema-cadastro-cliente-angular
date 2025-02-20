@@ -55,12 +55,12 @@ export class SidebarComponent {
             icon: 'SEPARADOR',
         },
         {
-            title: 'Listar Pedidos',
+            title: 'Listar pedidos',
             url: '/' + APP_ROUTE_PATHS.LISTAR_PEDIDOS,
             icon: PrimeIcons.SHOPPING_CART,
         },
         {
-            title: 'Cadastrar Pedido',
+            title: 'Cadastrar pedido',
             url: '/' + APP_ROUTE_PATHS.CADASTRAR_PEDIDO,
             icon: PrimeIcons.CART_PLUS,
         },

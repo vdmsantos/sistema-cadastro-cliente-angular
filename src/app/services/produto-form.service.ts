@@ -22,8 +22,8 @@ class ProdutoFormType {
     [ProdutoFormFields.nome]!: FormControl<string>;
     [ProdutoFormFields.descricao]!: FormControl<string>;
     [ProdutoFormFields.unidade_medida]!: FormControl<UnidadeMedida>;
-    [ProdutoFormFields.preco]!: FormControl<number>;
-    [ProdutoFormFields.quantidade_estoque]!: FormControl<number>;
+    [ProdutoFormFields.preco]!: FormControl<number | null>;
+    [ProdutoFormFields.quantidade_estoque]!: FormControl<number | null>;
     [ProdutoFormFields.image_produto_url]!: FormControl<string | null>
     [ProdutoFormFields.criado_em]!: FormControl<string>;
     [ProdutoFormFields.atualizado_em]!: FormControl<string>;
@@ -58,8 +58,8 @@ export class ProdutoFormService {
             nome: new FormControl(produtoEntity?.nome || '', { nonNullable: true, validators: [Validators.required] }),
             descricao: new FormControl(produtoEntity?.descricao || '', { nonNullable: true, validators: [Validators.required] }),
             unidade_medida: new FormControl(produtoEntity?.unidade_medida || UnidadeMedida.UN, { nonNullable: true, validators: [Validators.required] }),
-            preco: new FormControl(produtoEntity?.preco || 0.0, { nonNullable: true, validators: [Validators.required] }),
-            quantidade_estoque: new FormControl(produtoEntity?.quantidade_estoque || 0.0, { nonNullable: true, validators: [Validators.required] }),
+            preco: new FormControl(produtoEntity?.preco ?? null, { nonNullable: true, validators: [Validators.required] }),
+            quantidade_estoque: new FormControl(produtoEntity?.quantidade_estoque ?? null, { nonNullable: true, validators: [Validators.required] }),
             image_produto_url: new FormControl(produtoEntity?.image_produto_url || '', {}),
             criado_em: new FormControl(produtoEntity?.criado_em || this.CURRENT_UTC_DATE_ISO_STRING, { nonNullable: true, validators: [Validators.required] }),
             atualizado_em: new FormControl(produtoEntity?.atualizado_em || this.CURRENT_UTC_DATE_ISO_STRING, { nonNullable: true, validators: [Validators.required] }),
@@ -85,7 +85,6 @@ export class ProdutoFormService {
     public submit() {
         this.isSubmitedSignal.set(true);
 
-        console.log('produtoForm', this.produtoForm);
         if (this.getProdutoFormGroup().invalid) {
             this.showToastMessage('error', 'Verifique os campos antes de salvar.');
             return;

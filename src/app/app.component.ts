@@ -12,4 +12,5 @@ export class AppComponent {
     ) { }
 
     loggedUserSignal = this.localStorageService.loggedUserSignal;
+    title = 'Atividade de Testes | Viviane Torres';
 }

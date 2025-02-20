@@ -1,17 +1,61 @@
 <div class="flex flex-col gap-2">
     <p class="text-lg font-semibold">Ações</p>
-    <div class="flex gap-4">
-        <a class="flex flex-col p-4 gap-2 w-[130px] dh-[150px] bg-white rounded-lg shadow-md hover:outline hover:outline-1 hover:outline-sky-300"
-            [routerLink]="'/' + APP_ROUTE_PATHS.CADASTRAR_CLIENTE">
-            <i [class]="PrimeIcons.PLUS" ngClass="text-2xl"></i>
-            <p class="font-semiboldd">Criar novo cliente</p>
-            <span class="flex px-3 bg-sky-300 w-fit rounded-full font-semibold">Navegar</span>
-        </a>
-        <a class="flex flex-col p-4 gap-2 w-[130px] dh-[150px] bg-white rounded-lg shadow-md hover:outline hover:outline-1 hover:outline-sky-300"
-            [routerLink]="'/' + APP_ROUTE_PATHS.LISTAR_CLIENTES">
-            <i [class]="PrimeIcons.ALIGN_CENTER" ngClass="text-2xl"></i>
-            <p class="font-semiboldd">Consultar clientes</p>
-            <span class="flex px-3 bg-sky-300 w-fit rounded-full font-semibold">Navegar</span>
-        </a>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
+        <!-- Seção de Clientes -->
+        <div class="bg-blue-50 p-4 rounded-lg shadow-md">
+            <p class="text-lg font-semibold text-blue-700 border-b pb-2 mb-4">Clientes</p>
+            <div class="flex gap-4 justify-center">
+                <a class="flex flex-col p-4 gap-2 w-[130px] dh-[150px] bg-white rounded-lg shadow-md hover:outline hover:outline-1 hover:outline-sky-300"
+                    [routerLink]="'/' + APP_ROUTE_PATHS.CADASTRAR_CLIENTE">
+                    <i [class]="PrimeIcons.USER_PLUS" ngClass="text-2xl"></i>
+                    <p class="font-semiboldd">Criar novo cliente</p>
+                    <span class="flex px-3 bg-sky-200 w-fit rounded-full font-semibold">Navegar</span>
+                </a>
+                <a class="flex flex-col p-4 gap-2 w-[130px] dh-[150px] bg-white rounded-lg shadow-md hover:outline hover:outline-1 hover:outline-sky-300"
+                    [routerLink]="'/' + APP_ROUTE_PATHS.LISTAR_CLIENTES">
+                    <i [class]="PrimeIcons.USERS" ngClass="text-2xl"></i>
+                    <p class="font-semiboldd">Consultar clientes</p>
+                    <span class="flex px-3 bg-sky-200 w-fit rounded-full font-semibold">Navegar</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Seção de Produtos -->
+        <div class="bg-green-50 p-4 rounded-lg shadow-md">
+            <p class="text-lg font-semibold text-green-700 border-b pb-2 mb-4">Produtos</p>
+            <div class="flex gap-4 justify-center">
+                <a class="flex flex-col p-4 gap-2 w-[130px] dh-[150px] bg-white rounded-lg shadow-md hover:outline hover:outline-1 hover:outline-sky-300"
+                    [routerLink]="'/' + APP_ROUTE_PATHS.CADASTRAR_PRODUTO">
+                    <i [class]="PrimeIcons.TAG" ngClass="text-2xl"></i>
+                    <p class="font-semiboldd">Cria novo produto</p>
+                    <span class="flex px-3 bg-green-200 w-fit rounded-full font-semibold">Navegar</span>
+                </a>
+                <a class="flex flex-col p-4 gap-2 w-[130px] dh-[150px] bg-white rounded-lg shadow-md hover:outline hover:outline-1 hover:outline-sky-300"
+                    [routerLink]="'/' + APP_ROUTE_PATHS.LISTAR_PRODUTOS">
+                    <i [class]="PrimeIcons.TAGS" ngClass="text-2xl"></i>
+                    <p class="font-semiboldd">Consultar produtos</p>
+                    <span class="flex px-3 bg-green-200 w-fit rounded-full font-semibold">Navegar</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Seção de Pedidos -->
+        <div class="bg-purple-50 p-4 rounded-lg shadow-md">
+            <p class="text-lg font-semibold text-purple-700 border-b pb-2 mb-4">Pedidos</p>
+            <div class="flex gap-4 justify-center">
+                <a class="flex flex-col p-4 gap-2 w-[130px] dh-[150px] bg-white rounded-lg shadow-md hover:outline hover:outline-1 hover:outline-sky-300"
+                    [routerLink]="'/' + APP_ROUTE_PATHS.CADASTRAR_PEDIDO">
+                    <i [class]="PrimeIcons.CART_PLUS" ngClass="text-2xl"></i>
+                    <p class="font-semiboldd">Cria novo pedido</p>
+                    <span class="flex px-3 bg-purple-200 w-fit rounded-full font-semibold">Navegar</span>
+                </a>
+                <a class="flex flex-col p-4 gap-2 w-[130px] dh-[150px] bg-white rounded-lg shadow-md hover:outline hover:outline-1 hover:outline-sky-300"
+                    [routerLink]="'/' + APP_ROUTE_PATHS.LISTAR_PEDIDOS">
+                    <i [class]="PrimeIcons.SHOPPING_CART" ngClass="text-2xl"></i>
+                    <p class="font-semiboldd">Consultar pedidos</p>
+                    <span class="flex px-3 bg-purple-200 w-fit rounded-full font-semibold">Navegar</span>
+                </a>
+            </div>
+        </div>
     </div>
 </div>

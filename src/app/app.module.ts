@@ -9,7 +9,6 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastModule } from 'primeng/toast';
-import { DropdownModule } from 'primeng/dropdown';
 // COMPONENTS
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -60,6 +59,7 @@ import { FormProdutoImageComponent } from './components/form-produto-image/form-
 import { ProdutoImageComponent } from './components/produto-image/produto-image.component';
 import { LoginComponent } from './pages/login/login.component';
 import { Dialog403Component } from './components/dialog-403/dialog-403.component';
+import { ProdutoInputComponent } from './components/produto-input/produto-input.component';
 
 @NgModule({
     declarations: [
@@ -108,6 +108,7 @@ import { Dialog403Component } from './components/dialog-403/dialog-403.component
         ProdutoImageComponent,
         LoginComponent,
         Dialog403Component,
+        ProdutoInputComponent,
     ],
     imports: [
         NgxMaskDirective,
@@ -123,7 +124,6 @@ import { Dialog403Component } from './components/dialog-403/dialog-403.component
         ToastModule,
         HttpClientModule,
         ImageCropperModule,
-        DropdownModule,
     ],
     providers: [provideNgxMask(), MessageService],
     bootstrap: [AppComponent],
