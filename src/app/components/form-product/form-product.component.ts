@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { ProdutoFormService } from '../../services/produto-form.service';
 import { PrimeIcons } from 'primeng/api';
+
+import { ProdutoFormService } from '../../services/produto-form.service';
+import { UnidadeMedida } from '../../entities/produto.entity';
 
 @Component({
   selector: 'app-form-product',
@@ -15,6 +17,12 @@ export class FormProductComponent {
   produtoFormGroup = this.produtoFormService.getProdutoFormGroup();
   getProdutoFormControl = this.produtoFormService.getProdutoFormControl.bind(this.produtoFormService);
   PrimeIcons = PrimeIcons;
+
+  unidadesMedida = [
+    { label: 'Unidade (UN)', value: UnidadeMedida.UN },
+    { label: 'Quilograma (kg)', value: UnidadeMedida.KG },
+    { label: 'Litro (L)', value: UnidadeMedida.L }
+  ];
 
   submitForm() {
     this.produtoFormService.submit();

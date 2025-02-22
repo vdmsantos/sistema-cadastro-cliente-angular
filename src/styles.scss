@@ -44,3 +44,13 @@
 .p-tooltip {
 	font-size: small;
 }
+
+    // PAGES - CONTAINERS - WRAPPERS
+
+    .fullscreen-page {
+        @apply flex flex-col gap-10 py-2;
+    }
+
+    .narrow-page {
+        @apply flex flex-col gap-10 py-2 max-w-[1260px] mx-auto;
+    }

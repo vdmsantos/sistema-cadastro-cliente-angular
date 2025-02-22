@@ -10,6 +10,7 @@ export class DialogHeaderComponent {
 
     @Input({ required: true }) dialog_title!: string
     @Input() dialog_icon!: string
+    @Input({ required: false }) dialog_hideCloseBtn: boolean = false;
 
     PrimeIcons = PrimeIcons
 }

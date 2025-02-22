@@ -4,33 +4,35 @@
         <div class="flex flex-col gap-2">
             <p class="text-lg font-semibold">1. Dados do produto</p>
 
-            <!-- Nome do Produto -->
-            <div class="w-full">
-                <app-input
-                    [input_formControl]="getProdutoFormControl('nome')"
-                    [input_formGroup]="produtoFormGroup"
-                    input_placeholder="Nome do Produto"
-                    input_label="Nome do Produto*"
-                    input_required="true"
-                >
-                </app-input>
-            </div>
+            <div class="flex gap-2 w-full">
+                <!-- Nome do Produto -->
+                <div class="w-full">
+                    <app-produto-input
+                        [input_formControl]="getProdutoFormControl('nome')"
+                        [input_formGroup]="produtoFormGroup"
+                        input_placeholder="Nome do produto"
+                        input_label="Nome*"
+                        input_required="true"
+                    >
+                    </app-produto-input>
+                </div>
 
-            <!-- Descrição do Produto -->
-            <div class="w-full">
-                <app-input
-                    [input_formControl]="getProdutoFormControl('descricao')"
-                    [input_formGroup]="produtoFormGroup"
-                    input_placeholder="Descrição do Produto"
-                    input_label="Descrição*"
-                    input_required="true"
-                >
-                </app-input>
+                <!-- Descrição do Produto -->
+                <div class="w-full">
+                    <app-produto-input
+                        [input_formControl]="getProdutoFormControl('descricao')"
+                        [input_formGroup]="produtoFormGroup"
+                        input_placeholder="Descrição do produto"
+                        input_label="Descrição*"
+                        input_required="true"
+                    >
+                    </app-produto-input>
+                </div>
             </div>
 
             <!-- Preço do Produto -->
             <div class="w-full">
-                <app-input
+                <app-produto-input
                     [input_formControl]="getProdutoFormControl('preco')"
                     [input_formGroup]="produtoFormGroup"
                     input_placeholder="R$ 0,00"
@@ -41,7 +43,45 @@
                     input_thousandSeparator="."
                     input_decimalMarker=","
                 >
-                </app-input>
+                </app-produto-input>
+            </div>
+
+            <div class="flex gap-2 w-full">
+                <!-- Unidade de Medida -->
+                <div class="w-full">
+                    <label
+                        for="unidadeMedida"
+                        class="block text-sm font-medium text-gray-700"
+                    >
+                        Unidade de Medida*
+                    </label>
+                    <select
+                        [formControl]="getProdutoFormControl('unidade_medida')"
+                        class="custom-select w-full"
+                    >
+                        <option
+                            *ngFor="let unidade of unidadesMedida"
+                            [value]="unidade.value"
+                        >
+                            {{ unidade.label }}
+                        </option>
+                    </select>
+                </div>
+
+                <!-- Quantidade em Estoque -->
+                <div class="w-full">
+                    <app-produto-input
+                        [input_formControl]="
+                            getProdutoFormControl('quantidade_estoque')
+                        "
+                        [input_formGroup]="produtoFormGroup"
+                        input_placeholder="Quantidade"
+                        input_label="Quantidade em Estoque*"
+                        input_required="true"
+                        input_mask="separator.0"
+                    >
+                    </app-produto-input>
+                </div>
             </div>
         </div>
 

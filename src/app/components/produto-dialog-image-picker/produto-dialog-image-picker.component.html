@@ -1,0 +1,79 @@
+<div class="flex flex-col w-full p-4 py-6 md:py-4 gap-4 md:gap-4 border font-semibold rounded-md border-gray-300 max-h-[100dvh] overflow-y-auto">
+    <app-dialog-header [dialog_icon]="PrimeIcons.USER" dialog_title="Imagem do produto" />
+
+    <div class="flex flex-col w-full gap-2">
+        <div class="flex flex-col w-full md:flex-row gap-2">
+            <!-- Cropper -->
+            <div *ngIf="hasImage()" class=" w-[250px] h-[200px] max-w-[300px] max-h-[300px] md:w-[250px] md:h-[250px] ">
+                <image-cropper
+                    [imageChangedEvent]="imgChangeEvent"
+                    [imageURL]="originalImage"
+                    [roundCropper]="true"
+                    [output]="'blob'"
+                    [alignImage]="'left'"
+                    [maintainAspectRatio]="true"
+                    [resizeToWidth]="256"
+                    [imageQuality]="90"
+                    [canvasRotation]="canvasRotation"
+                    [(transform)]="transform"
+                    format="jpeg"
+                    (imageCropped)="cropImg($event)"
+                    (cropperReady)="cropperReady()"
+                    (loadImageFailed)="imgFailed()">
+                </image-cropper>
+            </div>
+            <div *ngIf="hasNoImage()" class="w-[250px] h-[200px] max-w-[300px] max-h-[300px] md:w-[250px] md:h-[250px] ">
+                <label for="inputImage"
+                    class=" flex justify-center w-full h-full items-center cursor-pointer bg-gray-100 hover:bg-gray-200"
+                    [ngClass]="{'border-[crimson]':imageTooBigErrorMessage}">
+                    <i [class]="PrimeIcons.UPLOAD"
+                        [ngClass]="{' text-black/50 text-3xl font-medium':true, '!text-[crimson]':imageTooBigErrorMessage}">
+                    </i>
+                </label>
+            </div>
+            <!-- Preview -->
+            <div *ngIf="hasImage()" class="flex flex-col gap-1 ">
+                <app-image-preview
+                    [isNotLoadingAndHasNoImage]="isNotLoadingAndHasNoImage()"
+                    [cropImgPreview]="cropImgPreview"
+                    [isLoadingAndHasImage]="isLoadingAndHasImage()">
+                </app-image-preview>
+            </div>
+        </div>
+        <!-- Image control buttons -->
+        <div *ngIf="cropImgPreview" class="mt-auto">
+            <app-buttons-crop-controls
+                (rotateImageRight)="rotateImageRight()"
+                (flipHorizontal)="flipHorizontal()"
+                (flipVertical)="flipVertical()"
+                (zoomIn)="zoomIn()"
+                (zoomOut)="zoomOut()"
+                (removeImage)="removeImage()">
+            </app-buttons-crop-controls>
+        </div>
+        <!-- Imagem muito grande error message -->
+        <span *ngIf="imageTooBigErrorMessage" class="text-[crimson]">{{imageTooBigErrorMessage}}</span>
+    </div>
+    <!-- Buttons -->
+    <div class="flex gap-2">
+        <!-- Input Alterar -->
+        <label for="inputImage" [pTooltip]="COMPONENT_TEXTS.INPUT_TOOLTIP" tooltipPosition="top"
+            class="custom-btn w-fit flex justify-center items-center gap-1 cursor-pointer bg-transparent hover:bg-sky-100"
+            [ngClass]="{'border-[crimson]':imageTooBigErrorMessage}">
+            <i [class]="PrimeIcons.UPLOAD"
+                [ngClass]="{'text-sky-900 text-sm font-medium':true,
+                        '!text-[crimson]':imageTooBigErrorMessage}"></i>
+            <span class=" text-sky-900 text-sm font-medium"
+                [ngClass]="{'!text-[crimson]':imageTooBigErrorMessage}">Alterar</span>
+        </label>
+        <input
+            (change)="onFileChanged($event)"
+            id="inputImage"
+            name="inputImage"
+            type="file"
+            accept="image/*"
+            class="fixed top-[-100em]" />
+        <!-- Button Salvar -->
+        <button mat-dialog-close (click)="setImageToProdutoEntity()" class="custom-btn text-base">Salvar</button>
+    </div>
+</div>

@@ -69,7 +69,7 @@ export class ProdutoListComponent implements OnChanges, OnInit {
     }
 
     verificarTextoNenhum(texto: string, key?: string) {
-        if (texto === 'nenhum' || !texto) return 'color:tomato'
+        if ((texto === 'nenhum' || !texto) && key !== ProdutoFormFields.image_produto_url) return 'color:tomato'
         else return ''
     }
 

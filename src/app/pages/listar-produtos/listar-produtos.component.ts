@@ -26,6 +26,10 @@ export class ListarProdutosComponent implements OnInit {
 
     list_tableFields: { label: string, column: string }[] = [
         {
+            column: ProdutoFormFields.image_produto_url,
+            label: 'Foto'
+        },
+        {
             column: ProdutoFormFields.nome,
             label: 'Nome'
         },
@@ -34,8 +38,20 @@ export class ListarProdutosComponent implements OnInit {
             label: 'Descrição'
         },
         {
+            column: ProdutoFormFields.unidade_medida,
+            label: 'Un. de medida'
+        },
+        {
             column: ProdutoFormFields.preco,
             label: 'Preço'
+        },
+        {
+            column: ProdutoFormFields.quantidade_estoque,
+            label: 'Qtde. estoque'
+        },
+        {
+            column: ProdutoFormFields.atualizado_em,
+            label: 'Data de modificação'
         },
         {
             column: ProdutoFormFields.criado_em,

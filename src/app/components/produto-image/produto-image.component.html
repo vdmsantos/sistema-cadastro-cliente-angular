@@ -1,0 +1,7 @@
+<img
+    *ngIf="image_url"
+    [src]="image_url"
+    class="transition-all object-contain rounded-full" />
+<i *ngIf="!image_url"
+    [class]="PrimeIcons.USER"
+    [ngClass]="' text-3xl ' + default_image_class"></i>

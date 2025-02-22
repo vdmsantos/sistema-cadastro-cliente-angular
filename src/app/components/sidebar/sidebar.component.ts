@@ -25,14 +25,14 @@ export class SidebarComponent {
             icon: 'SEPARADOR',
         },
         {
-            title: 'Cadastrar cliente',
-            url: '/' + APP_ROUTE_PATHS.CADASTRAR_CLIENTE,
-            icon: PrimeIcons.PLUS,
-        },
-        {
             title: 'Listar clientes',
             url: '/' + APP_ROUTE_PATHS.LISTAR_CLIENTES,
-            icon: PrimeIcons.ALIGN_JUSTIFY,
+            icon: PrimeIcons.USERS,
+        },
+        {
+            title: 'Cadastrar cliente',
+            url: '/' + APP_ROUTE_PATHS.CADASTRAR_CLIENTE,
+            icon: PrimeIcons.USER_PLUS,
         },
         {
             title: 'Produtos',
@@ -40,14 +40,14 @@ export class SidebarComponent {
             icon: 'SEPARADOR',
         },
         {
-            title: 'Cadastrar produto',
-            url: '/' + APP_ROUTE_PATHS.CADASTRAR_PRODUTO,
-            icon: PrimeIcons.PLUS,
-        },
-        {
             title: 'Listar produtos',
             url: '/' + APP_ROUTE_PATHS.LISTAR_PRODUTOS,
-            icon: PrimeIcons.ALIGN_JUSTIFY,
+            icon: PrimeIcons.TAGS,
+        },
+        {
+            title: 'Cadastrar produto',
+            url: '/' + APP_ROUTE_PATHS.CADASTRAR_PRODUTO,
+            icon: PrimeIcons.TAG,
         },
         {
             title: 'Pedidos',
@@ -55,14 +55,14 @@ export class SidebarComponent {
             icon: 'SEPARADOR',
         },
         {
-            title: 'Cadastrar Pedido',
-            url: '/' + APP_ROUTE_PATHS.CADASTRAR_PEDIDO,
-            icon: PrimeIcons.PLUS,
+            title: 'Listar pedidos',
+            url: '/' + APP_ROUTE_PATHS.LISTAR_PEDIDOS,
+            icon: PrimeIcons.SHOPPING_CART,
         },
         {
-            title: 'Listar Pedidos',
-            url: '/' + APP_ROUTE_PATHS.LISTAR_PEDIDOS,
-            icon: PrimeIcons.ALIGN_JUSTIFY,
+            title: 'Cadastrar pedido',
+            url: '/' + APP_ROUTE_PATHS.CADASTRAR_PEDIDO,
+            icon: PrimeIcons.CART_PLUS,
         },
     ];
 }

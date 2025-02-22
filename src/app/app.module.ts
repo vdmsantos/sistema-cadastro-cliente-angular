@@ -55,6 +55,15 @@ import { ListarPedidoComponent } from './pages/listar-pedido/listar-pedido.compo
 import { ProdutoDialogEditComponent } from './components/produto-dialog-edit/produto-dialog-edit.component';
 import { ProdutoDialogDeleteComponent } from './components/produto-dialog-delete/produto-dialog-delete.component';
 import { FormOrderComponent } from './components/form-order/form-order.component';
+import { ProdutoDialogImagePickerComponent } from './components/produto-dialog-image-picker/produto-dialog-image-picker.component';
+import { FormProdutoImageComponent } from './components/form-produto-image/form-produto-image.component';
+import { ProdutoImageComponent } from './components/produto-image/produto-image.component';
+import { LoginComponent } from './pages/login/login.component';
+import { Dialog403Component } from './components/dialog-403/dialog-403.component';
+import { ProdutoInputComponent } from './components/produto-input/produto-input.component';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { ENVIRONMENT } from './environment';
 
 @NgModule({
     declarations: [
@@ -99,6 +108,12 @@ import { FormOrderComponent } from './components/form-order/form-order.component
         ProdutoDialogEditComponent,
         ProdutoDialogDeleteComponent,
         FormOrderComponent,
+        ProdutoDialogImagePickerComponent,
+        FormProdutoImageComponent,
+        ProdutoImageComponent,
+        LoginComponent,
+        Dialog403Component,
+        ProdutoInputComponent,
     ],
     imports: [
         NgxMaskDirective,
@@ -114,6 +129,8 @@ import { FormOrderComponent } from './components/form-order/form-order.component
         ToastModule,
         HttpClientModule,
         ImageCropperModule,
+        AngularFireModule.initializeApp(ENVIRONMENT.firebaseConfig),
+        AngularFirestoreModule,
     ],
     providers: [provideNgxMask(), MessageService],
     bootstrap: [AppComponent],

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LocalStorageService } from './services/local-storage.service';
 
 @Component({
     selector: 'app-root',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    title = 'Cadastro de Clientes ~ by Luiz Comparin';
+    constructor(
+        private localStorageService: LocalStorageService,
+    ) { }
+
+    loggedUserSignal = this.localStorageService.loggedUserSignal;
+    title = 'Atividade de Testes | Viviane Torres';
 }
