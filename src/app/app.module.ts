@@ -54,6 +54,7 @@ import { CadastrarPedidoComponent } from './pages/cadastrar-pedido/cadastrar-ped
 import { ListarPedidoComponent } from './pages/listar-pedido/listar-pedido.component';
 import { ProdutoDialogEditComponent } from './components/produto-dialog-edit/produto-dialog-edit.component';
 import { ProdutoDialogDeleteComponent } from './components/produto-dialog-delete/produto-dialog-delete.component';
+import { FormOrderComponent } from './components/form-order/form-order.component';
 
 @NgModule({
     declarations: [
@@ -97,6 +98,7 @@ import { ProdutoDialogDeleteComponent } from './components/produto-dialog-delete
         ListarPedidoComponent,
         ProdutoDialogEditComponent,
         ProdutoDialogDeleteComponent,
+        FormOrderComponent,
     ],
     imports: [
         NgxMaskDirective,

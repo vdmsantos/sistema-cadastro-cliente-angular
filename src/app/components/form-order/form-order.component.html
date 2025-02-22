@@ -1,0 +1,95 @@
+<div class="flex flex-col gap-8 w-full h-full">
+    <div class="flex flex-col gap-8 w-full max-w-[500px]">
+        <!-- Dados cliente -->
+        <div class="flex flex-col gap-2">
+            <p class="text-lg font-semibold">1. Dados do cliente</p>
+            <div class="w-full">
+                <select
+                    class="custom-select w-full"
+                    [(ngModel)]="selectedCustomer"
+                >
+                    <option
+                        *ngFor="let customer of customer_list"
+                        [ngValue]="customer"
+                    >
+                        {{ customer.nome }}
+                    </option>
+                </select>
+                <div
+                    *ngIf="selectedCustomer"
+                    class="mt-4 p-4 border rounded-md bg-gray-50"
+                >
+                    <p class="mb-2">
+                        <strong>Cpf:</strong>
+                        {{ selectedCustomer.cpf }}
+                    </p>
+                    <p class="mb-2">
+                        <strong>Telefone:</strong>
+                        {{ selectedCustomer.telefone }}
+                    </p>
+                </div>
+                <div
+                    *ngIf="selectedCustomer"
+                    class="mt-4 p-4 border rounded-md bg-gray-50"
+                >
+                    <p class="mb-2">
+                        <strong>Endereço:</strong>
+                        {{ selectedCustomer.endereco.cep }}
+                    </p>
+                    <p class="mb-2">
+                        <strong>Cidade:</strong>
+                        {{ selectedCustomer.endereco.bairro }}
+                    </p>
+                    <p class="mb-2">
+                        <strong>Estado:</strong>
+                        {{ selectedCustomer.endereco.cidade }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Endereco cliente -->
+        <div class="flex flex-col gap-2">
+            <p class="text-lg font-semibold">2. Dados do produto</p>
+            <div class="grid grid-cols-2 gap-2">
+                <select
+                    class="custom-select w-full"
+                    [(ngModel)]="selectedProduct"
+                >
+                    <option
+                        *ngFor="let customer of product_list"
+                        [ngValue]="customer"
+                    >
+                        {{ customer.nome }}
+                    </option>
+                </select>
+            </div>
+            <div
+                *ngIf="selectedProduct"
+                class="mt-4 p-4 border rounded-md bg-gray-50"
+            >
+                <p class="mb-2">
+                    <strong>Descrição:</strong>
+                    {{ selectedProduct.descricao }}
+                </p>
+                <p class="mb-2">
+                    <strong>Preço:</strong>
+                    {{ selectedProduct.preco }}
+                </p>
+            </div>
+        </div>
+        <div class="flex flex-col gap-2">
+            <p class="text-lg font-semibold">2. Dados do Pedido</p>
+            <div class="grid grid-cols-2 gap-2"></div>
+        </div>
+    </div>
+    <!-- Botao salvar -->
+    <div class="flex w-full justify-center">
+        <button
+            mat-dialog-close
+            (click)="submitForm()"
+            class="custom-btn !py-1 !px-20"
+        >
+            Criar Pedido
+        </button>
+    </div>
+</div>
