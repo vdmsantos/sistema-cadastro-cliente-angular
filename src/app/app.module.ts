@@ -60,6 +60,9 @@ import { ProdutoImageComponent } from './components/produto-image/produto-image.
 import { LoginComponent } from './pages/login/login.component';
 import { Dialog403Component } from './components/dialog-403/dialog-403.component';
 import { ProdutoInputComponent } from './components/produto-input/produto-input.component';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { ENVIRONMENT } from './environment';
 
 @NgModule({
     declarations: [
@@ -124,6 +127,8 @@ import { ProdutoInputComponent } from './components/produto-input/produto-input.
         ToastModule,
         HttpClientModule,
         ImageCropperModule,
+        AngularFireModule.initializeApp(ENVIRONMENT.firebaseConfig),
+        AngularFirestoreModule,
     ],
     providers: [provideNgxMask(), MessageService],
     bootstrap: [AppComponent],
