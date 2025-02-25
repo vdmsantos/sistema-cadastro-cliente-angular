@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MessageService } from 'primeng/api';
 import * as bcrypt from 'bcryptjs';
-import * as jwt from 'jsonwebtoken';
+import { SignJWT } from 'jose';
 import { ENVIRONMENT } from '../environment';
 import { LocalStorageService } from './local-storage.service';
 
@@ -16,9 +16,12 @@ export class UserService {
     private localStorageService: LocalStorageService,
   ) {}
 
-  async generateToken(user: any) {
+  async generateToken(user: any, expiresIn: string = '1d') {
     const payload = { username: user.username, type: user.type };
-    return jwt.sign(payload, ENVIRONMENT.JWT_SECRET, { expiresIn: '1d' });
+    return await new SignJWT(payload)
+    .setProtectedHeader({ alg: 'HS256' })
+    .setExpirationTime(expiresIn)
+    .sign(new TextEncoder().encode(ENVIRONMENT.JWT_SECRET));
   }
 
   async register(username: string, password: string, type: 'admin' | 'student') {
