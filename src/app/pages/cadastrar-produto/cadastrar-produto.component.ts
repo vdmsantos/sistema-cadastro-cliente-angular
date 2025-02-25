@@ -13,6 +13,6 @@ export class CadastrarProdutoComponent {
   ) { }
 
   submitForm() {
-    this.produtoformService.submit()
+    this.produtoformService.submit();
   }
 }
